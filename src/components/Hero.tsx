@@ -170,7 +170,6 @@ export function Hero() {
           </h1>
           <div className="hero__tl" aria-hidden="true">
             <p className="label">
-              <span className="label__mark" />
               <span>
                 <Typed text={label} count={counts[0]} caret={active === 0} />
               </span>

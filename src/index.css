@@ -28,7 +28,7 @@
   --accent-ink: #7B00B7;
   --on-accent: #FFFFFF;
   --signal: #FF8C00;
-  --signal-ink: #944F00;
+  --signal-ink: #B45800;
   --btn-bg: #141413;
   --btn-text: #F3F2EE;
   --media-bg: #DDDAD3;
@@ -118,11 +118,14 @@ main { padding-top: var(--nav-h); }
 /* ─── Shared primitives ─────────────────────────────────────────────────── */
 
 .label, .eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.4;
-  color: var(--text-2);
+  display: inline-flex; align-items: center; white-space: pre-wrap;
+  font-family: var(--font-mono); font-size: 12.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4;
+  color: var(--signal-ink);
 }
-.label__mark { width: 7px; height: 7px; flex: none; background: var(--signal); }
+/* Bracketed, full-orange tag label: [ TEXT ] */
+.label::before, .eyebrow::before { content: '[\00a0'; }
+.label::after, .eyebrow::after { content: '\00a0]'; }
+.field .label::before, .field .label::after { content: none; }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
