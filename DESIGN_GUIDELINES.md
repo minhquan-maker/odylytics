@@ -33,3 +33,7 @@ Everything is square: no border radius on cards, buttons, inputs, chips, dialogs
 ## Patterns
 
 Page head (label + large title + serif lead), section head (label + title + link), card grids, timeline, legal layout (sticky contents + body), dark closing panel. Reuse these; add a pattern here before inventing one.
+
+## Lines
+
+Use horizontal rules sparingly: no lines between sections, list rows, facts or headings. Keep only functional ones (nav on scroll, accordion items, the footer bar, popover dividers) and the gradient rule on the impact numbers. Space and tint do the separating.

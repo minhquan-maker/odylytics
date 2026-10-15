@@ -130,7 +130,7 @@ export function Home() {
 
       <section className="section">
         <div className="container">
-          <SectionHead label="Research and recognition" title="Our work, in public." action={{ href: '#/research/accomplished', text: 'See all milestones' }} />
+          <SectionHead label="Recognition" title="Our work, in public." action={{ href: '#/blog', text: 'All news' }} />
           <ul className="prizes">
             {prizes.map((prize) => (
               <li key={`${prize.issuer}-${prize.year}`} className="prize" data-reveal>
