@@ -15,7 +15,6 @@ export type Solution = {
   image?: string
 }
 
-
 export type RecognitionType = 'AWARD' | 'CERTIFICATION' | 'ACCELERATOR'
 
 export type Recognition = {
@@ -93,8 +92,6 @@ export type Post = {
   featured?: boolean
 }
 
-export type Pillar = { title: string; text: string }
-
 export const BRAND = {
   wordmark: '/assets/brand/odylytics-wordmark.svg',
   wordmarkDark: '/assets/brand/odylytics-wordmark-dark.svg',
@@ -102,92 +99,7 @@ export const BRAND = {
   symbolDark: '/assets/brand/odylytics-symbol-dark.svg',
 }
 
-export type NavGroup = { label: string; href?: string; items?: NavItem[] }
-
-/** Top navigation: groups with `items` render as dropdowns. */
-export const NAV: NavGroup[] = [
-  {
-    label: 'Solutions',
-    items: [
-      { label: 'All solutions', href: '#solutions', description: 'Six AI-powered digital solutions' },
-      { label: 'AquaGuard', href: '#solutions', description: 'Flood rescue coordination' },
-      { label: 'EnableCode', href: '#solutions', description: 'Hands-free coding education' },
-    ],
-  },
-  {
-    label: 'Company',
-    items: [
-      { label: 'Mission', href: '#mission', description: 'Why we exist and where we are heading' },
-      { label: 'Partners', href: '#partners', description: 'Universities and companies we build with' },
-      { label: 'Testimonials', href: '#testimonials', description: 'What partners and users say' },
-      { label: 'Contact', href: '#contact', description: 'Partnerships, pilots and press' },
-    ],
-  },
-  { label: 'Prizes', href: '#recognition' },
-  { label: 'News', href: '#/blog' },
-  { label: 'Team', href: '#/team' },
-]
-
-// ─── 1. Hero ────────────────────────────────────────────────────────────────
-
-export const HERO = {
-  eyebrow: 'AI firm · digital solutions',
-  // Option A (selected). Alternatives from CONTENT_OUTLINE.md §1:
-  //   B. Intelligent solutions for safer, smarter communities.
-  //   C. We build AI that works when it matters most.
-  headlineTop: 'AI solutions',
-  headlineBottom: 'that drive',
-  rotatingWords: ['innovation', 'impact', 'progress', 'growth'],
-  srHeadline: 'AI solutions that drive innovation, impact, progress and growth.',
-  note: 'One AI firm. Six solutions.',
-  // TODO(content): confirm what Odylytics provides and to whom.
-  subheadline:
-    'Odylytics is an AI firm. We create innovation through digital solutions, helping organisations and communities digitalise how they work, from flood rescue to inclusive education.',
-  scrollCue: 'Scroll to find out',
-  // TODO(content): confirm marquee keywords.
-  marquee: ['AI analytics', 'IoT monitoring', 'Early warning', 'Data platforms', 'Decision support', 'Inclusive design'],
-}
-
-// ─── 1b. Mission & direction ────────────────────────────────────────────────
-
-export const MISSION = {
-  eyebrow: 'Our mission',
-  lead: 'One AI firm.',
-  main: 'Many solutions.',
-  // TODO(content): confirm wording of the mission and vision with the founders.
-  mission:
-    'Odylytics is an AI firm that designs, builds and ships digital solutions. We create innovation and drive digital transformation, so communities and organisations can work smarter and safer.',
-  vision:
-    'A world where technology is designed for people, and every community can benefit from digital innovation.',
-  pillarsHeading: 'Where we are heading',
-  pillars: [
-    {
-      title: 'Solve real problems',
-      text: 'Pick problems that matter, from floods to accessibility, and turn each one into a solution people use every day.',
-    },
-    {
-      title: 'Drive digital transformation',
-      text: 'Build solutions that digitalise how work gets done, from coordinating rescue teams to teaching code, so people can focus on judgement and care.',
-    },
-    {
-      title: 'Build one shared core',
-      text: 'Keep a single technical foundation behind every product, so each new solution launches faster and learns from the others.',
-    },
-    {
-      title: 'Grow through partnerships',
-      text: 'Work with universities, public bodies and companies in Vietnam and abroad to test, fund and distribute what we build.',
-    },
-  ] as Pillar[],
-}
-
 // ─── 2. Core Digital Solutions ──────────────────────────────────────────────
-
-export const SOLUTIONS_HEADING = {
-  eyebrow: 'Solutions',
-  lead: 'Six solutions.',
-  main: 'One AI core.',
-  intro: 'From flood rescue to inclusive education, every solution is built on the same AI foundation and shaped by real problems.',
-}
 
 export const SOLUTIONS: Solution[] = [
   {
@@ -257,13 +169,6 @@ export const SOLUTIONS: Solution[] = [
 
 // ─── 4. Awards & Certifications ─────────────────────────────────────────────
 
-export const RECOGNITION_HEADING = {
-  eyebrow: 'Prizes',
-  lead: 'Independent proof.',
-  main: 'Recognised for impact.',
-  intro: 'Four prizes across competitions in Vietnam, won by one team.',
-}
-
 // TODO(content): press links (`href`) and issuer logos.
 export const RECOGNITION: RecognitionGroup[] = [
   {
@@ -298,13 +203,6 @@ export const RECOGNITION: RecognitionGroup[] = [
 
 // ─── 5. Partnerships ────────────────────────────────────────────────────────
 
-export const PARTNERS_HEADING = {
-  eyebrow: 'Partnerships',
-  lead: 'Trusted by institutions.',
-  main: 'Built with universities.',
-  intro: 'We build with the universities and companies that back student innovation.',
-}
-
 export const PARTNERS: Partner[] = [
   { name: 'University of Technology Sydney', type: 'Academic', logo: '/assets/partners/uts.png' },
   { name: 'Ho Chi Minh City University of Technology', type: 'Academic', logo: '/assets/partners/hcmut.png' },
@@ -319,8 +217,6 @@ export const PARTNERS: Partner[] = [
 
 export type ImpactStat = { value: number; suffix?: string; label: string }
 
-export const IMPACT_HEADING = { eyebrow: 'Our impact so far' }
-
 // TODO(content): confirm the figures and how each one is counted before shipping.
 export const IMPACT: ImpactStat[] = [
   { value: 1000000, suffix: '+', label: 'Social media reached' },
@@ -331,12 +227,6 @@ export const IMPACT: ImpactStat[] = [
 export const IMPACT_NOTE = 'Results from AquaGuard, our flood rescue platform.'
 
 // ─── 6. Testimonials ────────────────────────────────────────────────────────
-
-export const TESTIMONIALS_HEADING = {
-  eyebrow: 'Testimonials',
-  lead: 'People on the ground',
-  main: 'already believe in AquaGuard.',
-}
 
 export const TESTIMONIALS: Testimonial[] = [
   {
@@ -386,19 +276,6 @@ export const TESTIMONIALS: Testimonial[] = [
 
 // ─── 7. Core Team ───────────────────────────────────────────────────────────
 
-export const TEAM_HEADING = {
-  eyebrow: 'Core team',
-  lead: 'Five co-founders.',
-  main: 'The people behind Odylytics.',
-  intro: 'Five students building across product, engineering, design and marketing.',
-}
-
-export const TEAM_GROUPS = {
-  cofounders: { heading: 'Co-founders', intro: 'The five students who started Odylytics.' },
-  advisors: { heading: 'Advisors', intro: 'Mentors and experts who guide our work.' },
-  members: { heading: 'Members', intro: 'Students and collaborators building with us.' },
-}
-
 export const ADVISORS: Advisor[] = [
   { name: 'Dr. Tobias Cibis', role: 'Strategic Advisor', affiliation: 'Lecturer, School of Computer Science, UTS' },
   { name: 'Prof. Nguyen Ngoc Dinh', role: 'Community Advisor', affiliation: 'Director, Đất Lành Quebec Canada, Laval University' },
@@ -409,13 +286,6 @@ export const ADVISORS: Advisor[] = [
 
 // TODO(content): add members here (same shape as TEAM) when they are ready; an empty group shows an 'Updating soon' frame.
 export const MEMBERS: TeamMember[] = []
-
-export const TEAM_TEASER = {
-  eyebrow: 'Core team',
-  lead: 'Five co-founders.',
-  main: 'One mission.',
-  intro: 'Meet the people behind Odylytics, what each of them owns, and how they work together.',
-}
 
 // TODO(content): add LinkedIn URLs for all 5 members and confirm roles, bios and responsibilities.
 export const TEAM: TeamMember[] = [
@@ -510,21 +380,7 @@ export const SOCIALS: NavItem[] = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/odylytics' },
 ]
 
-export const COMPANY_LINKS: NavItem[] = [
-  { label: 'About', href: '#home' },
-  { label: 'Recognition', href: '#recognition' },
-  { label: 'Partners', href: '#partners' },
-  { label: 'Team', href: '#team' },
-]
-
 // ─── 9. News / Blog ─────────────────────────────────────────────────────────
-
-export const NEWS_HEADING = {
-  eyebrow: 'News',
-  lead: 'Latest from Odylytics.',
-  main: 'Wins, press and milestones.',
-  intro: 'Competition results, media coverage and updates from the team.',
-}
 
 export const POST_CATEGORIES: ('All' | PostCategory)[] = ['All', 'Awards', 'Press', 'Milestones', 'Product']
 
@@ -605,12 +461,6 @@ export const POSTS: Post[] = [
 
 // ─── 9b. FAQ ────────────────────────────────────────────────────────────────
 
-export const FAQ_HEADING = {
-  eyebrow: 'FAQ',
-  lead: 'Frequently',
-  main: 'asked questions.',
-}
-
 // TODO(content): confirm each answer with the founders before shipping.
 export const FAQ: { q: string; a: string }[] = [
   {
@@ -636,57 +486,5 @@ export const FAQ: { q: string; a: string }[] = [
   {
     q: 'How can we work together?',
     a: 'Partnerships, pilots and press enquiries are all welcome. Send us a message through the contact form or email odylytics@gmail.com.',
-  },
-]
-
-// ─── 10. Footer & legal ─────────────────────────────────────────────────────
-
-export const FOOTER_NOTE =
-  'AquaGuard, EnableCode, AirGuard, Includio, RooMie and HearWork are products of Odylytics. Awards and press coverage are credited to their respective organisers and publishers. Some products are in pilot or prototype stage and features may change.'
-
-export const LEGAL_LINKS: NavItem[] = [
-  { label: 'Privacy Policy', href: '#/privacy' },
-  { label: 'Terms of Use', href: '#/terms' },
-  { label: 'Cookie Policy', href: '#/cookies' },
-  { label: 'Member login', href: '#/login' },
-]
-
-export const FOOTER_GROUPS: { heading: string; links: NavItem[] }[] = [
-  {
-    heading: 'Solutions',
-    links: [
-      { label: 'AquaGuard', href: '#solutions' },
-      { label: 'EnableCode', href: '#solutions' },
-      { label: 'AirGuard', href: '#solutions' },
-      { label: 'Includio', href: '#solutions' },
-      { label: 'RooMie', href: '#solutions' },
-      { label: 'HearWork', href: '#solutions' },
-    ],
-  },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'Mission', href: '#mission' },
-      { label: 'Core team', href: '#/team' },
-      { label: 'Recognition', href: '#recognition' },
-      { label: 'Partners', href: '#partners' },
-    ],
-  },
-  {
-    heading: 'News',
-    links: [
-      { label: 'All news', href: '#/blog' },
-      { label: 'Awards', href: '#/blog' },
-      { label: 'Press', href: '#/blog' },
-      { label: 'Milestones', href: '#/blog' },
-    ],
-  },
-  {
-    heading: 'Get in touch',
-    links: [
-      { label: 'Partnerships', href: '#contact' },
-      { label: 'Pilots', href: '#contact' },
-      { label: 'Press enquiries', href: '#contact' },
-    ],
   },
 ]

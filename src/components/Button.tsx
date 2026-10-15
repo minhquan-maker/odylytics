@@ -1,42 +1,30 @@
 import type { ReactNode } from 'react'
 
-type Variant = 'primary' | 'outline' | 'inverse' | 'signal'
+type Variant = 'primary' | 'outline' | 'accent' | 'text'
 
 type Props = {
   children: ReactNode
   variant?: Variant
   href?: string
   type?: 'button' | 'submit'
-  arrow?: boolean
   size?: 'md' | 'sm'
   className?: string
   onClick?: () => void
+  disabled?: boolean
 }
 
-export function Button({ children, variant = 'primary', href, type = 'button', arrow = true, size = 'md', className, onClick }: Props) {
+export function Button({ children, variant = 'primary', href, type = 'button', size = 'md', className, onClick, disabled }: Props) {
   const classes = ['btn', `btn--${variant}`, size === 'sm' ? 'btn--sm' : '', className ?? ''].filter(Boolean).join(' ')
-  const content = (
-    <>
-      <span>{children}</span>
-      {arrow && (
-        <span className="btn__arrow" aria-hidden="true">
-          →
-        </span>
-      )}
-    </>
-  )
-
   if (href) {
     return (
       <a className={classes} href={href} onClick={onClick}>
-        {content}
+        {children}
       </a>
     )
   }
-
   return (
-    <button className={classes} type={type} onClick={onClick}>
-      {content}
+    <button className={classes} type={type} onClick={onClick} disabled={disabled}>
+      {children}
     </button>
   )
 }

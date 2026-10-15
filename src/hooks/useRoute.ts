@@ -1,6 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react'
 
-export type Route = `profile:${string}` | 'home' | 'blog' | 'privacy' | 'terms' | 'login' | 'admin' | 'team' | 'cookies' | 'notfound'
+/** Route path without the leading hash, e.g. '/', '/product/climate-tech', '/legal/privacy'. */
+export type Route = string
 
 function subscribe(callback: () => void) {
   window.addEventListener('hashchange', callback)
@@ -14,30 +15,18 @@ export function isUnknownPath() {
 }
 
 function getRoute(): Route {
-  if (isUnknownPath()) return 'notfound'
+  if (isUnknownPath()) return '/404'
   const hash = window.location.hash
-  if (hash === '#/blog') return 'blog'
-  if (hash === '#/privacy') return 'privacy'
-  if (hash === '#/terms') return 'terms'
-  if (hash === '#/team') return 'team'
-  const profile = /^#\/team\/([a-z0-9-]+)$/.exec(hash)
-  if (profile) return `profile:${profile[1]}`
-  if (hash === '#/cookies') return 'cookies'
-  if (hash === '#/login') return 'login'
-  if (hash === '#/admin') return 'admin'
-  if (hash.startsWith('#/')) return 'notfound'
-  return 'home'
+  if (hash.startsWith('#/')) return hash.slice(1).replace(/\/+$/, '') || '/'
+  return '/'
 }
 
-/** Tiny hash router: `#/blog`, `#/privacy`, `#/terms`, `#/login`, `#/admin`; unknown `#/…` routes are 'notfound', every other hash is a home-page anchor. */
+/** Tiny hash router: `#/product/climate-tech`, `#/legal/privacy`, … The home page is `/`; unknown routes render NotFound. */
 export function useRoute(): Route {
-  const route = useSyncExternalStore(subscribe, getRoute, () => 'home' as Route)
+  const route = useSyncExternalStore(subscribe, getRoute, () => '/')
 
   useEffect(() => {
-    const hash = window.location.hash
-    const target = route === 'home' && hash.length > 1 ? document.querySelector<HTMLElement>(hash) : null
-    if (target) target.scrollIntoView()
-    else window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
   }, [route])
 
   return route

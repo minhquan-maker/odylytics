@@ -1,3 +1,5 @@
+> **Superseded.** Site structure and copy now follow `REDESIGN_BRIEF.md`; data lives in `src/data/site.ts` and `src/data/content.ts`. Kept for history.
+
 # Odylytics — Landing Page Content Outline (v1)
 
 > All on-page copy is in **English**. Items marked `[TBD]` are waiting for source documents.
