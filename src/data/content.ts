@@ -73,6 +73,14 @@ export type TeamMember = {
   shortRole: string
   /** Concrete day-to-day responsibilities. */
   responsibilities: string[]
+  /** First-person or third-person paragraph for the profile page; the page shows 'Updating soon' while missing. */
+  about?: string
+  /** Education and past roles, newest first. */
+  background?: { title: string; org: string; note?: string }[]
+  /** Achievements worth listing on the profile. */
+  highlights?: string[]
+  /** Extra links such as portfolio, GitHub or email (LinkedIn comes from `linkedin`). */
+  links?: { label: string; href: string }[]
 }
 
 export type PostCategory = 'Awards' | 'Press' | 'Milestones' | 'Product'
@@ -349,15 +357,28 @@ export const TEAM: TeamMember[] = [
   {
     name: 'Trương Nguyễn Bảo Khang',
     slug: 'khang-engineer',
-    role: 'Software Engineer',
+    role: 'Software and DevOps Engineer',
     shortRole: 'Engineer',
-    bio: 'Builds the platforms behind our solutions, from real-time data pipelines to the dashboards responders rely on.',
+    bio: 'Builds backend systems, researches algorithms and manages deployment for AquaGuard.',
     photo: '/assets/team/khang.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/kevintruong0511/',
     responsibilities: [
-      'Builds web and mobile apps for AquaGuard and EnableCode',
-      'Maintains data pipelines and the live map',
-      'Ships releases and monitors uptime',
+      'Builds backend systems for AquaGuard, the web and iOS flood platform',
+      'Researches the algorithms behind flood alerts and rescue dispatch',
+      'Manages deployment and infrastructure',
+    ],
+    about:
+      'Second-year Bachelor of Artificial Intelligence student at UTS and HCMUT, and Software and DevOps Engineer at Odylytics. He works on AquaGuard, a web and iOS platform that issues flood alerts, lets residents send SOS requests with their live location and coordinates the nearest rescue teams in real time. He loves exploring new technologies and applying AI to make real work more efficient and impactful.',
+    background: [
+      { title: 'Bachelor of Artificial Intelligence', org: 'University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT)', note: 'Second year' },
+      { title: 'Software and DevOps Engineer', org: 'Odylytics' },
+    ],
+    highlights: ['1st place, OISP Presentation Contest (with the AquaGuard team)', '1st place, EPICS 8th Competition (with the AquaGuard team)'],
+    links: [
+      { label: 'Portfolio', href: 'https://portfolio-khang.vercel.app' },
+      { label: 'GitHub', href: 'https://github.com/kevintruong0511' },
+      { label: 'Email (HCMUT)', href: 'mailto:khang.truong05112007@hcmut.edu.vn' },
+      { label: 'Email (UTS)', href: 'mailto:NguyenBaoKhang.Truong@student.uts.edu.au' },
     ],
   },
 ]
