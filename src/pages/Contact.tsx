@@ -3,8 +3,10 @@ import type { FormEvent } from 'react'
 import { PageHead } from '../components/Section'
 import { CONTACT, FAQ, SOCIALS } from '../data/content'
 import { CONTACT_PURPOSES } from '../data/site'
+import { useT } from '../lib/lang'
 
 export function Contact() {
+  const t = useT()
   const [sent, setSent] = useState(false)
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -25,40 +27,42 @@ export function Contact() {
         <div className="container contact">
           <form className="form" onSubmit={onSubmit}>
             <label className="field">
-              <span className="field__label">What is this about?</span>
+              <span className="field__label">{t('What is this about?')}</span>
               <select name="purpose" defaultValue={CONTACT_PURPOSES[0]}>
                 {CONTACT_PURPOSES.map((item) => (
-                  <option key={item}>{item}</option>
+                  <option key={item} value={item}>
+                    {t(item)}
+                  </option>
                 ))}
               </select>
             </label>
             <div className="form__row">
               <label className="field">
-                <span className="field__label">Name</span>
+                <span className="field__label">{t('Name')}</span>
                 <input name="name" type="text" autoComplete="name" required />
               </label>
               <label className="field">
-                <span className="field__label">Email</span>
+                <span className="field__label">{t('Email')}</span>
                 <input name="email" type="email" autoComplete="email" required />
               </label>
             </div>
             <label className="field">
-              <span className="field__label">Organisation</span>
+              <span className="field__label">{t('Organisation')}</span>
               <input name="organisation" type="text" autoComplete="organization" />
             </label>
             <label className="field">
-              <span className="field__label">Message</span>
+              <span className="field__label">{t('Message')}</span>
               <textarea name="message" rows={6} required />
             </label>
             <label className="check">
               <input type="checkbox" required />
               <span>
-                I agree that Odylytics may use these details to reply to me, as described in the <a href="#/legal/privacy">Privacy Policy</a>.
+                I agree that Odylytics may use these details to reply to me, as described in the <a href="#/legal/privacy">{t('Privacy Policy')}</a>.
               </span>
             </label>
             <div className="form__actions">
               <button className="btn btn--primary" type="submit">
-                Send message
+                {t('Send message')}
               </button>
               <p className="form__status" role="status">
                 {sent ? 'Your email app should open with the message ready to send.' : ''}
@@ -69,7 +73,7 @@ export function Contact() {
           <aside className="contact__side">
             <dl className="facts">
               <div>
-                <dt>Email</dt>
+                <dt>{t('Email')}</dt>
                 <dd>
                   <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
                 </dd>
@@ -97,7 +101,7 @@ export function Contact() {
               <div>
                 <dt>Security reports</dt>
                 <dd>
-                  <a href="#/legal/disclosure">Responsible disclosure</a>
+                  <a href="#/legal/disclosure">{t('Responsible disclosure')}</a>
                 </dd>
               </div>
             </dl>
@@ -107,7 +111,7 @@ export function Contact() {
 
       <section className="section section--tight">
         <div className="container faq">
-          <h2 className="sechead__title">Frequently asked questions</h2>
+          <h2 className="sechead__title">{t('Frequently asked questions')}</h2>
           <div>
             {FAQ.map((item) => (
               <details key={item.q} className="faq__item">

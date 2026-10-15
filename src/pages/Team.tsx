@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Label, PageHead, SectionHead } from '../components/Section'
 import { ADVISORS, MEMBERS, PARTNERS, TEAM } from '../data/content'
 import { PARTNERS_PAGE, PARTNER_NOTES, RESOURCES_PAGE, TEAM_PAGE } from '../data/site'
+import { useT } from '../lib/lang'
 
 export function CoFounders() {
   return (
@@ -63,6 +64,7 @@ export function CoFounders() {
 }
 
 export function PartnersPage() {
+  const t = useT()
   const groups = ['Academic', 'Corporate', 'Accelerator']
   return (
     <>
@@ -91,7 +93,7 @@ export function PartnersPage() {
           <h2 className="closing__title">Become a partner.</h2>
           <p>Offer a testbed, a lab, a stage or funding, and help us put AI where it is needed.</p>
           <a className="btn btn--accent" href="#/contact">
-            Get in touch
+            {t('Get in touch')}
           </a>
         </div>
       </section>
@@ -100,6 +102,7 @@ export function PartnersPage() {
 }
 
 export function Resources() {
+  const t = useT()
   const [copied, setCopied] = useState(false)
   const copy = async () => {
     try {
@@ -152,7 +155,7 @@ export function Resources() {
               </li>
             ))}
           </ul>
-          <p className="resources__note">Please keep clear space around the logo, do not recolour or distort it. See the brand section of the <a href="#/legal/terms">Terms of Use</a>.</p>
+          <p className="resources__note">Please keep clear space around the logo, do not recolour or distort it. See the brand section of the <a href="#/legal/terms">{t('Terms of Use')}</a>.</p>
         </div>
       </section>
 

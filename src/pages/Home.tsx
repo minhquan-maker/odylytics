@@ -9,8 +9,10 @@ import { IMPACT, IMPACT_NOTE, POSTS, RECOGNITION, SOLUTIONS, TEAM } from '../dat
 import { HOME_BAND, HOME_CLOSING, HOME_PILLARS, HOME_WORK, PRODUCT_GROUPS } from '../data/site'
 import { useBrandAssets } from '../hooks/useBrandAssets'
 import { postsStore } from '../lib/stores'
+import { useT } from '../lib/lang'
 
 export function Home() {
+  const t = useT()
   const { solutionLogo } = useBrandAssets()
   const stored = postsStore.useItems()
   const posts = (postsStore.isSeeded() ? POSTS : stored).slice(0, 3)
@@ -27,19 +29,19 @@ export function Home() {
         <div className="container">
           <div className="news-cards">
             <a className="hero-card" href="#/research/accomplished">
-              <span className="tag tag--accent">New</span>
-              <h2>EnableCode wins Fessior DevCamp 2026</h2>
-              <p>Our hands-free coding platform for people with upper-limb disabilities took first place.</p>
+              <span className="tag tag--accent">{t('New')}</span>
+              <h2>{t('EnableCode wins Fessior DevCamp 2026')}</h2>
+              <p>{t('Our hands-free coding platform for people with upper-limb disabilities took first place.')}</p>
               <span className="link-arrow">
-                Read more <span aria-hidden="true">→</span>
+                {t('Read more')} <span aria-hidden="true">→</span>
               </span>
             </a>
             <a className="hero-card" href="#/contact">
-              <span className="tag">Partner with us</span>
-              <h2>Run a pilot with Odylytics</h2>
-              <p>Universities, public bodies and companies: tell us about the problem you want to solve.</p>
+              <span className="tag">{t('Partner with us')}</span>
+              <h2>{t('Run a pilot with Odylytics')}</h2>
+              <p>{t('Universities, public bodies and companies: tell us about the problem you want to solve.')}</p>
               <span className="link-arrow">
-                Get in touch <span aria-hidden="true">→</span>
+                {t('Get in touch')} <span aria-hidden="true">→</span>
               </span>
             </a>
           </div>
@@ -48,7 +50,7 @@ export function Home() {
 
       <section className="strip" aria-label="Partners">
         <div className="container">
-          <Label>Built with universities and companies</Label>
+          <Label>{t('Built with universities and companies')}</Label>
         </div>
         <PartnerLoop />
       </section>
@@ -60,11 +62,11 @@ export function Home() {
             {HOME_PILLARS.map((pillar) => (
               <li key={pillar.label} className="pillar" data-reveal>
                 <span className="pillar__index">{pillar.index}</span>
-                <p className="pillar__label">{pillar.label}</p>
-                <h3 className="pillar__title">{pillar.title}</h3>
-                <p className="pillar__text">{pillar.text}</p>
+                <p className="pillar__label">{t(pillar.label)}</p>
+                <h3 className="pillar__title">{t(pillar.title)}</h3>
+                <p className="pillar__text">{t(pillar.text)}</p>
                 <a className="link-arrow" href={pillar.href}>
-                  {pillar.cta} <span aria-hidden="true">→</span>
+                  {t(pillar.cta)} <span aria-hidden="true">→</span>
                 </a>
               </li>
             ))}
@@ -75,9 +77,9 @@ export function Home() {
       <section className="section section--tight">
         <div className="container how">
           <div className="how__copy" data-reveal>
-            <Label>How it works</Label>
-            <h2 className="sechead__title">Many inputs. One shared AI core.</h2>
-            <p>Community reports, sensor readings and webcam signals all flow through the same foundation, so every new product launches faster and learns from the others.</p>
+            <Label>{t('How it works')}</Label>
+            <h2 className="sechead__title">{t('Many inputs. One shared AI core.')}</h2>
+            <p>{t('Community reports, sensor readings and webcam signals all flow through the same foundation, so every new product launches faster and learns from the others.')}</p>
           </div>
           <div className="how__art" data-reveal>
             <HeroArt />
@@ -91,8 +93,8 @@ export function Home() {
           <div className="productgrid">
             {[climate, access].map((group) => (
               <a key={group.id} className="productcard" href={`#/product/${group.id}`} data-reveal>
-                <p className="productcard__label">{group.label.replace('Product · ', '')}</p>
-                <h3 className="productcard__title">{group.title}</h3>
+                <p className="productcard__label">{t(group.label.replace('Product · ', ''))}</p>
+                <h3 className="productcard__title">{t(group.title)}</h3>
                 <ul className="productcard__logos">
                   {group.solutions.map((id) => {
                     const solution = live(id)
@@ -104,7 +106,7 @@ export function Home() {
                   })}
                 </ul>
                 <span className="link-arrow">
-                  Explore <span aria-hidden="true">→</span>
+                  {t('Explore')} <span aria-hidden="true">→</span>
                 </span>
               </a>
             ))}
@@ -117,14 +119,14 @@ export function Home() {
           <div>
             <Label>{HOME_BAND.label}</Label>
             <h2 id="band-title" className="band__title">
-              {HOME_BAND.title}
+              {t(HOME_BAND.title)}
             </h2>
-            <p className="band__text">{HOME_BAND.text}</p>
+            <p className="band__text">{t(HOME_BAND.text)}</p>
           </div>
           <dl className="stats">
             {IMPACT.map((stat) => (
               <div key={stat.label} className="stat">
-                <dt>{stat.label}</dt>
+                <dt>{t(stat.label)}</dt>
                 <dd>
                   <CountUp to={stat.value} />
                   {stat.suffix}
@@ -132,7 +134,7 @@ export function Home() {
               </div>
             ))}
           </dl>
-          <p className="band__note">{IMPACT_NOTE}</p>
+          <p className="band__note">{t(IMPACT_NOTE)}</p>
           <div className="bars" aria-hidden="true">
             {Array.from({ length: 36 }, (_, index) => (
               <span key={index} className={`bars__bar${index > 29 ? ' is-hot' : ''}`} />
@@ -153,7 +155,7 @@ export function Home() {
                   </div>
                 )}
                 <div className="prize__body">
-                  <p className="prize__place">{prize.place === '1st' ? '1st prize' : '2nd prize'}</p>
+                  <p className="prize__place">{t(prize.place === '1st' ? '1st prize' : '2nd prize')}</p>
                   <h3 className="prize__issuer">{prize.issuer}</h3>
                   <p className="prize__meta">
                     {prize.product} · {prize.year}
@@ -206,10 +208,10 @@ export function Home() {
             <img src={HOME_WORK.image} alt="The Odylytics team working together" loading="lazy" />
           </div>
           <div className="work__body" data-reveal>
-            <h2 className="work__title">{HOME_WORK.title}</h2>
+            <h2 className="work__title">{t(HOME_WORK.title)}</h2>
             <p>{HOME_WORK.text}</p>
             <a className="btn btn--outline" href="#/team/co-founders">
-              {HOME_WORK.cta}
+              {t(HOME_WORK.cta)}
             </a>
           </div>
         </div>
@@ -217,11 +219,11 @@ export function Home() {
 
       <section className="container closing-wrap">
         <div className="closing scope-dark">
-          <Label>Get in touch</Label>
-          <h2 className="closing__title">{HOME_CLOSING.title}</h2>
-          <p>{HOME_CLOSING.text}</p>
+          <Label>{t('Get in touch')}</Label>
+          <h2 className="closing__title">{t(HOME_CLOSING.title)}</h2>
+          <p>{t(HOME_CLOSING.text)}</p>
           <a className="btn btn--accent" href="#/contact">
-            Get in touch
+            {t('Get in touch')}
           </a>
         </div>
       </section>

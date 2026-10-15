@@ -4,6 +4,7 @@ import { Label } from './Section'
 import { HOME_HERO } from '../data/site'
 import { usePrefersReducedMotion } from '../hooks/useMediaQuery'
 import { useTheme } from '../hooks/useTheme'
+import { useT } from '../lib/lang'
 
 const Hyperspeed = lazy(() => import('./Hyperspeed'))
 
@@ -37,6 +38,7 @@ function supportsWebgl() {
 /** Pinned scroll intro: a big headline over a light-trail road; scrolling fades the copy and sends the road to full speed. */
 export function Hero() {
   const theme = useTheme()
+  const t = useT()
   const reducedMotion = usePrefersReducedMotion()
   const [webgl] = useState(supportsWebgl)
   const dark = theme === 'dark'
@@ -117,17 +119,17 @@ export function Hero() {
 
         <div className="container hero__content">
           <h1 id="hero-title" className="sr-only">
-            {HOME_HERO.title.join(' ')}
+            {HOME_HERO.title.map((line) => t(line)).join(' ')}
           </h1>
           <div className="hero__tl" aria-hidden="true">
             <Label>{HOME_HERO.eyebrow}</Label>
-            <span className="hero__line">{HOME_HERO.title[0]}</span>
+            <span className="hero__line">{t(HOME_HERO.title[0])}</span>
           </div>
           <div className="hero__br">
             <span className="hero__line" aria-hidden="true">
-              {HOME_HERO.title[1]}
+              {t(HOME_HERO.title[1])}
             </span>
-            <p className="hero__lead">{HOME_HERO.lead}</p>
+            <p className="hero__lead">{t(HOME_HERO.lead)}</p>
           </div>
         </div>
 
@@ -135,7 +137,7 @@ export function Hero() {
           <span className="hero__cue-icon">
             <ArrowDownIcon />
           </span>
-          {HOME_HERO.cue}
+          {t(HOME_HERO.cue)}
         </p>
       </div>
     </section>

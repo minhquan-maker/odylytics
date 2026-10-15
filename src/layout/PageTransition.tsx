@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { prefersReducedMotion } from '../lib/motion'
 
 type Phase = 'idle' | 'cover' | 'glitch' | 'reveal'
 
@@ -36,11 +37,10 @@ export function PageTransition() {
   const timers = useRef<number[]>([])
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms))
 
     const onClick = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || busy.current || reduced.matches) return
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || busy.current || prefersReducedMotion()) return
       const link = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#/"]')
       if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return
       const route = link.getAttribute('href')!.slice(1).replace(/\/+$/, '') || '/'
