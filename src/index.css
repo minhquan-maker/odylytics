@@ -61,10 +61,10 @@
 
 :root[data-theme='dark'],
 .scope-dark {
-  --bg: #0E0D10;
-  --surface: #18171B;
-  --surface-2: #232227;
-  --panel: #1A191E;
+  --bg: #141413;
+  --surface: #1F1E1D;
+  --surface-2: #2A2927;
+  --panel: #1F1E1D;
   --text: #F3F2EE;
   --text-2: #B7B4AD;
   --text-3: #8A8780;
@@ -74,12 +74,12 @@
   --signal-ink: #FF8C00;
   --btn-bg: #F3F2EE;
   --btn-text: #141413;
-  --media-bg: #232227;
+  --media-bg: #2A2927;
   --logo-filter: none;
   color-scheme: dark;
 }
 
-:root[data-theme='dark'] { --panel: #1A191E; }
+:root[data-theme='dark'] { --panel: #1F1E1D; }
 .scope-dark { color: var(--text); }
 :root:not([data-theme='dark']) .scope-dark { --panel: #141413; }
 

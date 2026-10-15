@@ -1,5 +1,7 @@
 import './App.css'
 import { Consent } from './layout/Consent'
+import { ErrorBoundary } from './layout/ErrorBoundary'
+import { OfflineScreen } from './layout/OfflineScreen'
 import { Footer } from './layout/Footer'
 import { Nav } from './layout/Nav'
 import { PageTransition } from './layout/PageTransition'
@@ -71,10 +73,13 @@ function App() {
       </a>
       <Nav route={route} />
       <main id="main">
-        <Page route={route} />
+        <ErrorBoundary key={route}>
+          <Page route={route} />
+        </ErrorBoundary>
       </main>
       <Footer />
       <Consent />
+      <OfflineScreen />
       <PageTransition />
     </>
   )

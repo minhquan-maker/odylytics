@@ -4,7 +4,7 @@ import type { Lang } from '../lib/lang'
 import { setReduceMotion, useReducedMotion } from '../lib/motion'
 import { setThemePreference, useThemePreference } from '../hooks/useTheme'
 import type { ThemePref } from '../hooks/useTheme'
-import { GearIcon } from './Icons'
+import { CheckIcon, ChevronDownIcon, GearIcon } from './Icons'
 
 function Segmented<T extends string>({ label, value, options, onChange }: { label: string; value: T; options: { id: T; text: string }[]; onChange: (value: T) => void }) {
   return (
@@ -18,31 +18,52 @@ function Segmented<T extends string>({ label, value, options, onChange }: { labe
   )
 }
 
-/** Language, theme and motion controls. Used inside the popover and in the mobile menu. */
-export function SettingsPanel() {
+function LanguageList() {
   const t = useT()
   const lang = useLang()
+  const [open, setOpen] = useState(false)
+  const current = LANGUAGES.find((item) => item.id === lang) ?? LANGUAGES[0]
+
+  return (
+    <div className="lang">
+      <button type="button" className="lang__button" aria-expanded={open} aria-haspopup="listbox" aria-label={t('Language')} onClick={() => setOpen((value) => !value)}>
+        <span>{current.label}</span>
+        <ChevronDownIcon />
+      </button>
+      {open && (
+        <ul className="lang__list" role="listbox" aria-label={t('Language')}>
+          {LANGUAGES.map((item) => (
+            <li key={item.id} role="option" aria-selected={item.id === lang}>
+              <button
+                type="button"
+                className={item.id === lang ? 'is-active' : ''}
+                onClick={() => {
+                  setLang(item.id as Lang)
+                  setOpen(false)
+                }}
+              >
+                <span>{item.label}</span>
+                {item.id === lang && <CheckIcon />}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+      {lang !== 'en' && <p className="settings__hint">{t('Policies and long articles stay in English.')}</p>}
+    </div>
+  )
+}
+
+/** Theme, language and motion controls, in that order. Used inside the popover and in the mobile menu. */
+export function SettingsPanel() {
+  const t = useT()
   const theme = useThemePreference()
   const reduced = useReducedMotion()
 
   return (
     <div className="settings__panel">
-      <div className="settings__group">
-        <label className="settings__label" htmlFor="settings-lang">
-          {t('Language')}
-        </label>
-        <select id="settings-lang" className="settings__select" value={lang} onChange={(event) => setLang(event.target.value as Lang)}>
-          {LANGUAGES.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-        {lang !== 'en' && <p className="settings__hint">{t('Policies and long articles stay in English.')}</p>}
-      </div>
-
-      <div className="settings__group">
-        <span className="settings__label">{t('Theme')}</span>
+      <section className="settings__group" aria-label={t('Theme')}>
+        <h3 className="settings__label">{t('Theme')}</h3>
         <Segmented<ThemePref>
           label={t('Theme')}
           value={theme}
@@ -53,22 +74,28 @@ export function SettingsPanel() {
             { id: 'system', text: t('System') },
           ]}
         />
-      </div>
+      </section>
 
-      <div className="settings__group">
-        <span className="settings__label">
-          {t('Accessibility')} · {t('Reduce motion')}
-        </span>
-        <Segmented<'yes' | 'no'>
-          label={t('Reduce motion')}
-          value={reduced ? 'yes' : 'no'}
-          onChange={(value) => setReduceMotion(value === 'yes')}
-          options={[
-            { id: 'yes', text: t('Yes') },
-            { id: 'no', text: t('No') },
-          ]}
-        />
-      </div>
+      <section className="settings__group" aria-label={t('Language')}>
+        <h3 className="settings__label">{t('Language')}</h3>
+        <LanguageList />
+      </section>
+
+      <section className="settings__group" aria-label={t('Accessibility')}>
+        <h3 className="settings__label">{t('Accessibility')}</h3>
+        <div className="settings__row">
+          <span className="settings__name">{t('Reduce motion')}</span>
+          <Segmented<'yes' | 'no'>
+            label={t('Reduce motion')}
+            value={reduced ? 'yes' : 'no'}
+            onChange={(value) => setReduceMotion(value === 'yes')}
+            options={[
+              { id: 'yes', text: t('Yes') },
+              { id: 'no', text: t('No') },
+            ]}
+          />
+        </div>
+      </section>
     </div>
   )
 }
