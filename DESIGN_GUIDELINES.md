@@ -36,4 +36,4 @@ Page head (label + large title + serif lead), section head (label + title + link
 
 ## Lines
 
-Use horizontal rules sparingly: no lines between sections, list rows, facts or headings. Keep only functional ones (nav on scroll, accordion items, the footer bar, popover dividers) and the gradient rule on the impact numbers. Space and tint do the separating.
+The site uses thin rules to separate sections, lists and facts. The one exception is Research (overview, publications, ongoing and article pages): there, no lines between sections, list rows or facts; space and a tint on hover do the separating.
