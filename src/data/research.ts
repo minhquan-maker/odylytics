@@ -13,13 +13,13 @@ export type Stage = (typeof STAGES)[number]
 
 export type EntryKind = 'Project' | 'Paper' | 'Preprint' | 'Report' | 'Thesis' | 'Dataset' | 'Code' | 'Talk'
 
-export type ResearchArea = { id: string; label: string; short: string; text: string; product: string }
+export type ResearchArea = { id: string; label: string; short: string; text: string }
 
 export const AREAS: ResearchArea[] = [
-  { id: 'flood', label: 'Flood and disaster intelligence', short: 'Flood intelligence', text: 'Coordinating victims, rescuers and authorities through live maps and community reports.', product: 'AquaGuard' },
-  { id: 'assistive', label: 'Assistive interaction', short: 'Assistive interaction', text: 'Replacing keyboard and mouse with head tracking and gestures for coding education.', product: 'EnableCode' },
-  { id: 'hiring', label: 'Inclusive hiring', short: 'Inclusive hiring', text: 'Generating interview practice from a job description and a candidate profile.', product: 'Includio' },
-  { id: 'sensing', label: 'Environmental sensing', short: 'Environmental sensing', text: 'Making air-quality data readable and useful for everyday decisions.', product: 'AirGuard' },
+  { id: 'flood', label: 'Disaster and climate intelligence', short: 'Climate intelligence', text: 'Live maps, sensor data and community reports that support decisions during floods and other hazards.' },
+  { id: 'assistive', label: 'Assistive interaction', short: 'Assistive interaction', text: 'Interfaces that adapt to the body: head tracking, gestures and voice instead of keyboard and mouse.' },
+  { id: 'hiring', label: 'Inclusive hiring and learning', short: 'Inclusive access', text: 'AI that widens access to work and education for people who are too often screened out.' },
+  { id: 'sensing', label: 'Environmental sensing', short: 'Environmental sensing', text: 'Turning air-quality and environmental data into signals that people can act on.' },
 ]
 
 export type ResearchLink = { label: 'Paper' | 'PDF' | 'Code' | 'Data' | 'Demo' | 'Slides' | 'Video'; href: string }
@@ -49,65 +49,19 @@ export type ResearchEntry = {
   sections?: { heading: string; body: string[] }[]
 }
 
-// TODO(content): replace stages, questions and partners with the confirmed research agenda.
-export const ENTRIES: ResearchEntry[] = [
-  {
-    slug: 'live-coordination-flood-rescue',
-    title: 'Live coordination for flood rescue',
-    kind: 'Project',
-    area: 'flood',
-    status: 'Ongoing',
-    stage: 'Pilot',
-    featured: true,
-    summary: 'One shared map for victims, rescue teams and coordinators during Vietnam’s flood season.',
-    question: 'How can one shared map help coordinators dispatch rescue teams faster and with fewer duplicate requests?',
-    product: 'AquaGuard',
-    partners: ['HCMUT', 'UTS', 'Université Laval'],
-    image: '/assets/gallery/epics-first-place.jpg',
-  },
-  {
-    slug: 'hands-free-programming',
-    title: 'Hands-free programming with head tracking',
-    kind: 'Project',
-    area: 'assistive',
-    status: 'Ongoing',
-    stage: 'Prototype',
-    featured: true,
-    summary: 'Head gestures from an ordinary webcam as a replacement for the mouse in block-based coding.',
-    question: 'Can head gestures from an ordinary webcam replace a mouse well enough to learn block-based coding?',
-    product: 'EnableCode',
-    partners: ['Fessior DevCamp'],
-    image: '/assets/gallery/fessior-devcamp-prometheus.jpg',
-  },
-  {
-    slug: 'ai-interview-practice',
-    title: 'AI interview practice for autistic candidates',
-    kind: 'Project',
-    area: 'hiring',
-    status: 'Ongoing',
-    stage: 'MVP',
-    featured: true,
-    summary: 'Generated interview questions from a job description and a candidate profile, practised as often as needed.',
-    question: 'Does repeated, low-pressure practice with generated questions build confidence before a real interview?',
-    product: 'Includio',
-    partners: ['RMIT University'],
-    image: '/assets/news/includio-rmit-hackathon.webp',
-  },
-  {
-    slug: 'readable-air-quality',
-    title: 'Readable air-quality monitoring',
-    kind: 'Project',
-    area: 'sensing',
-    status: 'Ongoing',
-    stage: 'Exploring',
-    summary: 'Finding out what residents need to see in air-quality data to change how they act.',
-    question: 'What do residents need to see in air-quality data to change how they act?',
-    product: 'AirGuard',
-    partners: [],
-  },
-]
+export const ENTRIES: ResearchEntry[] = []
 
 /** Shown as a greyed-out sample until the first real publication exists. */
+export const EXAMPLE_ONGOING: ResearchEntry = {
+  slug: 'example-ongoing',
+  title: 'An open question we are working on',
+  kind: 'Project',
+  area: 'sensing',
+  status: 'Ongoing',
+  stage: 'Prototype',
+  summary: 'What we are trying to find out, in a sentence or two, and why it matters.',
+}
+
 export const EXAMPLE_ENTRY: ResearchEntry = {
   slug: 'example',
   title: 'Title of the paper, report or dataset goes here',

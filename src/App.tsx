@@ -16,7 +16,7 @@ import { Legal, LegalHub } from './pages/Legal'
 import { Login } from './pages/Login'
 import { NotFound } from './pages/NotFound'
 import { Product } from './pages/Product'
-import { ResearchAccomplished, ResearchArticle, ResearchOngoing, ResearchOverview, ResearchPublications } from './pages/Research'
+import { ResearchArticle, ResearchOngoing, ResearchOverview, ResearchPublications } from './pages/Research'
 import { CoFounders, PartnersPage, Resources } from './pages/Team'
 import { TeamProfile } from './pages/TeamProfile'
 
@@ -35,8 +35,6 @@ function Page({ route: fullRoute }: { route: string }) {
       return <ResearchOverview />
     case '/research/ongoing':
       return <ResearchOngoing />
-    case '/research/accomplished':
-      return <ResearchAccomplished />
     case '/research/publications':
       return <ResearchPublications key={query} query={query} />
     case '/team':

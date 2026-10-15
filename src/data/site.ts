@@ -21,7 +21,6 @@ export const NAV: NavGroup[] = [
     items: [
       { label: 'Overview', href: '#/research', description: 'How we work, and the questions we ask.' },
       { label: 'Ongoing', href: '#/research/ongoing', description: 'Active projects and open questions.' },
-      { label: 'Accomplished', href: '#/research/accomplished', description: 'Prizes, pilots and milestones so far.' },
       { label: 'Publications', href: '#/research/publications', description: 'Papers, reports, datasets and code.' },
     ],
   },
@@ -67,8 +66,8 @@ export const HOME_PILLARS = [
     label: 'Impact',
     title: 'Evidence over promises',
     text: 'Four prizes, a growing partner network and communities already using AquaGuard in flood season.',
-    href: '#/research/accomplished',
-    cta: 'See what we achieved',
+    href: '#/blog',
+    cta: 'Read the latest news',
   },
 ]
 
@@ -154,31 +153,18 @@ export const INCOMING_STAGES = [
 
 export const RESEARCH_INTRO = {
   label: 'Research',
-  title: 'Questions first, products second.',
-  lead: 'Odylytics grew out of university competitions and lab collaborations. We treat every product as a research question that has to survive contact with real users.',
+  title: 'Research at Odylytics.',
+  lead: 'Papers, datasets and open questions on AI for climate resilience and accessibility, shared as we go.',
 }
 
 // TODO(content): confirm principles and areas with the founders and advisors.
 export const RESEARCH_PRINCIPLES = [
-  { index: '01', title: 'Start with a real problem', text: 'We pick problems that people already have, like finding help in a flood or practising an interview, not problems that suit a model.' },
-  { index: '02', title: 'Test with those affected', text: 'Rescue volunteers, survivors, learners with disabilities and candidates shape each prototype before we call it ready.' },
-  { index: '03', title: 'Keep humans in the loop', text: 'Our systems support decisions. Coordinators, teachers and interviewers stay in charge, and we say clearly what the AI cannot do.' },
-  { index: '04', title: 'Share what we learn', text: 'We publish results and methods when partners allow it, and credit everyone who contributed.' },
+  { index: '01', title: 'Ask precise questions', text: 'Every piece of work starts with a question we can state in one sentence and a way to know when we have answered it.' },
+  { index: '02', title: 'Test with those affected', text: 'The people who live with a problem help design and judge the experiments, not just the final result.' },
+  { index: '03', title: 'Keep humans in the loop', text: 'Our systems support decisions. People stay in charge, and we say clearly what the AI cannot do.' },
+  { index: '04', title: 'Share what we learn', text: 'We publish methods and results, and data and code when partners allow it, and credit everyone who contributed.' },
 ]
 
-
-export type Milestone = { year: string; title: string; context: string; kind: 'Prize' | 'Pilot' | 'Funding' | 'Press'; image?: string }
-
-// TODO(content): add publications and exact dates when they exist.
-export const ACCOMPLISHED: Milestone[] = [
-  { year: '2026', title: 'Quantum scholarship awarded to our founder', context: 'Funds the next stage of product research.', kind: 'Funding', image: '/assets/news/quantum-scholarship.webp' },
-  { year: '2026', title: 'EnableCode wins Fessior DevCamp 2026 Prometheus', context: '1st prize for hands-free coding education.', kind: 'Prize', image: '/assets/gallery/fessior-devcamp-prometheus.jpg' },
-  { year: '2026', title: 'AquaGuard on stage at TECH PLANTER Vietnam Demo Day', context: 'Lightning talk at the event organised by Leave a Nest Group.', kind: 'Pilot', image: '/assets/news/tech-planter-demo-day.webp' },
-  { year: '2026', title: 'Includio built into an MVP at RMIT ADC Hackathon', context: 'From problem statement to working AI interview practice.', kind: 'Pilot', image: '/assets/news/includio-rmit-hackathon.webp' },
-  { year: '2026', title: 'AquaGuard takes 1st prize at the EPICS 8th Competition', context: 'Organised with Arizona State University and Dow Vietnam.', kind: 'Prize', image: '/assets/gallery/epics-first-place.jpg' },
-  { year: '2026', title: 'AquaGuard earns 2nd prize at Bach Khoa Innovation', context: 'Ho Chi Minh City University of Technology.', kind: 'Prize', image: '/assets/gallery/bach-khoa-innovation.jpg' },
-  { year: '2025', title: 'AquaGuard wins 1st prize at the OISP Presentation Contest', context: 'Our first first-place finish.', kind: 'Prize', image: '/assets/gallery/oisp-presentation-contest.jpg' },
-]
 
 // ─── Team ───────────────────────────────────────────────────────────────────
 
@@ -279,7 +265,6 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
     links: [
       { label: 'Overview', href: '#/research' },
       { label: 'Ongoing', href: '#/research/ongoing' },
-      { label: 'Accomplished', href: '#/research/accomplished' },
       { label: 'Publications', href: '#/research/publications' },
     ],
   },
