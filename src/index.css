@@ -103,6 +103,8 @@ h1, h2, h3, h4, .sans { font-family: var(--font-sans); font-weight: 500; letter-
 .skip-link { position: fixed; left: 16px; top: -64px; z-index: 200; padding: 10px 16px; border-radius: var(--r-btn); background: var(--btn-bg); color: var(--btn-text); font-family: var(--font-sans); font-size: 14px; transition: top 150ms; }
 .skip-link:focus { top: 12px; }
 
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
 /* ─── Layout ────────────────────────────────────────────────────────────── */
 
 .container { width: 100%; max-width: calc(var(--container) + var(--pad) * 2); margin-inline: auto; padding-inline: var(--pad); }

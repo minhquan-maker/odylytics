@@ -3,6 +3,7 @@ import { ArrowDownIcon } from './Icons'
 import { Label } from './Section'
 import { HOME_HERO } from '../data/site'
 import { usePrefersReducedMotion } from '../hooks/useMediaQuery'
+import { useBrandAssets } from '../hooks/useBrandAssets'
 import { useTheme } from '../hooks/useTheme'
 
 const Hyperspeed = lazy(() => import('./Hyperspeed'))
@@ -37,6 +38,7 @@ function supportsWebgl() {
 /** Pinned scroll intro: a big headline over a light-trail road; scrolling fades the copy and sends the road to full speed. */
 export function Hero() {
   const theme = useTheme()
+  const brand = useBrandAssets()
   const reducedMotion = usePrefersReducedMotion()
   const [webgl] = useState(supportsWebgl)
   const dark = theme === 'dark'
@@ -116,15 +118,20 @@ export function Hero() {
         )}
 
         <div className="container hero__content">
-          <Label>{HOME_HERO.eyebrow}</Label>
-          <h1 id="hero-title" className="hero__headline">
-            {HOME_HERO.title.map((line) => (
-              <span key={line} className="hero__line">
-                {line}
-              </span>
-            ))}
+          <h1 id="hero-title" className="sr-only">
+            {HOME_HERO.title.join(' ')}
           </h1>
-          <p className="hero__lead">{HOME_HERO.lead}</p>
+          <div className="hero__tl" aria-hidden="true">
+            <Label>{HOME_HERO.eyebrow}</Label>
+            <span className="hero__line">{HOME_HERO.title[0]}</span>
+          </div>
+          <img className="hero__logo" src={brand.wordmark} alt="Odylytics" width="1826" height="565" />
+          <div className="hero__br">
+            <span className="hero__line" aria-hidden="true">
+              {HOME_HERO.title[1]}
+            </span>
+            <p className="hero__lead">{HOME_HERO.lead}</p>
+          </div>
         </div>
 
         <p className="hero__cue" aria-hidden="true">
