@@ -11,23 +11,10 @@ export type Solution = {
   description: string
   category: string
   flagship: boolean
+  /** Showcase cover photo; the logo on a plain surface is shown when missing. */
+  image?: string
 }
 
-export type Feature = { title: string; text: string }
-export type Metric = { value: string; label: string }
-
-export type FeaturedSolution = {
-  soon?: boolean
-  id: string
-  name: string
-  logo: string
-  badge: string
-  tagline: string
-  problem: string
-  features: Feature[]
-  metrics: Metric[]
-  cta: string
-}
 
 export type RecognitionType = 'AWARD' | 'CERTIFICATION' | 'ACCELERATOR'
 
@@ -55,8 +42,6 @@ export type RecognitionGroup = {
 export type Partner = {
   name: string
   type: string
-  /** UTS and HCMUT sit side by side in the centre of the partner row. */
-  featured?: boolean
   logo: string | null
 }
 
@@ -67,6 +52,14 @@ export type Testimonial = {
   role: string
   avatar: string | null
   solution: string
+}
+
+export type Advisor = {
+  name: string
+  /** Advisory role, e.g. 'Strategic Advisor'. */
+  role: string
+  /** Position and institution. */
+  affiliation: string
 }
 
 export type TeamMember = {
@@ -116,9 +109,9 @@ export const NAV: NavGroup[] = [
   {
     label: 'Solutions',
     items: [
-      { label: 'All solutions', href: '#solutions', description: 'Six digital products built by students' },
-      { label: 'AquaGuard', href: '#featured', description: 'Flood rescue coordination' },
-      { label: 'EnableCode', href: '#featured', description: 'Hands-free coding education' },
+      { label: 'All solutions', href: '#solutions', description: 'Six AI-powered digital solutions' },
+      { label: 'AquaGuard', href: '#solutions', description: 'Flood rescue coordination' },
+      { label: 'EnableCode', href: '#solutions', description: 'Hands-free coding education' },
     ],
   },
   {
@@ -127,30 +120,30 @@ export const NAV: NavGroup[] = [
       { label: 'Mission', href: '#mission', description: 'Why we exist and where we are heading' },
       { label: 'Partners', href: '#partners', description: 'Universities and companies we build with' },
       { label: 'Testimonials', href: '#testimonials', description: 'What partners and users say' },
-      { label: 'Team', href: '#/team', description: 'The five builders behind Odylytics' },
+      { label: 'Contact', href: '#contact', description: 'Partnerships, pilots and press' },
     ],
   },
   { label: 'Prizes', href: '#recognition' },
   { label: 'News', href: '#/blog' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Team', href: '#/team' },
 ]
 
 // ─── 1. Hero ────────────────────────────────────────────────────────────────
 
 export const HERO = {
-  eyebrow: 'Student-built digital solutions',
+  eyebrow: 'AI firm · digital solutions',
   // Option A (selected). Alternatives from CONTENT_OUTLINE.md §1:
   //   B. Intelligent solutions for safer, smarter communities.
   //   C. We build AI that works when it matters most.
-  headlineTop: 'Student-built software',
-  headlineBottom: 'that replaces labour with',
-  rotatingWords: ['logic', 'speed', 'scale', 'insight'],
-  srHeadline: 'Student-built software that replaces labour with logic, speed, scale and insight.',
-  note: 'Student ideas. Market-ready products.',
+  headlineTop: 'AI solutions',
+  headlineBottom: 'that drive',
+  rotatingWords: ['innovation', 'impact', 'progress', 'growth'],
+  srHeadline: 'AI solutions that drive innovation, impact, progress and growth.',
+  note: 'One AI firm. Six solutions.',
   // TODO(content): confirm what Odylytics provides and to whom.
   subheadline:
-    'Odylytics takes solutions built by students to market: digital products that raise productivity by replacing manual, repetitive labour with logic.',
-  holdCta: { label: 'Hold to find out', doneLabel: "Let's go", target: '#solutions' },
+    'Odylytics is an AI firm. We create innovation through digital solutions, helping organisations and communities digitalise how they work, from flood rescue to inclusive education.',
+  scrollCue: 'Scroll to find out',
   // TODO(content): confirm marquee keywords.
   marquee: ['AI analytics', 'IoT monitoring', 'Early warning', 'Data platforms', 'Decision support', 'Inclusive design'],
 }
@@ -159,22 +152,22 @@ export const HERO = {
 
 export const MISSION = {
   eyebrow: 'Our mission',
-  lead: 'From student idea.',
-  main: 'To market.',
+  lead: 'One AI firm.',
+  main: 'Many solutions.',
   // TODO(content): confirm wording of the mission and vision with the founders.
   mission:
-    'We help students turn their digital solutions into products that go to market. We build software that raises productivity by replacing manual, repetitive labour with logic.',
+    'Odylytics is an AI firm that designs, builds and ships digital solutions. We create innovation and drive digital transformation, so communities and organisations can work smarter and safer.',
   vision:
-    'A world where a good idea from a student becomes a real product used by real people, and where routine work is done by well-designed logic so people can focus on what only they can do.',
+    'A world where technology is designed for people, and every community can benefit from digital innovation.',
   pillarsHeading: 'Where we are heading',
   pillars: [
     {
-      title: 'Take student work to market',
-      text: 'Give student-built solutions the product, design and business support they need to reach real customers, not stay in a classroom.',
+      title: 'Solve real problems',
+      text: 'Pick problems that matter, from floods to accessibility, and turn each one into a solution people use every day.',
     },
     {
-      title: 'Replace labour with logic',
-      text: 'Build products that automate repetitive work, from coordinating rescue teams to teaching code, so people spend time on judgement and care.',
+      title: 'Drive digital transformation',
+      text: 'Build solutions that digitalise how work gets done, from coordinating rescue teams to teaching code, so people can focus on judgement and care.',
     },
     {
       title: 'Build one shared core',
@@ -190,11 +183,10 @@ export const MISSION = {
 // ─── 2. Core Digital Solutions ──────────────────────────────────────────────
 
 export const SOLUTIONS_HEADING = {
-  eyebrow: 'Core digital solutions',
+  eyebrow: 'Solutions',
   lead: 'Six solutions.',
-  main: 'One intelligence layer.',
-  // TODO(content): confirm intro sentence.
-  intro: 'Every Odylytics product starts as a student solution to a real problem and is shaped into something people can use and pay for.',
+  main: 'One AI core.',
+  intro: 'From flood rescue to inclusive education, every solution is built on the same AI foundation and shaped by real problems.',
 }
 
 export const SOLUTIONS: Solution[] = [
@@ -207,16 +199,7 @@ export const SOLUTIONS: Solution[] = [
       'Victims send SOS requests, rescue teams see them on a live flood map, and coordinators dispatch help from one shared view. Built for web and mobile and tested in Vietnam’s flood season.',
     category: 'Disaster response',
     flagship: true,
-  },
-  {
-    id: 'enablecode',
-    name: 'EnableCode',
-    logo: '/assets/solutions/enablecode.png',
-    oneLiner: 'Hands-free, drag-and-drop coding for people with upper-limb disabilities.',
-    description:
-      'A webcam tracks the learner’s head, so gestures move the cursor and click blocks. Programs are assembled by drag and drop, which makes coding possible without a keyboard or mouse.',
-    category: 'Inclusive education',
-    flagship: true,
+    image: '/assets/gallery/epics-first-place.jpg',
   },
   {
     id: 'airguard',
@@ -229,14 +212,15 @@ export const SOLUTIONS: Solution[] = [
     flagship: false,
   },
   {
-    id: 'includio',
-    name: 'Includio',
-    logo: '/assets/solutions/includio.png',
-    oneLiner: '',
-    soon: true,
-    description: '',
-    category: '',
-    flagship: false,
+    id: 'enablecode',
+    name: 'EnableCode',
+    logo: '/assets/solutions/enablecode.png',
+    oneLiner: 'Hands-free, drag-and-drop coding for people with upper-limb disabilities.',
+    description:
+      'A webcam tracks the learner’s head, so gestures move the cursor and click blocks. Programs are assembled by drag and drop, which makes coding possible without a keyboard or mouse.',
+    category: 'Inclusive education',
+    flagship: true,
+    image: '/assets/gallery/fessior-devcamp-prometheus.jpg',
   },
   {
     id: 'roomie',
@@ -247,6 +231,17 @@ export const SOLUTIONS: Solution[] = [
     description: '',
     category: '',
     flagship: false,
+  },
+  {
+    id: 'includio',
+    name: 'Includio',
+    logo: '/assets/solutions/includio.png',
+    oneLiner: 'AI interview practice for autistic candidates.',
+    description:
+      'Includio simulates job interviews with AI. It writes questions from the job description and the candidate’s profile, so candidates can practise as often as they like without a real HR interviewer.',
+    category: 'Inclusive hiring',
+    flagship: false,
+    image: '/assets/news/includio-rmit-hackathon.webp',
   },
   {
     id: 'hearwork',
@@ -260,71 +255,6 @@ export const SOLUTIONS: Solution[] = [
   },
 ]
 
-// ─── 3. Featured Solutions ──────────────────────────────────────────────────
-
-export const FEATURED_HEADING = {
-  eyebrow: 'Featured solutions',
-  lead: 'Three solutions.',
-  main: 'Built to ship.',
-}
-
-export const FEATURED: FeaturedSolution[] = [
-  {
-    id: 'aquaguard',
-    name: 'AquaGuard',
-    logo: '/assets/solutions/aquaguard.png',
-    badge: 'Flagship',
-    tagline: 'A multi-platform flood rescue coordination system operating in Vietnam.',
-    problem:
-      'When floods hit, victims, rescue teams and coordinators are often cut off from each other. AquaGuard connects all three in real time, across web and mobile.',
-    features: [
-      { title: 'SOS requests', text: 'Victims send a call for help that reaches rescuers instantly.' },
-      { title: 'Live flood maps', text: 'One current picture of flooded areas and requests for help.' },
-      { title: 'Rescue coordination', text: 'Coordinators and rescue teams work from the same live view.' },
-      { title: 'Safety guidance', text: 'Clear instructions for people in affected areas.' },
-    ],
-    metrics: [
-      { value: '3', label: 'Competition awards' },
-      { value: '3', label: 'Groups connected' },
-      { value: '2', label: 'Platforms: web & mobile' },
-    ],
-    cta: 'Learn more',
-  },
-  {
-    id: 'enablecode',
-    name: 'EnableCode',
-    logo: '/assets/solutions/enablecode.png',
-    badge: 'Flagship',
-    tagline: 'A drag-and-drop coding education platform built for people with upper-limb disabilities.',
-    problem:
-      'Learning to code assumes a keyboard and mouse, which shuts out people who cannot use their hands. EnableCode lets them write and run code completely hands-free.',
-    features: [
-      { title: 'AI face tracking', text: 'A webcam follows head movement in real time.' },
-      { title: 'Head-gesture cursor', text: 'Head gestures move and click the cursor.' },
-      { title: 'Drag-and-drop coding', text: 'Programs built from blocks instead of typed syntax.' },
-      { title: 'Hands-free execution', text: 'Write, run and test code without touching a device.' },
-    ],
-    metrics: [
-      { value: '100%', label: 'Hands-free coding' },
-      { value: '1st', label: 'Fessior DevCamp 2026' },
-    ],
-    cta: 'Learn more',
-  },
-  // TODO(content): fill in Includio when the product story is ready.
-  {
-    id: 'includio',
-    name: 'Includio',
-    logo: '/assets/solutions/includio.png',
-    badge: 'Next up',
-    soon: true,
-    tagline: '',
-    problem: '',
-    features: [],
-    metrics: [],
-    cta: 'Learn more',
-  },
-]
-
 // ─── 4. Awards & Certifications ─────────────────────────────────────────────
 
 export const RECOGNITION_HEADING = {
@@ -334,18 +264,7 @@ export const RECOGNITION_HEADING = {
   intro: 'Four prizes across competitions in Vietnam, won by one team.',
 }
 
-export type GalleryPhoto = { src: string; alt: string; caption: string }
-
-export const GALLERY_HEADING = 'Behind the wins'
-
-// TODO(content): confirm the captions and add more photos as they come in.
-export const GALLERY: GalleryPhoto[] = [
-  { src: '/assets/gallery/team-working.jpg', alt: 'The team working together around laptops', caption: 'Building AquaGuard together' },
-  { src: '/assets/gallery/epics-certificate.jpg', alt: 'The team holding the EPICS certificate of achievement', caption: 'EPICS certificate of achievement' },
-  { src: '/assets/gallery/tech-planter.jpg', alt: 'The team in front of the Tech Planter banner', caption: 'Tech Planter' },
-]
-
-// TODO(content): award photos (`image`), press links (`href`) and issuer logos.
+// TODO(content): press links (`href`) and issuer logos.
 export const RECOGNITION: RecognitionGroup[] = [
   {
     solutionId: 'aquaguard',
@@ -353,7 +272,7 @@ export const RECOGNITION: RecognitionGroup[] = [
     items: [
       {
         type: 'AWARD', place: '1st', title: '1st Prize', issuer: 'OISP Presentation Contest', year: '2025',
-        issuerLogo: null, image: null, href: null,
+        issuerLogo: null, image: '/assets/gallery/oisp-presentation-contest.jpg', href: null,
       },
       {
         type: 'AWARD', place: '1st', title: '1st Prize', issuer: 'EPICS 8th Competition (ASU & Dow Vietnam)', year: '2026',
@@ -361,7 +280,7 @@ export const RECOGNITION: RecognitionGroup[] = [
       },
       {
         type: 'AWARD', place: '2nd', title: '2nd Prize', issuer: 'Bach Khoa Innovation', year: '2026',
-        issuerLogo: null, image: null, href: null,
+        issuerLogo: null, image: '/assets/gallery/bach-khoa-innovation.jpg', href: null,
       },
     ],
   },
@@ -371,7 +290,7 @@ export const RECOGNITION: RecognitionGroup[] = [
     items: [
       {
         type: 'AWARD', place: '1st', title: '1st Prize', issuer: 'Fessior DevCamp 2026 Prometheus', year: '2026',
-        issuerLogo: null, image: null, href: null,
+        issuerLogo: null, image: '/assets/gallery/fessior-devcamp-prometheus.jpg', href: null,
       },
     ],
   },
@@ -387,23 +306,29 @@ export const PARTNERS_HEADING = {
 }
 
 export const PARTNERS: Partner[] = [
-  { name: 'Arizona State University', type: 'Academic', logo: '/assets/partners/row/asu.png' },
-  { name: 'RMIT University', type: 'Academic', logo: '/assets/partners/row/rmit.png' },
-  { name: 'Dow', type: 'Corporate', logo: '/assets/partners/row/dow.png' },
-  { name: 'University of Technology Sydney', type: 'Academic', logo: '/assets/partners/row/uts.png', featured: true },
-  // TODO(content): replace hcmut.svg with the official HCMUT logo file.
-  { name: 'Ho Chi Minh City University of Technology', type: 'Academic', logo: '/assets/partners/row/hcmut.svg', featured: true },
-  { name: 'Sorbonne Université', type: 'Academic', logo: '/assets/partners/row/sorbonne.png' },
-  { name: 'Université Laval', type: 'Academic', logo: '/assets/partners/row/laval.png' },
+  { name: 'University of Technology Sydney', type: 'Academic', logo: '/assets/partners/uts.png' },
+  { name: 'Ho Chi Minh City University of Technology', type: 'Academic', logo: '/assets/partners/hcmut.png' },
+  { name: 'Arizona State University', type: 'Academic', logo: '/assets/partners/asu.png' },
+  { name: 'RMIT University', type: 'Academic', logo: '/assets/partners/rmit.png' },
+  { name: 'Sorbonne Université', type: 'Academic', logo: '/assets/partners/sorbonne.png' },
+  { name: 'Université Laval', type: 'Academic', logo: '/assets/partners/laval.png' },
+  { name: 'Dow', type: 'Corporate', logo: '/assets/partners/dow.png' },
+  { name: 'Leave a Nest', type: 'Corporate', logo: '/assets/partners/leave-a-nest.png' },
+  { name: 'TechPlanter', type: 'Accelerator', logo: '/assets/partners/techplanter.png' },
 ]
 
-export type Stat = { value: number; suffix?: string; label: string }
-export const STATS: Stat[] = [
-  { value: 4, label: 'Competition prizes' },
-  { value: 6, label: 'Digital solutions' },
-  { value: 5, label: 'Student builders' },
-  { value: 7, label: 'Partner institutions' },
+export type ImpactStat = { value: number; suffix?: string; label: string }
+
+export const IMPACT_HEADING = { eyebrow: 'Our impact so far' }
+
+// TODO(content): confirm the figures and how each one is counted before shipping.
+export const IMPACT: ImpactStat[] = [
+  { value: 1000000, suffix: '+', label: 'Social media reached' },
+  { value: 600, suffix: '+', label: 'Active users across platforms' },
+  { value: 5, suffix: '+', label: 'Organizations endorsed' },
 ]
+
+export const IMPACT_NOTE = 'Results from AquaGuard, our flood rescue platform.'
 
 // ─── 6. Testimonials ────────────────────────────────────────────────────────
 
@@ -474,8 +399,15 @@ export const TEAM_GROUPS = {
   members: { heading: 'Members', intro: 'Students and collaborators building with us.' },
 }
 
-// TODO(content): add advisors and members here (same shape as TEAM) when they are ready; empty groups show an 'Updating soon' frame.
-export const ADVISORS: TeamMember[] = []
+export const ADVISORS: Advisor[] = [
+  { name: 'Dr. Tobias Cibis', role: 'Strategic Advisor', affiliation: 'Lecturer, School of Computer Science, UTS' },
+  { name: 'Prof. Nguyen Ngoc Dinh', role: 'Community Advisor', affiliation: 'Director, Đất Lành Quebec Canada, Laval University' },
+  { name: 'Assoc. Prof. Nabin Sharma', role: 'Research Advisor', affiliation: 'Director, AI Intelligence Drone Lab, UTS' },
+  { name: 'Dr. Vo Thanh Hang', role: 'Product Advisor', affiliation: 'Faculty of Environment and Natural Resources, HCMUT' },
+  { name: 'MSc. Bui Xuan Giang', role: 'System Advisor', affiliation: 'Faculty of Computer Science and Engineering, HCMUT' },
+]
+
+// TODO(content): add members here (same shape as TEAM) when they are ready; an empty group shows an 'Updating soon' frame.
 export const MEMBERS: TeamMember[] = []
 
 export const TEAM_TEASER = {
@@ -485,10 +417,10 @@ export const TEAM_TEASER = {
   intro: 'Meet the people behind Odylytics, what each of them owns, and how they work together.',
 }
 
-// TODO(content): full names and LinkedIn URLs for all 5 members; confirm roles, bios and responsibilities.
+// TODO(content): add LinkedIn URLs for all 5 members and confirm roles, bios and responsibilities.
 export const TEAM: TeamMember[] = [
   {
-    name: 'Quân',
+    name: 'Nguyễn Minh Quân',
     slug: 'quan-ceo',
     role: 'Chief Executive Officer',
     shortRole: 'CEO',
@@ -502,7 +434,7 @@ export const TEAM: TeamMember[] = [
     ],
   },
   {
-    name: 'Nghĩa',
+    name: 'Trần Tuấn Nghĩa',
     slug: 'nghia-cto',
     role: 'Chief Technology Officer',
     shortRole: 'CTO',
@@ -517,7 +449,7 @@ export const TEAM: TeamMember[] = [
     
   },
   {
-    name: 'Sơn',
+    name: 'Nguyễn Trường Sơn',
     slug: 'son-cpo',
     role: 'Chief Product Officer',
     shortRole: 'CPO',
@@ -531,7 +463,7 @@ export const TEAM: TeamMember[] = [
     ],
   },
   {
-    name: 'Quân',
+    name: 'Nguyễn Minh Quân',
     slug: 'quan-marketing',
     role: 'Head of Marketing',
     shortRole: 'Marketing',
@@ -545,7 +477,7 @@ export const TEAM: TeamMember[] = [
     ],
   },
   {
-    name: 'Khang',
+    name: 'Trương Nguyễn Bảo Khang',
     slug: 'khang-engineer',
     role: 'Software Engineer',
     shortRole: 'Engineer',
@@ -604,6 +536,7 @@ export const POSTS: Post[] = [
     excerpt: 'The scholarship backs the next stage of Odylytics, from product research to bringing our solutions to more communities.',
     category: 'Milestones',
     featured: true,
+    image: '/assets/news/quantum-scholarship.webp',
   },
   {
     id: 'thanh-nien-feature',
@@ -611,6 +544,8 @@ export const POSTS: Post[] = [
     excerpt: 'Vietnam’s national daily tells the story of a student team building AI for floods and accessibility.',
     category: 'Press',
     source: 'Thanh Niên',
+    image: '/assets/news/mentor-session-2.webp',
+    href: 'https://www.vietnam.vn/en/sinh-vien-lam-he-thong-canh-bao-lu-ho-tro-cuu-ho-tren-nen-tang-di-dong',
   },
   {
     id: 'aquaguard-oisp-first-prize',
@@ -618,12 +553,30 @@ export const POSTS: Post[] = [
     excerpt: 'Our flood rescue coordination platform took first place in the 2025 presentation round.',
     category: 'Awards',
     date: '2025',
+    image: '/assets/gallery/oisp-presentation-contest.jpg',
+  },
+  {
+    id: 'includio-rmit-adc-hackathon',
+    title: 'From problem to MVP: Includio at RMIT ADC Hackathon',
+    excerpt: 'Our team built Includio, an AI interview-practice platform for autistic candidates, into a working MVP at RMIT ADC Hackathon 2026.',
+    category: 'Product',
+    date: '2026',
+    image: '/assets/news/includio-rmit-hackathon.webp',
+  },
+  {
+    id: 'tech-planter-demo-day',
+    title: 'AquaGuard on stage at TECH PLANTER Vietnam 2026 Demo Day',
+    excerpt: 'Our team gave a Lightning Talk on AquaGuard at the Demo Day organised by Leave a Nest Group, and met fellow deep-tech startups, researchers and industry experts.',
+    category: 'Milestones',
+    date: '2026',
+    image: '/assets/news/tech-planter-demo-day.webp',
   },
   {
     id: 'aquaguard-epics-first-prize',
     title: 'AquaGuard takes 1st prize at the EPICS 8th Competition',
     excerpt: 'Judges recognised how the system connects victims, rescue teams and coordinators in real time.',
     category: 'Awards',
+    image: '/assets/gallery/epics-first-place.jpg',
   },
   {
     id: 'aquaguard-bach-khoa-second-prize',
@@ -631,6 +584,7 @@ export const POSTS: Post[] = [
     excerpt: 'A runner-up finish among innovation projects at Ho Chi Minh City University of Technology.',
     category: 'Awards',
     date: '2026',
+    image: '/assets/gallery/bach-khoa-innovation.jpg',
   },
   {
     id: 'enablecode-devcamp-first-prize',
@@ -638,12 +592,50 @@ export const POSTS: Post[] = [
     excerpt: 'Our hands-free coding platform for people with upper-limb disabilities won first place.',
     category: 'Awards',
     date: '2026',
+    image: '/assets/gallery/fessior-devcamp-prometheus.jpg',
   },
   {
     id: 'team-wins',
     title: 'Our team brings home four prizes in a year',
     excerpt: 'A look back at the competitions, late nights and mentors behind this year’s results.',
     category: 'Milestones',
+    image: '/assets/news/mentor-session-3.webp',
+  },
+]
+
+// ─── 9b. FAQ ────────────────────────────────────────────────────────────────
+
+export const FAQ_HEADING = {
+  eyebrow: 'FAQ',
+  lead: 'Frequently',
+  main: 'asked questions.',
+}
+
+// TODO(content): confirm each answer with the founders before shipping.
+export const FAQ: { q: string; a: string }[] = [
+  {
+    q: 'What is Odylytics?',
+    a: 'Odylytics is an AI firm that designs, builds and ships digital solutions. We create innovation and drive digital transformation, from flood rescue to inclusive education.',
+  },
+  {
+    q: 'What solutions do you build?',
+    a: 'Six so far: AquaGuard for flood rescue coordination, EnableCode for hands-free coding education, Includio for AI interview practice, and AirGuard, RooMie and HearWork, which are on the way.',
+  },
+  {
+    q: 'What is AquaGuard?',
+    a: 'AquaGuard is our flood rescue coordination platform. Victims send SOS requests, rescue teams see them on a live flood map, and coordinators dispatch help from one shared view. It has won first prize at the OISP Presentation Contest and the EPICS 8th Competition, and second prize at Bach Khoa Innovation.',
+  },
+  {
+    q: 'Who is behind Odylytics?',
+    a: 'Five student co-founders, supported by advisors and partner universities. You can meet everyone on the Team page.',
+  },
+  {
+    q: 'Who do you work with?',
+    a: 'Universities and companies that back innovation, including UTS, HCMUT, ASU, RMIT, Sorbonne Université, Université Laval, Dow, Leave a Nest and TechPlanter.',
+  },
+  {
+    q: 'How can we work together?',
+    a: 'Partnerships, pilots and press enquiries are all welcome. Send us a message through the contact form or email odylytics@gmail.com.',
   },
 ]
 
@@ -656,7 +648,6 @@ export const LEGAL_LINKS: NavItem[] = [
   { label: 'Privacy Policy', href: '#/privacy' },
   { label: 'Terms of Use', href: '#/terms' },
   { label: 'Cookie Policy', href: '#/cookies' },
-  { label: 'Sitemap', href: '#home' },
   { label: 'Member login', href: '#/login' },
 ]
 
@@ -664,8 +655,8 @@ export const FOOTER_GROUPS: { heading: string; links: NavItem[] }[] = [
   {
     heading: 'Solutions',
     links: [
-      { label: 'AquaGuard', href: '#featured' },
-      { label: 'EnableCode', href: '#featured' },
+      { label: 'AquaGuard', href: '#solutions' },
+      { label: 'EnableCode', href: '#solutions' },
       { label: 'AirGuard', href: '#solutions' },
       { label: 'Includio', href: '#solutions' },
       { label: 'RooMie', href: '#solutions' },
@@ -699,18 +690,3 @@ export const FOOTER_GROUPS: { heading: string; links: NavItem[] }[] = [
     ],
   },
 ]
-
-// ─── 11. Story panel and closing call to action ─────────────────────────────
-
-export const STORY = {
-  eyebrow: 'Behind the product',
-  lead: 'Built by students,',
-  main: 'in the room.',
-  intro: 'Late nights, competition days and the people who showed up.',
-}
-
-export const CLOSING = {
-  lead: 'Student ideas.',
-  main: 'Market-ready products.',
-  cta: 'Get in touch',
-}

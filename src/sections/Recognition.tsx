@@ -1,12 +1,10 @@
 import { SectionHeading } from '../components/SectionHeading'
 import { SOLUTIONS } from '../data/content'
 import { useContent, useUi } from '../hooks/useContent'
-import { useBrandAssets } from '../hooks/useBrandAssets'
 
 export function Recognition() {
   const { RECOGNITION, RECOGNITION_HEADING } = useContent()
   const ui = useUi()
-  const { solutionLogo } = useBrandAssets()
   const prizes = RECOGNITION.flatMap((group) => group.items.map((item) => ({ ...item, solutionId: group.solutionId, solutionName: group.solutionName })))
 
   return (
@@ -25,7 +23,7 @@ export function Recognition() {
                 </div>
                 <div className="prize__body">
                   <span className="logo-chip prize__project">
-                    {logo ? <img src={solutionLogo(logo)} alt={prize.solutionName} loading="lazy" /> : prize.solutionName}
+                    {logo ? <img src={logo} alt={prize.solutionName} loading="lazy" /> : prize.solutionName}
                   </span>
                   <h3 className="prize__title">{prize.title}</h3>
                   <p className="prize__issuer">

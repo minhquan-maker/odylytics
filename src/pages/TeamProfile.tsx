@@ -1,6 +1,7 @@
 import { LinkedInIcon } from '../components/Icons'
 import { useBrandAssets } from '../hooks/useBrandAssets'
 import { useContent, useUi } from '../hooks/useContent'
+import { NotFound } from './NotFound'
 
 /** One member's own page. Sections without content show an 'Updating soon' frame so each person can fill theirs in. */
 export function TeamProfile({ slug }: { slug: string }) {
@@ -9,18 +10,7 @@ export function TeamProfile({ slug }: { slug: string }) {
   const brand = useBrandAssets()
   const member = TEAM.find((item) => item.slug === slug)
 
-  if (!member) {
-    return (
-      <section className="section page">
-        <div className="container">
-          <p className="body-l">{ui.profileMissing}</p>
-          <a className="text-btn" href="#/team">
-            {ui.backToTeam}
-          </a>
-        </div>
-      </section>
-    )
-  }
+  if (!member) return <NotFound />
 
   const index = TEAM.indexOf(member)
   const next = TEAM[(index + 1) % TEAM.length]

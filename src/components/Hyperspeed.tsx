@@ -35,6 +35,8 @@ export type HyperspeedProps = {
   theme?: 'dark' | 'light';
   interactive?: boolean;
   boosting?: boolean;
+  /** Continuous boost level (0–1) read every frame, e.g. driven by scroll without re-rendering. */
+  boostRef?: { readonly current: number };
   onBoostStart?: () => void;
   onBoostEnd?: () => void;
   className?: string;
@@ -85,6 +87,7 @@ type Settings = {
   dustColor: string;
   interactive: boolean;
   boosting: boolean;
+  boostRef: { readonly current: number } | null;
 };
 
 const TRAVEL = 400;
@@ -546,6 +549,7 @@ const Hyperspeed = ({
   theme = 'dark',
   interactive = true,
   boosting = false,
+  boostRef,
   onBoostStart,
   onBoostEnd,
   className = '',
@@ -582,7 +586,8 @@ const Hyperspeed = ({
     background: background ?? palette.background,
     dustColor: palette.dust,
     interactive,
-    boosting
+    boosting,
+    boostRef: boostRef ?? null
   };
   const settingsRef = useRef(settings);
   const callbacksRef = useRef({ onBoostStart, onBoostEnd });
@@ -964,7 +969,8 @@ const Hyperspeed = ({
       last = now;
       syncColors(s);
 
-      const wanted = (state.held && s.interactive) || s.boosting ? 1 : 0;
+      const pressed = (state.held && s.interactive) || s.boosting ? 1 : 0;
+      const wanted = Math.max(pressed, Math.min(1, Math.max(0, s.boostRef?.current ?? 0)));
       state.boost += (wanted - state.boost) * (1 - Math.exp(-dt / (wanted > state.boost ? 0.28 : 0.85)));
       const pace = s.speed * (reduce ? 0.3 : 1) * (1 + (s.boost - 1) * state.boost);
       shared.uTime.value += dt * pace;

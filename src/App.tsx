@@ -3,6 +3,7 @@ import { Blog } from './pages/Blog'
 import { Admin } from './pages/Admin'
 import { Legal } from './pages/Legal'
 import { Login } from './pages/Login'
+import { NotFound } from './pages/NotFound'
 import { TeamPage } from './pages/TeamPage'
 import { TeamProfile } from './pages/TeamProfile'
 import { COOKIES, PRIVACY, TERMS } from './data/legal'
@@ -10,20 +11,19 @@ import { useUi } from './hooks/useContent'
 import { useRoute } from './hooks/useRoute'
 import { useReveal } from './hooks/useReveal'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
+import { useZoneFade } from './hooks/useZoneFade'
 import { Contact } from './sections/Contact'
-import { Featured } from './sections/Featured'
 import { Footer } from './sections/Footer'
+import { Faq } from './sections/Faq'
 import { Hero } from './sections/Hero'
 import { LogoStrip } from './sections/LogoStrip'
 import { Mission } from './sections/Mission'
 import { News } from './sections/News'
 import { Nav } from './sections/Nav'
-import { Closing } from './sections/Closing'
-import { Story } from './sections/Story'
-import { Stats } from './sections/Stats'
+import { Impact } from './sections/Impact'
 import { Partners } from './sections/Partners'
+import { Showcase } from './sections/Showcase'
 import { Recognition } from './sections/Recognition'
-import { Solutions } from './sections/Solutions'
 import { TeamTeaser } from './sections/TeamTeaser'
 import { Testimonials } from './sections/Testimonials'
 
@@ -32,6 +32,7 @@ function App() {
   const ui = useUi()
   useReveal(route)
   useSmoothScroll()
+  useZoneFade(route)
 
   return (
     <>
@@ -48,21 +49,20 @@ function App() {
         {route.startsWith('profile:') && <TeamProfile slug={route.slice(8)} />}
         {route === 'login' && <Login />}
         {route === 'admin' && <Admin />}
+        {route === 'notfound' && <NotFound />}
         {route === 'home' && (
           <>
             <Hero />
-            <Stats />
-            <Mission />
-            <Story />
-            <Solutions />
-            <LogoStrip />
-            <Featured />
-            <Recognition />
+            <Impact />
             <Partners />
+            <Mission />
+            <Showcase />
+            <LogoStrip />
+            <Recognition />
             <Testimonials />
             <TeamTeaser />
             <News />
-            <Closing />
+            <Faq />
             <Contact />
           </>
         )}

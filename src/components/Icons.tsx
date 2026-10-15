@@ -60,6 +60,14 @@ export function ArrowLeftIcon() {
   )
 }
 
+export function ArrowDownIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true">
+      <path d="M10 3.5v13M4.5 11l5.5 5.5 5.5-5.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 export function ArrowRightIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">

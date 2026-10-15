@@ -13,7 +13,7 @@
 | 0 | Navigation | — | Dark | Wordmark + menu + contact |
 | 1 | Hero | `#home` | Dark | AI startup positioning + Odylytics logo |
 | 2 | Core Digital Solutions | `#solutions` | Light | 6 solutions in a logo loop |
-| 3 | Featured Solutions | `#featured` | Dark | 2 flagship solutions, deep dive |
+| 3 | ~~Featured Solutions~~ (removed) | | | |
 | 4 | Awards & Certifications | `#recognition` | Light | Recognition for the 2 flagship solutions |
 | 5 | Partnerships | `#partners` | Dark | 6 partner logos + short descriptions |
 | 6 | Testimonials | `#testimonials` | Light | 4 quotes |

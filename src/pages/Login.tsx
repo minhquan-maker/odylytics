@@ -40,7 +40,7 @@ export function Login() {
             </h2>
             <p>Members publish news, update prizes and manage testimonials. Everything saved here appears on the public site straight away.</p>
           </div>
-          <p className="login__foot">Student ideas. Market-ready products.</p>
+          <p className="login__foot">One AI firm. Six solutions.</p>
         </aside>
 
         <div className="login__panel">

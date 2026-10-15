@@ -30,26 +30,30 @@
   --fs-body: 16px;
   --fs-small: 14px;
   --fs-label: 12.5px;
-  --fw-light: 300;
+  --fw-semibold: 600;
   --fw-regular: 400;
   --fw-medium: 500;
   --tracking-display: -0.04em;
   --tracking-heading: -0.03em;
   --tracking-label: 0.06em;
 
-  /* Shape: pills for controls, then four fixed corner sizes */
+  /* Shape: pills for controls, four corner sizes for everything else. The pixel styles
+     (solution media frames, prize & news cards, primary buttons) clip to the stepped
+     polygons below — everything else stays rounded. */
   --radius-pill: 999px;
   --radius-panel: 36px;
   --radius-card: 28px;
   --radius-media: 20px;
   --radius-popover: 20px;
   --radius-chip: 14px;
+  --pixel-clip: polygon(8px 0, calc(100% - 8px) 0, calc(100% - 8px) 4px, calc(100% - 4px) 4px, calc(100% - 4px) 8px, 100% 8px, 100% calc(100% - 8px), calc(100% - 4px) calc(100% - 8px), calc(100% - 4px) calc(100% - 4px), calc(100% - 8px) calc(100% - 4px), calc(100% - 8px) 100%, 8px 100%, 8px calc(100% - 4px), 4px calc(100% - 4px), 4px calc(100% - 8px), 0 calc(100% - 8px), 0 8px, 4px 8px, 4px 4px, 8px 4px);
+  --pixel-clip-sm: polygon(4px 0, calc(100% - 4px) 0, calc(100% - 4px) 2px, calc(100% - 2px) 2px, calc(100% - 2px) 4px, 100% 4px, 100% calc(100% - 4px), calc(100% - 2px) calc(100% - 4px), calc(100% - 2px) calc(100% - 2px), calc(100% - 4px) calc(100% - 2px), calc(100% - 4px) 100%, 4px 100%, 4px calc(100% - 2px), 2px calc(100% - 2px), 2px calc(100% - 4px), 0 calc(100% - 4px), 0 4px, 2px 4px, 2px 2px, 4px 2px);
 
   /* Layout */
   --nav-h: 68px;
   --container: 1240px;
   --pad: 32px;
-  --section-y: 140px;
+  --section-y: 104px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   font-family: var(--font-body);
@@ -60,34 +64,86 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* Semantic colours — dark (default); the navbar toggle switches to light. */
+/* Semantic colours — dark (default); the navbar toggle switches to light.
+   In dark mode every token is a scroll-scrubbed blend of the dark and light palettes:
+   useZoneFade raises `--zone-mix` (0→1) as the solutions band scrolls in and lowers it
+   as News arrives, so the whole page morphs dark↔light with the scroll position. */
 :root {
-  --bg: #0B0A0E;
-  --surface: #141318;
-  --surface-2: #1C1B21;
-  --border: rgb(255 255 255 / 0.08);
-  --border-strong: rgb(255 255 255 / 0.16);
-  --border-hover: rgb(255 255 255 / 0.28);
-  --wash: rgb(255 255 255 / 0.03);
-  --wash-strong: rgb(255 255 255 / 0.08);
-  --text: #FAFAFA;
-  --text-muted: var(--neutral-300);
-  --text-faint: var(--neutral-400);
+  --zone-mix: 0;
+  --d-bg: #0B0A0E;
+  --d-surface: #141318;
+  --d-surface-2: #1C1B21;
+  --d-border: rgb(255 255 255 / 0.08);
+  --d-border-strong: rgb(255 255 255 / 0.16);
+  --d-border-hover: rgb(255 255 255 / 0.28);
+  --d-wash: rgb(255 255 255 / 0.03);
+  --d-wash-strong: rgb(255 255 255 / 0.08);
+  --d-text: #FAFAFA;
+  --d-text-muted: var(--neutral-300);
+  --d-text-faint: var(--neutral-400);
+  --d-accent-soft: var(--purple-300);
+  --d-accent-soft-hover: var(--purple-200);
+  --d-signal: var(--orange-300);
+  --d-tag-accent-border: rgb(174 11 255 / 0.45);
+  --d-tag-accent-bg: rgb(174 11 255 / 0.1);
+  --d-tag-signal-border: rgb(255 140 0 / 0.5);
+  --d-tag-signal-bg: rgb(255 140 0 / 0.12);
+  --d-inverse-bg: var(--white);
+  --d-inverse-bg-hover: var(--neutral-100);
+  --d-inverse-text: #0A0A0A;
+  --d-nav-bg: rgb(11 10 14 / 0.6);
+  --d-nav-bg-scrolled: rgb(11 10 14 / 0.8);
+  --d-photo-glow: rgb(174 11 255 / 0.28);
+  --l-bg: #FAFAFB;
+  --l-surface: var(--white);
+  --l-surface-2: #F3F2F5;
+  --l-border: rgb(17 16 19 / 0.09);
+  --l-border-strong: rgb(17 16 19 / 0.16);
+  --l-border-hover: rgb(17 16 19 / 0.3);
+  --l-wash: rgb(17 16 19 / 0.02);
+  --l-wash-strong: rgb(17 16 19 / 0.06);
+  --l-text: var(--neutral-700);
+  --l-text-muted: var(--neutral-500);
+  --l-text-faint: var(--neutral-400);
+  --l-accent-soft: var(--purple-500);
+  --l-accent-soft-hover: var(--purple-600);
+  --l-signal: var(--orange-500);
+  --l-tag-accent-border: rgb(123 0 183 / 0.3);
+  --l-tag-accent-bg: rgb(174 11 255 / 0.07);
+  --l-tag-signal-border: rgb(148 79 0 / 0.35);
+  --l-tag-signal-bg: rgb(255 140 0 / 0.1);
+  --l-inverse-bg: var(--neutral-700);
+  --l-inverse-bg-hover: var(--neutral-600);
+  --l-inverse-text: var(--white);
+  --l-nav-bg: rgb(250 250 251 / 0.7);
+  --l-nav-bg-scrolled: rgb(250 250 251 / 0.88);
+  --l-photo-glow: rgb(174 11 255 / 0.16);
+  --bg: color-mix(in srgb, var(--d-bg), var(--l-bg) calc(var(--zone-mix) * 100%));
+  --surface: color-mix(in srgb, var(--d-surface), var(--l-surface) calc(var(--zone-mix) * 100%));
+  --surface-2: color-mix(in srgb, var(--d-surface-2), var(--l-surface-2) calc(var(--zone-mix) * 100%));
+  --border: color-mix(in srgb, var(--d-border), var(--l-border) calc(var(--zone-mix) * 100%));
+  --border-strong: color-mix(in srgb, var(--d-border-strong), var(--l-border-strong) calc(var(--zone-mix) * 100%));
+  --border-hover: color-mix(in srgb, var(--d-border-hover), var(--l-border-hover) calc(var(--zone-mix) * 100%));
+  --wash: color-mix(in srgb, var(--d-wash), var(--l-wash) calc(var(--zone-mix) * 100%));
+  --wash-strong: color-mix(in srgb, var(--d-wash-strong), var(--l-wash-strong) calc(var(--zone-mix) * 100%));
+  --text: color-mix(in srgb, var(--d-text), var(--l-text) calc(var(--zone-mix) * 100%));
+  --text-muted: color-mix(in srgb, var(--d-text-muted), var(--l-text-muted) calc(var(--zone-mix) * 100%));
+  --text-faint: color-mix(in srgb, var(--d-text-faint), var(--l-text-faint) calc(var(--zone-mix) * 100%));
   --accent: var(--purple-400);
   --accent-hover: var(--purple-500);
-  --accent-soft: var(--purple-300);
-  --accent-soft-hover: var(--purple-200);
-  --signal: var(--orange-300);
-  --tag-accent-border: rgb(174 11 255 / 0.45);
-  --tag-accent-bg: rgb(174 11 255 / 0.1);
-  --tag-signal-border: rgb(255 140 0 / 0.5);
-  --tag-signal-bg: rgb(255 140 0 / 0.12);
-  --inverse-bg: var(--white);
-  --inverse-bg-hover: var(--neutral-100);
-  --inverse-text: #0A0A0A;
-  --nav-bg: rgb(11 10 14 / 0.6);
-  --nav-bg-scrolled: rgb(11 10 14 / 0.8);
-  --photo-glow: rgb(174 11 255 / 0.28);
+  --accent-soft: color-mix(in srgb, var(--d-accent-soft), var(--l-accent-soft) calc(var(--zone-mix) * 100%));
+  --accent-soft-hover: color-mix(in srgb, var(--d-accent-soft-hover), var(--l-accent-soft-hover) calc(var(--zone-mix) * 100%));
+  --signal: color-mix(in srgb, var(--d-signal), var(--l-signal) calc(var(--zone-mix) * 100%));
+  --tag-accent-border: color-mix(in srgb, var(--d-tag-accent-border), var(--l-tag-accent-border) calc(var(--zone-mix) * 100%));
+  --tag-accent-bg: color-mix(in srgb, var(--d-tag-accent-bg), var(--l-tag-accent-bg) calc(var(--zone-mix) * 100%));
+  --tag-signal-border: color-mix(in srgb, var(--d-tag-signal-border), var(--l-tag-signal-border) calc(var(--zone-mix) * 100%));
+  --tag-signal-bg: color-mix(in srgb, var(--d-tag-signal-bg), var(--l-tag-signal-bg) calc(var(--zone-mix) * 100%));
+  --inverse-bg: color-mix(in srgb, var(--d-inverse-bg), var(--l-inverse-bg) calc(var(--zone-mix) * 100%));
+  --inverse-bg-hover: color-mix(in srgb, var(--d-inverse-bg-hover), var(--l-inverse-bg-hover) calc(var(--zone-mix) * 100%));
+  --inverse-text: color-mix(in srgb, var(--d-inverse-text), var(--l-inverse-text) calc(var(--zone-mix) * 100%));
+  --nav-bg: color-mix(in srgb, var(--d-nav-bg), var(--l-nav-bg) calc(var(--zone-mix) * 100%));
+  --nav-bg-scrolled: color-mix(in srgb, var(--d-nav-bg-scrolled), var(--l-nav-bg-scrolled) calc(var(--zone-mix) * 100%));
+  --photo-glow: color-mix(in srgb, var(--d-photo-glow), var(--l-photo-glow) calc(var(--zone-mix) * 100%));
   --aurora-a: var(--purple-600);
   --aurora-b1: var(--orange-600);
   --aurora-b2: var(--purple-700);
@@ -194,7 +250,7 @@ img { display: block; max-width: 100%; height: auto; }
 
 .display, .h2-serif {
   font-family: var(--font-display);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   letter-spacing: var(--tracking-display);
   color: var(--text);
 }
@@ -203,10 +259,10 @@ img { display: block; max-width: 100%; height: auto; }
 /* Apple-style two-tone headline: the tail is dimmed instead of italic. */
 .em { font-style: normal; color: var(--text-faint); }
 
-.h3 { font-family: var(--font-display); font-weight: var(--fw-medium); font-size: var(--fs-h4); line-height: 1.25; letter-spacing: var(--tracking-heading); }
+.h3 { font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: var(--fs-h4); line-height: 1.25; letter-spacing: var(--tracking-heading); }
 .body-l { font-size: var(--fs-lead); line-height: 1.55; max-width: 64ch; }
 .label { font-size: 13.5px; font-weight: var(--fw-medium); line-height: 1.3; color: var(--text-muted); }
-.stat { font-family: var(--font-display); font-weight: var(--fw-light); line-height: 1; letter-spacing: -0.05em; }
+.stat { font-family: var(--font-display); font-weight: var(--fw-semibold); line-height: 1; letter-spacing: -0.04em; }
 
 @media (max-width: 520px) {
   .body-l { font-size: 17px; }
@@ -255,7 +311,7 @@ img { display: block; max-width: 100%; height: auto; }
 .tag--neutral { border-color: var(--border-strong); background: var(--wash); color: var(--text-muted); }
 .tag--signal { border-color: var(--tag-signal-border); background: var(--tag-signal-bg); color: var(--signal); }
 
-/* Buttons */
+/* Buttons — rounded pills; the purple primary CTA is the one pixel-cornered shape */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
   padding: 13px 26px;
@@ -268,7 +324,7 @@ img { display: block; max-width: 100%; height: auto; }
 .btn:hover .btn__arrow, .btn:focus-visible .btn__arrow { transform: translateX(3px); }
 .btn--sm { padding: 10px 20px; font-size: 14px; }
 
-.btn--primary { background: var(--accent); color: var(--white); }
+.btn--primary { position: relative; isolation: isolate; background: var(--accent); color: var(--white); clip-path: var(--pixel-clip); }
 .btn--primary:hover { background: var(--accent-hover); }
 .btn--inverse { background: var(--inverse-bg); color: var(--inverse-text); }
 .btn--inverse:hover { background: var(--inverse-bg-hover); }
@@ -286,7 +342,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .text-btn:hover { color: var(--accent-soft-hover); }
 
-/* Cards */
+/* Cards — rounded; the pixel two-layer frame is scoped to prize and news cards below */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -294,6 +350,23 @@ img { display: block; max-width: 100%; height: auto; }
   transition: background-color 200ms ease, border-color 200ms ease;
 }
 .card--hover:hover { background: var(--surface-2); border-color: var(--border-strong); }
+
+/* Pixel-corner frames (8-bit): border colour as the element background, an inset
+   same-clipped fill layer above it — a real border would be clipped at the steps.
+   border-radius must be 0 here: these cards also set overflow:hidden (photo crop),
+   and a non-zero radius would clip the fill/photos to a rounded rect over the steps. */
+.card.prize, .card.post-card {
+  position: relative; isolation: isolate;
+  border: 0; border-radius: 0;
+  background: var(--border); clip-path: var(--pixel-clip);
+}
+.card.prize::before, .card.post-card::before {
+  content: ''; position: absolute; inset: 1px; z-index: -1;
+  clip-path: var(--pixel-clip); background: var(--surface);
+  transition: background-color 200ms ease;
+}
+.card--hover.prize:hover, .card--hover.post-card:hover { background: var(--border-strong); }
+.card.prize:hover::before, .card.post-card:hover::before { background: var(--surface-2); }
 
 /* Box sizing a transparent solution logo; logos are shown as-is, no backdrop */
 .logo-chip {
@@ -358,4 +431,11 @@ img { display: block; max-width: 100%; height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-ready [data-reveal] { transform: none; transition: opacity 400ms linear; }
+}
+
+/* Clipped pixel shapes (primary buttons, prize & news cards) cut the focus outline
+   off — use a glow ring instead. Everything rounded keeps the global outline. */
+.btn--primary:focus-visible, .card.prize:focus-visible, .card.post-card:focus-visible {
+  outline: none;
+  filter: drop-shadow(0 0 5px var(--accent-soft));
 }

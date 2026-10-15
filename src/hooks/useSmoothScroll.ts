@@ -12,12 +12,6 @@ function scrollToTarget(target: HTMLElement) {
   lenis?.scrollTo(target)
 }
 
-/** Scroll to a section: eased through Lenis when it runs, an instant jump otherwise (reduced motion). */
-export function scrollToSection(target: HTMLElement) {
-  if (lenis) scrollToTarget(target)
-  else target.scrollIntoView()
-}
-
 /**
  * Lock page scrolling (mobile menu, modal). Lenis drives scroll position itself,
  * so `overflow: hidden` alone would not stop wheel scrolling — it must be paused too.

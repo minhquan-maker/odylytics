@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '../components/Button'
 import { ChevronDownIcon, CloseIcon, MenuIcon } from '../components/Icons'
 import { SettingsMenu, SettingsPanel } from '../components/SettingsMenu'
-import { useBrandAssets } from '../hooks/useBrandAssets'
+import { BRAND } from '../data/content'
 import { useContent, useUi } from '../hooks/useContent'
 import { lockScroll, unlockScroll } from '../hooks/useSmoothScroll'
 import { useAuth } from '../lib/auth'
@@ -14,7 +14,6 @@ export function Nav() {
   const menuRef = useRef<HTMLDivElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
   const linksRef = useRef<HTMLElement>(null)
-  const brand = useBrandAssets()
   const { NAV } = useContent()
   const ui = useUi()
   const { member } = useAuth()
@@ -67,7 +66,10 @@ export function Nav() {
     <header className={`nav${scrolled ? ' is-scrolled' : ''}${open ? ' is-open' : ''}`}>
       <div className="nav__inner">
         <a className="nav__brand" href="#home" aria-label="Odylytics, back to top">
-          <img src={brand.wordmark} alt="" width="1826" height="565" />
+          {/* The zone morph (see index.css / useZoneFade) crossfades the white wordmark
+              to the black-text one — both files directly, independent of the theme. */}
+          <img className="nav__brand-img" src={BRAND.wordmarkDark} alt="" width="1826" height="565" />
+          <img className="nav__brand-img nav__brand-img--light" src={BRAND.wordmark} alt="" width="1826" height="565" />
         </a>
 
         <nav className="nav__links" aria-label="Primary" ref={linksRef}>
