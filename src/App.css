@@ -729,6 +729,8 @@ a.post-card:hover { transform: translateY(-3px); }
   .prizes, .quotes { display: flex; gap: 12px; margin-inline: calc(var(--pad) * -1); padding-inline: var(--pad); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .prizes::-webkit-scrollbar, .quotes::-webkit-scrollbar { display: none; }
   .prizes > *, .quotes > * { flex: 0 0 82%; scroll-snap-align: start; }
+  /* Cards inside swipe rows are never hidden by the scroll reveal, so the peeking edge shows */
+  .reveal-ready .prizes > [data-reveal], .reveal-ready .quotes > [data-reveal], .reveal-ready .crewrow > [data-reveal] { opacity: 1; transform: none; }
   .quote { padding: 24px; gap: 24px; }
   .quote blockquote { font-size: 17px; }
 

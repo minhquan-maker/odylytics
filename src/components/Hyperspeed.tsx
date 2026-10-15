@@ -602,7 +602,6 @@ const Hyperspeed = ({
     const container = containerRef.current;
     if (!container) return undefined;
 
-    const reduce = prefersReducedMotion();
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
     renderer.autoClear = false;
@@ -973,7 +972,7 @@ const Hyperspeed = ({
       const pressed = (state.held && s.interactive) || s.boosting ? 1 : 0;
       const wanted = Math.max(pressed, Math.min(1, Math.max(0, s.boostRef?.current ?? 0)));
       state.boost += (wanted - state.boost) * (1 - Math.exp(-dt / (wanted > state.boost ? 0.28 : 0.85)));
-      const pace = s.speed * (reduce ? 0.3 : 1) * (1 + (s.boost - 1) * state.boost);
+      const pace = s.speed * (prefersReducedMotion() ? 0.3 : 1) * (1 + (s.boost - 1) * state.boost);
       shared.uTime.value += dt * pace;
       shared.uStretch.value = state.boost * 1.1;
       shared.uCurvature.value = s.curvature;
@@ -1017,7 +1016,7 @@ const Hyperspeed = ({
       roadUniforms.uOpacity.value = s.roadOpacity;
       roadMaterial.depthWrite = s.roadOpacity > 0.5;
 
-      const fovTarget = reduce ? s.fov : s.fov + (s.boostFov - s.fov) * state.boost;
+      const fovTarget = prefersReducedMotion() ? s.fov : s.fov + (s.boostFov - s.fov) * state.boost;
       state.fovVelocity += ((fovTarget - state.fov) * 90 - state.fovVelocity * 13) * dt;
       state.fov += state.fovVelocity * dt;
       camera.fov = state.fov;
