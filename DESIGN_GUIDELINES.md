@@ -1,6 +1,6 @@
 # Odylytics — Design Guidelines (v4)
 
-Direction: an AI-firm site in the spirit of Anthropic, Factory and Cursor. Calm warm-white pages, large sans headlines, serif body text, mono labels with an orange square, one dark panel per page for contrast. Black and white first; purple and orange only as accents taken from the Odylytics logo. No italics anywhere, no gradients, no glow, no box shadows.
+Direction: an AI-firm site in the spirit of Anthropic, Factory and Cursor. Calm warm-white pages, large sans headlines, serif body text, bracketed full-orange mono labels like [ PARTNERSHIPS ], one dark panel per page for contrast. Black and white first; purple and orange only as accents taken from the Odylytics logo. No italics anywhere, no gradients, no glow, no box shadows.
 
 ## Type
 

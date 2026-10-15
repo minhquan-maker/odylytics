@@ -6,7 +6,6 @@ export function Label({ children, className = '' }: { children: ReactNode; class
   const t = useT()
   return (
     <p className={`label ${className}`.trim()}>
-      <span className="label__mark" aria-hidden="true" />
       {typeof children === 'string' ? t(children) : children}
     </p>
   )

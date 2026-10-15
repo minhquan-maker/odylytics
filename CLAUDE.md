@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Multi-page React 19 + TypeScript + Vite website for Odylytics, an AI firm (v4). Light by default with a dark toggle in the footer. Fonts: Hanken Grotesk (headings/UI), Source Serif 4 (body), JetBrains Mono (labels); no italics. Source-of-truth documents in the repo root:
+Multi-page React 19 + TypeScript + Vite website for Odylytics, an AI firm (v4). Light by default with a dark toggle in the footer. Fonts: Hanken Grotesk (headings/UI), Source Serif 4 (body), JetBrains Mono (labels, rendered as orange [ BRACKETED ] tags by `.label`); no italics. Source-of-truth documents in the repo root:
 
 - `REDESIGN_BRIEF.md` — sitemap, nav, page content, footer and legal plan, open questions.
 - `DESIGN_GUIDELINES.md` — type, colour tokens, shape, patterns (v4).
