@@ -28,7 +28,7 @@ Purple is the single CTA colour (`Get in touch`). Primary buttons are black on l
 
 ## Shape and motion
 
-Cards 20px radius, buttons 10px, pills 999px. 1px borders only where needed. Motion: a 16px fade-up on scroll (`data-reveal`), the pulsing circuit in the hero, hover lift of 3px on cards. Everything respects `prefers-reduced-motion`.
+Everything is square: no border radius on cards, buttons, inputs, chips, dialogs or avatars (`--r-*` tokens are 0). Buttons and chips are mono uppercase with a 1px border. 1px borders only where needed. Motion: a 16px fade-up on scroll (`data-reveal`), the pulsing circuit in the hero, hover lift of 3px on cards, and a full-screen cut between major sections (`PageTransition`: black screen, ODYLYTICS types itself with a glitch via ODYLYTICX, then wipes away). Everything respects `prefers-reduced-motion`.
 
 ## Patterns
 

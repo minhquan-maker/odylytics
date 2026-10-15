@@ -2,6 +2,7 @@ import './App.css'
 import { Consent } from './layout/Consent'
 import { Footer } from './layout/Footer'
 import { Nav } from './layout/Nav'
+import { PageTransition } from './layout/PageTransition'
 import { useRoute } from './hooks/useRoute'
 import { useReveal } from './hooks/useReveal'
 import { useSmoothScroll } from './hooks/useSmoothScroll'
@@ -74,6 +75,7 @@ function App() {
       </main>
       <Footer />
       <Consent />
+      <PageTransition />
     </>
   )
 }

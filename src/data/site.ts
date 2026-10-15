@@ -39,7 +39,7 @@ export const NAV: NavGroup[] = [
 
 export const HOME_HERO = {
   eyebrow: 'AI firm',
-  title: ['AI that works', 'when it matters.'],
+  title: ['AI that works', 'when it matters'],
   lead: 'Research-grounded products for climate resilience and accessibility.',
   cue: 'Scroll to find out',
 }

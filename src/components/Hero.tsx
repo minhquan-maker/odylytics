@@ -3,7 +3,6 @@ import { ArrowDownIcon } from './Icons'
 import { Label } from './Section'
 import { HOME_HERO } from '../data/site'
 import { usePrefersReducedMotion } from '../hooks/useMediaQuery'
-import { useBrandAssets } from '../hooks/useBrandAssets'
 import { useTheme } from '../hooks/useTheme'
 
 const Hyperspeed = lazy(() => import('./Hyperspeed'))
@@ -38,7 +37,6 @@ function supportsWebgl() {
 /** Pinned scroll intro: a big headline over a light-trail road; scrolling fades the copy and sends the road to full speed. */
 export function Hero() {
   const theme = useTheme()
-  const brand = useBrandAssets()
   const reducedMotion = usePrefersReducedMotion()
   const [webgl] = useState(supportsWebgl)
   const dark = theme === 'dark'
@@ -125,7 +123,6 @@ export function Hero() {
             <Label>{HOME_HERO.eyebrow}</Label>
             <span className="hero__line">{HOME_HERO.title[0]}</span>
           </div>
-          <img className="hero__logo" src={brand.wordmark} alt="Odylytics" width="1826" height="565" />
           <div className="hero__br">
             <span className="hero__line" aria-hidden="true">
               {HOME_HERO.title[1]}
