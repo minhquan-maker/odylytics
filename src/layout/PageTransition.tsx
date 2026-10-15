@@ -4,20 +4,21 @@ type Phase = 'idle' | 'cover' | 'glitch' | 'reveal'
 
 const WORD = 'ODYLYTICS'
 const NOISE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/<>_'
-const COVER_MS = 280
-const FRAME_MS = 52
-const REVEAL_MS = 420
+const COVER_MS = 220
+const FRAME_MS = 55
+const REVEAL_MS = 320
 
-/** Frames of the title: letters resolve left to right out of noise, mis-type as ODYLYTICX, then settle on ODYLYTICS. */
+/** A few quick frames: half-resolved noise, the mis-typed ODYLYTICX, then the right word. */
 function buildFrames(): { text: string; glitch: boolean }[] {
-  const frames: { text: string; glitch: boolean }[] = []
-  for (let step = 0; step <= WORD.length; step += 1) {
-    const text = [...WORD].map((letter, index) => (index < step ? letter : NOISE[Math.floor(Math.random() * NOISE.length)])).join('')
-    frames.push({ text, glitch: step < WORD.length })
-    frames.push({ text: [...text].map((char, index) => (index >= step && Math.random() < 0.5 ? NOISE[Math.floor(Math.random() * NOISE.length)] : char)).join(''), glitch: step < WORD.length })
-  }
-  frames.push({ text: 'ODYLYTICX', glitch: true }, { text: 'ODYLYTICX', glitch: true }, { text: 'ODYLYTICS', glitch: true }, { text: 'ODYLYTICS', glitch: false }, { text: 'ODYLYTICS', glitch: false }, { text: 'ODYLYTICS', glitch: false })
-  return frames
+  const noisy = (keep: number) => [...WORD].map((letter, index) => (index < keep ? letter : NOISE[Math.floor(Math.random() * NOISE.length)])).join('')
+  return [
+    { text: noisy(2), glitch: true },
+    { text: noisy(6), glitch: true },
+    { text: 'ODYLYTICX', glitch: true },
+    { text: 'ODYLYTICX', glitch: true },
+    { text: 'ODYLYTICS', glitch: false },
+    { text: 'ODYLYTICS', glitch: false },
+  ]
 }
 
 const section = (route: string) => route.split('/')[1] ?? ''
@@ -31,8 +32,6 @@ const currentRoute = () => (window.location.hash.startsWith('#/') ? window.locat
 export function PageTransition() {
   const [phase, setPhase] = useState<Phase>('idle')
   const [frame, setFrame] = useState({ text: WORD, glitch: false })
-  const [progress, setProgress] = useState(0)
-  const [target, setTarget] = useState('/')
   const busy = useRef(false)
   const timers = useRef<number[]>([])
 
@@ -49,9 +48,7 @@ export function PageTransition() {
 
       event.preventDefault()
       busy.current = true
-      setTarget(route)
-      setProgress(0)
-      setFrame({ text: WORD.replace(/./g, '_'), glitch: true })
+      setFrame({ text: WORD, glitch: false })
       setPhase('cover')
 
       later(() => {
@@ -59,16 +56,13 @@ export function PageTransition() {
         setPhase('glitch')
         const frames = buildFrames()
         frames.forEach((item, index) => {
-          later(() => {
-            setFrame(item)
-            setProgress(Math.round(((index + 1) / frames.length) * 100))
-          }, index * FRAME_MS)
+          later(() => setFrame(item), index * FRAME_MS)
         })
-        later(() => setPhase('reveal'), frames.length * FRAME_MS + 120)
+        later(() => setPhase('reveal'), frames.length * FRAME_MS + 60)
         later(() => {
           setPhase('idle')
           busy.current = false
-        }, frames.length * FRAME_MS + 120 + REVEAL_MS)
+        }, frames.length * FRAME_MS + 60 + REVEAL_MS)
       }, COVER_MS)
     }
 
@@ -81,14 +75,8 @@ export function PageTransition() {
   }, [])
 
   return (
-    <div className="cut scope-dark" data-phase={phase} aria-hidden="true">
-      <div className="cut__scan" />
-      <p className="cut__meta cut__meta--tl">
-        <span className="label__mark" /> Odylytics / loading
-      </p>
+    <div className="cut" data-phase={phase} aria-hidden="true">
       <p className={`cut__word${frame.glitch ? ' is-glitch' : ''}`}>{frame.text}</p>
-      <p className="cut__meta cut__meta--bl">{target}</p>
-      <p className="cut__meta cut__meta--br">{String(progress).padStart(3, '0')}</p>
     </div>
   )
 }
