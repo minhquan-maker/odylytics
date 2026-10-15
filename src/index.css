@@ -1,4 +1,5 @@
 @import '@fontsource-variable/hanken-grotesk';
+@import '@fontsource-variable/archivo/wdth.css';
 @import '@fontsource-variable/source-serif-4';
 @import '@fontsource-variable/jetbrains-mono';
 
@@ -35,6 +36,7 @@
 
   --font-sans: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+  --font-display: 'Archivo Variable', 'Hanken Grotesk Variable', Arial, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
 
   --r-card: 20px;
