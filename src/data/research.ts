@@ -20,6 +20,8 @@ export const AREAS: ResearchArea[] = [
   { id: 'assistive', label: 'Assistive interaction', short: 'Assistive interaction', text: 'Interfaces that adapt to the body: head tracking, gestures and voice instead of keyboard and mouse.' },
   { id: 'hiring', label: 'Inclusive hiring and learning', short: 'Inclusive access', text: 'AI that widens access to work and education for people who are too often screened out.' },
   { id: 'sensing', label: 'Environmental sensing', short: 'Environmental sensing', text: 'Turning air-quality and environmental data into signals that people can act on.' },
+  { id: 'localization', label: 'Visual localization and robotics', short: 'Visual localization', text: 'Geometric and semantic representations for navigation in environments without reliable GNSS.' },
+  { id: 'retrieval', label: 'Information retrieval and language models', short: 'Retrieval and language models', text: 'Retrieving reliable evidence and grounding language-model answers in source documents.' },
 ]
 
 export type ResearchLink = { label: 'Paper' | 'PDF' | 'Code' | 'Data' | 'Demo' | 'Slides' | 'Video'; href: string }
@@ -49,7 +51,58 @@ export type ResearchEntry = {
   sections?: { heading: string; body: string[] }[]
 }
 
-export const ENTRIES: ResearchEntry[] = []
+export const ENTRIES: ResearchEntry[] = [
+  {
+    slug: 'gnss-denied-uav-localization',
+    title: 'GNSS-Denied UAV Localization',
+    kind: 'Project',
+    area: 'localization',
+    status: 'Ongoing',
+    stage: 'Exploring',
+    summary: 'Investigating geometric and semantic matching between UAV imagery and reference maps to localize aerial vehicles in forest environments without GNSS.',
+    question: 'How can canopy geometry provide stable visual landmarks for UAV localization when GNSS is unavailable?',
+    authors: ['Tran Tuan Nghia'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: ['Ongoing research by Tran Tuan Nghia as a Research Assistant at the Institute for Intelligent Systems (IVS), focusing on geometric computer vision and visual localization in forest environments.'],
+      },
+      {
+        heading: 'Method',
+        body: ['The experimental pipeline segments canopy regions, applies convex preprocessing, constructs a generalized Voronoi representation, extracts candidates, and compares radial-angular descriptors for matching and localization.', 'Current experiments examine LAB + Crowns segmentation, convex hull preprocessing, connected-component and medoid filtering, and the stability of candidate landmarks.'],
+      },
+      {
+        heading: 'Findings',
+        body: ['Evaluation is ongoing, with current work focused on segmentation choices, preprocessing thresholds, and candidate stability. Localization performance has not yet been established.'],
+      },
+    ],
+  },
+  {
+    slug: 'vietnamese-legal-rag',
+    title: 'Vietnamese Legal RAG',
+    kind: 'Project',
+    area: 'retrieval',
+    status: 'Ongoing',
+    stage: 'Exploring',
+    summary: 'Researching retrieval-augmented generation for questions about Vietnamese law and administrative procedures, with an emphasis on evidence retrieval and grounded answers.',
+    question: 'How can a legal question-answering system retrieve authoritative evidence and generate answers grounded in Vietnamese source documents?',
+    authors: ['Tran Tuan Nghia'],
+    sections: [
+      {
+        heading: 'Overview',
+        body: ['This research explores a Vietnamese legal question-answering system that connects information retrieval with language-model generation. The focus is on finding relevant evidence, evaluating retrieval quality, and supporting answers with source material.'],
+      },
+      {
+        heading: 'Method',
+        body: ['Methods under consideration include BM25 and SimCSE retrieval, hybrid search with Reciprocal Rank Fusion, re-ranking, authority scoring, and graph-based retrieval. These approaches form the research direction rather than a completed, validated system.'],
+      },
+      {
+        heading: 'Findings',
+        body: ['The work is in the exploration stage. Comparative retrieval results and answer-quality measurements are not yet available.'],
+      },
+    ],
+  },
+]
 
 /** Shown as a greyed-out sample until the first real publication exists. */
 export const EXAMPLE_ONGOING: ResearchEntry = {
