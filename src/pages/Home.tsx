@@ -1,3 +1,4 @@
+import { Contours } from '../components/Contours'
 import { CountUp } from '../components/CountUp'
 import { Hero } from '../components/Hero'
 import { HeroArt } from '../components/HeroArt'
@@ -5,6 +6,7 @@ import { HowFlow } from '../components/HowFlow'
 import { PartnerLoop } from '../components/Partners'
 import { PostCard } from '../components/PostCard'
 import { Label, SectionHead } from '../components/Section'
+import { SolutionLoop } from '../components/SolutionLoop'
 import { Testimonials } from '../components/Testimonials'
 import { IMPACT, IMPACT_NOTE, POSTS, RECOGNITION, SOLUTIONS, TEAM } from '../data/content'
 import { HOME_BAND, HOME_CLOSING, HOME_PILLARS, HOME_WORK, PRODUCT_GROUPS } from '../data/site'
@@ -94,8 +96,9 @@ export function Home() {
       </section>
 
       <section className="band scope-dark" aria-labelledby="band-title">
-        <div className="container band__grid">
-          <div>
+        <Contours />
+        <div className="container band__inner">
+          <div className="band__head">
             <Label>{HOME_BAND.label}</Label>
             <h2 id="band-title" className="band__title">
               {t(HOME_BAND.title)}
@@ -103,23 +106,26 @@ export function Home() {
             <p className="band__text">{t(HOME_BAND.text)}</p>
           </div>
           <dl className="stats">
-            {IMPACT.map((stat) => (
-              <div key={stat.label} className="stat">
+            {IMPACT.map((stat, index) => (
+              <div key={stat.label} className="stat" data-reveal>
+                <span className="stat__line" aria-hidden="true" />
+                <span className="stat__idx" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
                 <dt>{t(stat.label)}</dt>
                 <dd>
                   <CountUp to={stat.value} />
-                  {stat.suffix}
+                  {stat.suffix && <span className="stat__plus">{stat.suffix}</span>}
                 </dd>
               </div>
             ))}
           </dl>
           <p className="band__note">{t(IMPACT_NOTE)}</p>
-          <div className="bars" aria-hidden="true">
-            {Array.from({ length: 36 }, (_, index) => (
-              <span key={index} className={`bars__bar${index > 29 ? ' is-hot' : ''}`} />
-            ))}
-          </div>
         </div>
+      </section>
+
+      <section className="solutionstrip" aria-label="Solutions">
+        <SolutionLoop />
       </section>
 
       <section className="section">
@@ -197,13 +203,18 @@ export function Home() {
       </section>
 
       <section className="container closing-wrap">
-        <div className="closing scope-dark">
-          <Label>{t('Get in touch')}</Label>
-          <h2 className="closing__title">{t(HOME_CLOSING.title)}</h2>
-          <p>{t(HOME_CLOSING.text)}</p>
-          <a className="btn btn--accent" href="#/contact">
-            {t('Get in touch')}
-          </a>
+        <div className="closing closing--photo scope-dark">
+          <div className="closing__copy">
+            <Label>{t('Get in touch')}</Label>
+            <h2 className="closing__title">{t(HOME_CLOSING.title)}</h2>
+            <p>{t(HOME_CLOSING.text)}</p>
+            <a className="btn btn--accent" href="#/contact">
+              {t('Get in touch')}
+            </a>
+          </div>
+          <div className="closing__photo">
+            <img src="/assets/gallery/closing-team.jpg" alt="The Odylytics team with their EPICS, OISP and Bach Khoa Innovation prizes" loading="lazy" />
+          </div>
         </div>
       </section>
     </>
