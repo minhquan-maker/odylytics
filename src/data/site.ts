@@ -22,6 +22,7 @@ export const NAV: NavGroup[] = [
       { label: 'Overview', href: '#/research', description: 'How we work, and the questions we ask.' },
       { label: 'Ongoing', href: '#/research/ongoing', description: 'Active projects and open questions.' },
       { label: 'Accomplished', href: '#/research/accomplished', description: 'Prizes, pilots and milestones so far.' },
+      { label: 'Publications', href: '#/research/publications', description: 'Papers, reports, datasets and code.' },
     ],
   },
   {
@@ -165,57 +166,6 @@ export const RESEARCH_PRINCIPLES = [
   { index: '04', title: 'Share what we learn', text: 'We publish results and methods when partners allow it, and credit everyone who contributed.' },
 ]
 
-export const RESEARCH_AREAS = [
-  { label: 'Flood and disaster intelligence', text: 'Coordinating victims, rescuers and authorities through live maps and community reports.', products: 'AquaGuard' },
-  { label: 'Assistive interaction', text: 'Replacing keyboard and mouse with head tracking and gestures for coding education.', products: 'EnableCode' },
-  { label: 'Inclusive hiring', text: 'Generating interview practice from a job description and a candidate profile.', products: 'Includio' },
-  { label: 'Environmental sensing', text: 'Making air-quality data readable and useful for everyday decisions.', products: 'AirGuard' },
-]
-
-export type ResearchProject = {
-  title: string
-  area: string
-  stage: string
-  question: string
-  partners: string[]
-  product: string
-}
-
-// TODO(content): replace stages, questions and partners with the confirmed research agenda.
-export const ONGOING: ResearchProject[] = [
-  {
-    title: 'Live coordination for flood rescue',
-    area: 'Flood and disaster intelligence',
-    stage: 'Pilot',
-    question: 'How can one shared map help coordinators dispatch rescue teams faster and with fewer duplicate requests?',
-    partners: ['HCMUT', 'UTS', 'Université Laval'],
-    product: 'AquaGuard',
-  },
-  {
-    title: 'Hands-free programming with head tracking',
-    area: 'Assistive interaction',
-    stage: 'Prototype',
-    question: 'Can head gestures from an ordinary webcam replace a mouse well enough to learn block-based coding?',
-    partners: ['Fessior DevCamp'],
-    product: 'EnableCode',
-  },
-  {
-    title: 'AI interview practice for autistic candidates',
-    area: 'Inclusive hiring',
-    stage: 'MVP',
-    question: 'Does repeated, low-pressure practice with generated questions build confidence before a real interview?',
-    partners: ['RMIT University'],
-    product: 'Includio',
-  },
-  {
-    title: 'Readable air-quality monitoring',
-    area: 'Environmental sensing',
-    stage: 'Exploring',
-    question: 'What do residents need to see in air-quality data to change how they act?',
-    partners: [],
-    product: 'AirGuard',
-  },
-]
 
 export type Milestone = { year: string; title: string; context: string; kind: 'Prize' | 'Pilot' | 'Funding' | 'Press'; image?: string }
 
@@ -330,6 +280,7 @@ export const FOOTER_COLUMNS: { heading: string; links: NavItem[] }[] = [
       { label: 'Overview', href: '#/research' },
       { label: 'Ongoing', href: '#/research/ongoing' },
       { label: 'Accomplished', href: '#/research/accomplished' },
+      { label: 'Publications', href: '#/research/publications' },
     ],
   },
   {
