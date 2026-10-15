@@ -32,7 +32,7 @@ export function HeroArt() {
 
       {INPUTS.map((item) => (
         <g key={item.label} transform={`translate(50 ${item.y - 22})`}>
-          <rect width="150" height="44" rx="10" className="heroart__box" />
+          <rect width="150" height="44" className="heroart__box" />
           <rect x="14" y="19" width="6" height="6" className="heroart__mark" />
           <text x="30" y="26" className="heroart__text">
             {item.label}
@@ -41,7 +41,7 @@ export function HeroArt() {
       ))}
       {OUTPUTS.map((item) => (
         <g key={item.label} transform={`translate(400 ${item.y - 22})`}>
-          <rect width="150" height="44" rx="10" className="heroart__box" />
+          <rect width="150" height="44" className="heroart__box" />
           <rect x="14" y="19" width="6" height="6" className="heroart__mark heroart__mark--purple" />
           <text x="30" y="26" className="heroart__text">
             {item.label}
@@ -50,7 +50,7 @@ export function HeroArt() {
       ))}
 
       <g transform="translate(250 180)">
-        <rect width="100" height="120" rx="18" className="heroart__core" />
+        <rect width="100" height="120" className="heroart__core" />
         <image href="/assets/brand/odylytics-symbol-dark.svg" x="26" y="30" width="48" height="48" className="heroart__symbol" />
         <text x="50" y="102" textAnchor="middle" className="heroart__text heroart__text--core">
           AI CORE

@@ -39,7 +39,7 @@
 
 .logoloop__node { display: inline-flex; align-items: center; }
 
-.logoloop__link { display: inline-flex; align-items: center; border-radius: 4px; transition: opacity 200ms linear; }
+.logoloop__link { display: inline-flex; align-items: center; border-radius: 0; transition: opacity 200ms linear; }
 .logoloop__link:hover { opacity: 0.8; }
 .logoloop__link:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
