@@ -16,11 +16,12 @@ import { Legal, LegalHub } from './pages/Legal'
 import { Login } from './pages/Login'
 import { NotFound } from './pages/NotFound'
 import { Product } from './pages/Product'
-import { ResearchAccomplished, ResearchOngoing, ResearchOverview } from './pages/Research'
+import { ResearchAccomplished, ResearchArticle, ResearchOngoing, ResearchOverview, ResearchPublications } from './pages/Research'
 import { CoFounders, PartnersPage, Resources } from './pages/Team'
 import { TeamProfile } from './pages/TeamProfile'
 
-function Page({ route }: { route: string }) {
+function Page({ route: fullRoute }: { route: string }) {
+  const [route, query = ''] = fullRoute.split('?')
   switch (route) {
     case '/':
       return <Home />
@@ -36,6 +37,8 @@ function Page({ route }: { route: string }) {
       return <ResearchOngoing />
     case '/research/accomplished':
       return <ResearchAccomplished />
+    case '/research/publications':
+      return <ResearchPublications key={query} query={query} />
     case '/team':
     case '/team/co-founders':
       return <CoFounders />
@@ -54,6 +57,8 @@ function Page({ route }: { route: string }) {
     case '/legal':
       return <LegalHub />
   }
+  const article = /^\/research\/([a-z0-9-]+)$/.exec(route)
+  if (article) return <ResearchArticle slug={article[1]} />
   const profile = /^\/team\/([a-z0-9-]+)$/.exec(route)
   if (profile) return <TeamProfile slug={profile[1]} />
   const legal = /^\/legal\/([a-z0-9-]+)$/.exec(route)

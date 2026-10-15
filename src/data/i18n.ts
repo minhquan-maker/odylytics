@@ -16,6 +16,8 @@ export const DICTIONARY: Record<string, [string, string, string, string]> = {
   Incoming: ['Sắp ra mắt', 'À venir', '即将推出', '近日公開'],
   Overview: ['Tổng quan', 'Aperçu', '概览', '概要'],
   Ongoing: ['Đang thực hiện', 'En cours', '进行中', '進行中'],
+  Publications: ['Ấn phẩm', 'Publications', '出版物', '論文・出版物'],
+  'Papers, reports, datasets and code.': ['Bài báo, báo cáo, dữ liệu và mã nguồn.', 'Articles, rapports, jeux de données et code.', '论文、报告、数据集与代码。', '論文、レポート、データセット、コード。'],
   Accomplished: ['Đã hoàn thành', 'Réalisations', '已完成', '実績'],
   'Co-founders': ['Đồng sáng lập', 'Cofondateurs', '联合创始人', '共同創業者'],
   Partners: ['Đối tác', 'Partenaires', '合作伙伴', 'パートナー'],
