@@ -1,6 +1,7 @@
 import { CountUp } from '../components/CountUp'
 import { Hero } from '../components/Hero'
 import { HeroArt } from '../components/HeroArt'
+import { HowFlow } from '../components/HowFlow'
 import { PartnerLoop } from '../components/Partners'
 import { PostCard } from '../components/PostCard'
 import { Label, SectionHead } from '../components/Section'
@@ -60,6 +61,7 @@ export function Home() {
           </div>
           <div className="how__art" data-reveal>
             <HeroArt />
+            <HowFlow />
           </div>
         </div>
       </section>
