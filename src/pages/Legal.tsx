@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Label, PageHead } from '../components/Section'
 import { LEGAL_ENTRIES, LEGAL_GROUPS } from '../data/site'
 import { openConsentSettings } from '../lib/consent'
@@ -48,6 +48,7 @@ export function LegalHub() {
 }
 
 export function Legal({ slug }: { slug: string }) {
+  const [tocOpen, setTocOpen] = useState(false)
   const entry = LEGAL_ENTRIES.find((item) => item.slug === slug)
   useEffect(() => {
     if (!entry) return
@@ -67,13 +68,17 @@ export function Legal({ slug }: { slug: string }) {
       <section className="section section--tight">
         <div className="container legal">
           <aside className="legal__side">
-            <nav className="legal__toc" aria-label="Contents">
-              <Label>Contents</Label>
+            <nav className={`legal__toc${tocOpen ? ' is-open' : ''}`} aria-label="Contents">
+              <button type="button" className="legal__tocbtn" aria-expanded={tocOpen} onClick={() => setTocOpen((value) => !value)}>
+                <Label>Contents</Label>
+                <span aria-hidden="true">{tocOpen ? '−' : '+'}</span>
+              </button>
               <ol>
                 {doc.sections.map((section, index) => (
                   <li key={`${section.heading}-${index}`}>
                     <a href={`#/legal/${slug}`} onClick={(event) => {
                       event.preventDefault()
+                      setTocOpen(false)
                       document.getElementById(id(index))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
                     }}>
                       {section.heading}
