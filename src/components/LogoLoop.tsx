@@ -87,7 +87,7 @@ function LogoContent({ item }: { item: LogoItem }) {
       height={item.height}
       alt={item.alt ?? ''}
       title={item.title}
-      loading="lazy"
+      loading="eager"
       decoding="async"
       draggable={false}
     />
