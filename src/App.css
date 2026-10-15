@@ -52,20 +52,61 @@
 
 /* ─── Hero ──────────────────────────────────────────────────────────────── */
 
-.hero { padding-top: 64px; }
-.hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); align-items: center; gap: 48px; }
-.hero__copy .label { margin-bottom: 32px; }
-.hero__title { font-size: clamp(38px, 4.7vw, 66px); letter-spacing: -0.035em; line-height: 1.02; }
+/* The hero is a scroll track taller than the viewport; its stage stays pinned while the
+   visitor scrolls through it (copy fades out, then the road boosts, see Hero.tsx). */
+.hero {
+  --hero-stage-h: max(680px, 100svh);
+  --hero-track: 350svh; /* set from INTRO in Hero.tsx; this mirrors it for the first paint */
+  --hero-fade: 0;
+  position: relative;
+  height: calc(var(--hero-stage-h) + var(--hero-track));
+  margin-top: calc(var(--nav-h) * -1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero { --hero-track: 0px; }
+}
+.hero__stage { position: sticky; top: 0; display: flex; flex-direction: column; height: var(--hero-stage-h); padding-top: var(--nav-h); overflow: hidden; isolation: isolate; }
+.hero .aurora { z-index: -1; }
+.hyperspeed { position: absolute; inset: 0; overflow: hidden; touch-action: pan-y; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; user-select: none; }
+.hyperspeed canvas { display: block; width: 100%; height: 100%; }
+/* Feathered bottom edge so the road dissolves into the next section. */
+.hero__road { z-index: -1; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
+
+/* Empty space in the content column lets pointer events through to the road (hold to boost). */
+.hero__content > * { pointer-events: auto; }
+.hero__content { pointer-events: none; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding-block: 48px 120px; text-align: center; opacity: calc(1 - var(--hero-fade)); transform: translateY(calc(var(--hero-fade) * -14vh)); animation: hero-in 900ms var(--ease) backwards; }
+.hero.is-faded .hero__content { visibility: hidden; }
+@keyframes hero-in { from { opacity: 0; transform: translateY(12px); } }
+.hero__headline { font-size: clamp(52px, 9.4vw, 148px); font-weight: 500; letter-spacing: -0.045em; line-height: 0.96; }
 .hero__line { display: block; }
-.hero__title u { text-decoration-thickness: 0.055em; text-underline-offset: 0.12em; text-decoration-color: var(--accent); }
-.hero__lead { max-width: 52ch; margin-top: 32px; font-size: clamp(18px, 1.6vw, 21px); color: var(--text-2); }
-.hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-.hero__art { min-width: 0; }
-.hero__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 64px; }
+.hero__lead { max-width: 36ch; font-size: clamp(18px, 1.6vw, 22px); color: var(--text-2); }
+.hero__cue { position: absolute; left: 50%; bottom: 28px; display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: var(--text-2); white-space: nowrap; pointer-events: none; opacity: calc(1 - var(--hero-fade) * 3); transform: translateX(-50%); }
+.hero__cue-icon { display: inline-grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--border-strong); border-radius: var(--r-pill); color: var(--text); animation: cue-bob 1.8s var(--ease) infinite; }
+.hero__cue-icon svg { width: 16px; height: 16px; }
+@keyframes cue-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@media (prefers-reduced-motion: reduce) { .hero__cue-icon { animation: none; } }
+.nav.is-clear { background: transparent; }
+
+/* Fallback when WebGL is missing */
+.aurora { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.aurora::before, .aurora::after { content: ''; position: absolute; width: 60vw; height: 60vw; min-width: 480px; min-height: 480px; border-radius: 50%; filter: blur(90px); opacity: 0.4; }
+.aurora::before { left: -12%; bottom: -45%; background: radial-gradient(circle at 35% 35%, var(--purple-300), transparent 65%); }
+.aurora::after { right: -15%; bottom: -55%; background: radial-gradient(circle at 60% 40%, var(--orange-300) 0%, var(--purple-400) 55%, transparent 75%); }
+
+/* News cards under the hero */
+.herocards { padding-top: 0; }
+.news-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .hero-card { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 32px; border-radius: var(--r-card); background: var(--surface); transition: transform 250ms var(--ease); }
 .hero-card:hover { transform: translateY(-3px); }
 .hero-card h2 { font-size: 24px; }
 .hero-card p { color: var(--text-2); font-size: 17px; flex: 1; }
+@media (max-width: 960px) { .news-cards { grid-template-columns: 1fr; } }
+
+.how { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; gap: 64px; }
+.how__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.how__copy .label { margin-bottom: 4px; }
+.how__copy p:not(.label) { max-width: 44ch; color: var(--text-2); }
+@media (max-width: 960px) { .how { grid-template-columns: 1fr; gap: 32px; } }
 
 /* Hero circuit diagram */
 .heroart { width: 100%; height: auto; overflow: visible; }
@@ -83,13 +124,6 @@
 .heroart__text--core { fill: #F3F2EE; opacity: 0.7; font-size: 10px; }
 .heroart__node { fill: var(--accent); }
 :root[data-theme='dark'] .heroart__core { fill: #232227; stroke: var(--border-strong); }
-
-@media (max-width: 960px) {
-  .hero { padding-top: 32px; }
-  .hero__grid { grid-template-columns: 1fr; gap: 24px; }
-  .hero__art { order: -1; max-width: 520px; }
-  .hero__cards { grid-template-columns: 1fr; margin-top: 40px; }
-}
 
 /* ─── Partner strip ─────────────────────────────────────────────────────── */
 

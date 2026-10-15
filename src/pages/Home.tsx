@@ -1,31 +1,14 @@
 import { CountUp } from '../components/CountUp'
+import { Hero } from '../components/Hero'
 import { HeroArt } from '../components/HeroArt'
 import { PartnerLoop } from '../components/Partners'
 import { PostCard } from '../components/PostCard'
 import { Label, SectionHead } from '../components/Section'
 import { Testimonials } from '../components/Testimonials'
 import { IMPACT, IMPACT_NOTE, POSTS, RECOGNITION, SOLUTIONS, TEAM } from '../data/content'
-import { HOME_BAND, HOME_CLOSING, HOME_HERO, HOME_PILLARS, HOME_WORK, PRODUCT_GROUPS } from '../data/site'
+import { HOME_BAND, HOME_CLOSING, HOME_PILLARS, HOME_WORK, PRODUCT_GROUPS } from '../data/site'
 import { useBrandAssets } from '../hooks/useBrandAssets'
 import { postsStore } from '../lib/stores'
-
-function Title() {
-  // Underline the key words, the way a printed headline would, without italics.
-  return (
-    <h1 className="hero__title">
-      {HOME_HERO.title.map((line) => (
-        <span key={line} className="hero__line">
-          {line.split(' ').map((word, index, words) => (
-            <span key={`${word}-${index}`}>
-              {HOME_HERO.underline.includes(word) ? <u>{word}</u> : word}
-              {index < words.length - 1 ? ' ' : ''}
-            </span>
-          ))}
-        </span>
-      ))}
-    </h1>
-  )
-}
 
 export function Home() {
   const { solutionLogo } = useBrandAssets()
@@ -38,27 +21,11 @@ export function Home() {
 
   return (
     <>
-      <section className="hero">
-        <div className="container hero__grid">
-          <div className="hero__copy">
-            <Label>{HOME_HERO.eyebrow}</Label>
-            <Title />
-            <p className="hero__lead">{HOME_HERO.lead}</p>
-            <div className="hero__cta">
-              <a className="btn btn--primary" href="#/product/climate-tech">
-                Explore products
-              </a>
-              <a className="btn btn--outline" href="#/research">
-                Read our research
-              </a>
-            </div>
-          </div>
-          <div className="hero__art">
-            <HeroArt />
-          </div>
-        </div>
+      <Hero />
+
+      <section className="section section--tight herocards">
         <div className="container">
-          <div className="hero__cards">
+          <div className="news-cards">
             <a className="hero-card" href="#/research/accomplished">
               <span className="tag tag--accent">New</span>
               <h2>EnableCode wins Fessior DevCamp 2026</h2>
@@ -102,6 +69,19 @@ export function Home() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="container how">
+          <div className="how__copy" data-reveal>
+            <Label>How it works</Label>
+            <h2 className="sechead__title">Many inputs. One shared AI core.</h2>
+            <p>Community reports, sensor readings and webcam signals all flow through the same foundation, so every new product launches faster and learns from the others.</p>
+          </div>
+          <div className="how__art" data-reveal>
+            <HeroArt />
+          </div>
         </div>
       </section>
 

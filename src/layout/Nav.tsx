@@ -66,7 +66,7 @@ export function Nav({ route }: { route: string }) {
   const groupActive = (items?: { href: string }[]) => items?.some((item) => route === item.href.slice(1))
 
   return (
-    <header className={`nav${scrolled ? ' is-scrolled' : ''}${open ? ' is-open' : ''}`}>
+    <header className={`nav${scrolled ? ' is-scrolled' : ''}${open ? ' is-open' : ''}${route === '/' && !scrolled && !open ? ' is-clear' : ''}`}>
       <div className="nav__inner">
         <a className="nav__brand" href="#/" aria-label="Odylytics, home">
           <img src={brand.wordmark} alt="" width="1826" height="565" />

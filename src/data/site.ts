@@ -38,10 +38,10 @@ export const NAV: NavGroup[] = [
 // ─── Home ───────────────────────────────────────────────────────────────────
 
 export const HOME_HERO = {
-  eyebrow: 'AI firm · Climate-tech · Accessibility',
-  title: ['Research\u2011grounded AI for', 'resilient, inclusive communities'],
-  underline: ['AI', 'communities'],
-  lead: 'Odylytics designs, builds and ships digital solutions, from flood rescue coordination to hands-free coding education.',
+  eyebrow: 'AI firm',
+  title: ['AI that works', 'when it matters.'],
+  lead: 'Research-grounded products for climate resilience and accessibility.',
+  cue: 'Scroll to find out',
 }
 
 export const HOME_PILLARS = [
@@ -73,7 +73,7 @@ export const HOME_PILLARS = [
 
 export const HOME_BAND = {
   label: 'Impact',
-  title: 'AI that works when it matters most.',
+  title: 'Proof from the field.',
   text: 'Our first platform, AquaGuard, connects flood victims, rescue teams and coordinators in one live view. The numbers come from that work.',
 }
 
