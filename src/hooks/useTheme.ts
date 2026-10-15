@@ -4,11 +4,11 @@ import { flushSync } from 'react-dom'
 export type Theme = 'dark' | 'light'
 
 const STORAGE_KEY = 'odylytics-theme'
-const THEME_COLOR: Record<Theme, string> = { dark: '#0B0A0E', light: '#FAFAFB' }
+const THEME_COLOR: Record<Theme, string> = { dark: '#0E0D10', light: '#F3F2EE' }
 const listeners = new Set<() => void>()
 
 function getTheme(): Theme {
-  return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
 }
 
 function subscribe(listener: () => void) {
@@ -49,5 +49,5 @@ export function setTheme(theme: Theme) {
 
 /** The visitor's chosen theme; applied initially by the inline script in index.html. */
 export function useTheme() {
-  return useSyncExternalStore(subscribe, getTheme, (): Theme => 'dark')
+  return useSyncExternalStore(subscribe, getTheme, (): Theme => 'light')
 }

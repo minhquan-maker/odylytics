@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePrefersReducedMotion } from '../hooks/useMediaQuery'
-import { useLang } from '../lib/lang'
 
 /** Counts up to `to` once it scrolls into view; numbers use the page language's grouping. */
 export function CountUp({ to }: { to: number }) {
   const ref = useRef<HTMLSpanElement>(null)
   const reduced = usePrefersReducedMotion()
-  const lang = useLang()
   const [value, setValue] = useState(reduced ? to : 0)
 
   useEffect(() => {
@@ -35,5 +33,5 @@ export function CountUp({ to }: { to: number }) {
     }
   }, [to, reduced])
 
-  return <span ref={ref}>{(reduced ? to : value).toLocaleString(lang === 'vi' ? 'vi-VN' : 'en-US')}</span>
+  return <span ref={ref}>{(reduced ? to : value).toLocaleString('en-US')}</span>
 }

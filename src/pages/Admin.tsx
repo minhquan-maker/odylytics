@@ -79,10 +79,10 @@ function Editor({ fields, value, onSave, onCancel }: { fields: Field[]; value: R
         </p>
       )}
       <div className="admin__actions">
-        <Button type="submit" arrow={false}>
+        <Button type="submit">
           {busy ? 'Saving…' : 'Save'}
         </Button>
-        <Button variant="outline" arrow={false} onClick={onCancel}>
+        <Button variant="outline" onClick={onCancel}>
           Cancel
         </Button>
       </div>
@@ -142,7 +142,7 @@ export function Admin() {
             </h1>
             <p className="label">Signed in as {member.email}</p>
           </div>
-          <Button variant="outline" size="sm" arrow={false} onClick={() => void signOut().then(() => (window.location.hash = '#/login'))}>
+          <Button variant="outline" size="sm" onClick={() => void signOut().then(() => (window.location.hash = '#/login'))}>
             Sign out
           </Button>
         </header>
@@ -166,11 +166,11 @@ export function Admin() {
         ) : (
           <>
             <div className="admin__actions">
-              <Button arrow={false} size="sm" onClick={() => setEditing(blank())}>
+              <Button size="sm" onClick={() => setEditing(blank())}>
                 {isPosts ? 'New post' : 'New testimonial'}
               </Button>
               {store.isSeeded() && (
-                <Button variant="outline" size="sm" arrow={false} onClick={() => void store.importSeed().then((error) => setMessage(error ?? 'Starter content saved. You can now edit it.'))}>
+                <Button variant="outline" size="sm" onClick={() => void store.importSeed().then((error) => setMessage(error ?? 'Starter content saved. You can now edit it.'))}>
                   Save starter content
                 </Button>
               )}
@@ -183,10 +183,10 @@ export function Admin() {
                     <span className="label">{isPosts ? String((row as unknown as Post).category) : String((row as unknown as Testimonial).role)}</span>
                   </div>
                   <div className="admin__actions">
-                    <Button variant="outline" size="sm" arrow={false} onClick={() => setEditing(row)}>
+                    <Button variant="outline" size="sm" onClick={() => setEditing(row)}>
                       Edit
                     </Button>
-                    <Button variant="outline" size="sm" arrow={false} onClick={() => void remove(row)}>
+                    <Button variant="outline" size="sm" onClick={() => void remove(row)}>
                       Delete
                     </Button>
                   </div>

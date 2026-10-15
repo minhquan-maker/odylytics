@@ -1,14 +1,14 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
-import { ArrowDownIcon } from '../components/Icons'
-import { useContent } from '../hooks/useContent'
-import { useBrandAssets } from '../hooks/useBrandAssets'
+import { ArrowDownIcon } from './Icons'
+import { Label } from './Section'
+import { HOME_HERO } from '../data/site'
 import { usePrefersReducedMotion } from '../hooks/useMediaQuery'
-import { useRotatingWord } from '../hooks/useRotatingWord'
+import { useBrandAssets } from '../hooks/useBrandAssets'
 import { useTheme } from '../hooks/useTheme'
 
-const Hyperspeed = lazy(() => import('../components/Hyperspeed'))
+const Hyperspeed = lazy(() => import('./Hyperspeed'))
 
-const LIGHT_COLORS = ['#AE0BFF', '#FF8C00', '#AE0BFF']
+const COLORS = ['#AE0BFF', '#FF8C00', '#AE0BFF']
 const POLE_COLORS = ['#AE0BFF']
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value))
@@ -35,20 +35,16 @@ function supportsWebgl() {
   }
 }
 
+/** Pinned scroll intro: a big headline over a light-trail road; scrolling fades the copy and sends the road to full speed. */
 export function Hero() {
-  const { HERO } = useContent()
-  const brand = useBrandAssets()
   const theme = useTheme()
+  const brand = useBrandAssets()
   const reducedMotion = usePrefersReducedMotion()
   const [webgl] = useState(supportsWebgl)
-  const dark = theme !== 'light'
+  const dark = theme === 'dark'
   const ref = useRef<HTMLElement>(null)
   const boost = useRef(0)
-  const wordIndex = useRotatingWord(HERO.rotatingWords.length, 2500, !reducedMotion)
-  const previousIndex = (wordIndex - 1 + HERO.rotatingWords.length) % HERO.rotatingWords.length
 
-  // The hero is a tall scroll track with a sticky stage: scrolling first fades the copy
-  // out upwards, then ramps the road up to full boost, and only then releases the page.
   useEffect(() => {
     const hero = ref.current
     if (!hero || reducedMotion) {
@@ -83,7 +79,7 @@ export function Hero() {
   }, [reducedMotion])
 
   return (
-    <section id="home" ref={ref} className="hero" aria-labelledby="hero-title">
+    <section ref={ref} className="hero" aria-labelledby="hero-title">
       <div className="hero__stage">
         {webgl ? (
           <Suspense fallback={null}>
@@ -108,8 +104,8 @@ export function Hero() {
               reflections={0.5}
               roadOpacity={0.25}
               steer={0.25}
-              tailColors={LIGHT_COLORS}
-              headColors={LIGHT_COLORS}
+              tailColors={COLORS}
+              headColors={COLORS}
               poleColors={POLE_COLORS}
               interactive={!reducedMotion}
               boostRef={boost}
@@ -122,42 +118,27 @@ export function Hero() {
         )}
 
         <div className="container hero__content">
-          <img className="hero__logo" src={brand.wordmark} alt="Odylytics" width="1826" height="565" />
-          <p className="eyebrow">{HERO.eyebrow}</p>
-
           <h1 id="hero-title" className="sr-only">
-            {HERO.srHeadline}
+            {HOME_HERO.title.join(' ')}
           </h1>
-          <div className="display hero__headline" aria-hidden="true">
-            <span className="hero__line">{HERO.headlineTop}</span>
-            <span className="hero__line">{HERO.headlineBottom}</span>
-            <span className="hero__line">
-              <span className="rotator" aria-live="off">
-                {HERO.rotatingWords.map((word, index) => (
-                  <span
-                    key={word}
-                    className={`rotator__word${index === wordIndex ? ' is-active' : ''}${index === previousIndex && !reducedMotion ? ' is-prev' : ''}`}
-                  >
-                    {word}.
-                  </span>
-                ))}
-              </span>
-            </span>
+          <div className="hero__tl" aria-hidden="true">
+            <Label>{HOME_HERO.eyebrow}</Label>
+            <span className="hero__line">{HOME_HERO.title[0]}</span>
           </div>
-
-          <p className="body-l hero__sub">{HERO.subheadline}</p>
-
-          <p className="hero__note">
-            <img src={brand.symbol} alt="" />
-            {HERO.note}
-          </p>
+          <img className="hero__logo" src={brand.wordmark} alt="Odylytics" width="1826" height="565" />
+          <div className="hero__br">
+            <span className="hero__line" aria-hidden="true">
+              {HOME_HERO.title[1]}
+            </span>
+            <p className="hero__lead">{HOME_HERO.lead}</p>
+          </div>
         </div>
 
         <p className="hero__cue" aria-hidden="true">
           <span className="hero__cue-icon">
             <ArrowDownIcon />
           </span>
-          {HERO.scrollCue}
+          {HOME_HERO.cue}
         </p>
       </div>
     </section>
