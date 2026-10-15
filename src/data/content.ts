@@ -312,7 +312,7 @@ export const TEAM: TeamMember[] = [
     ],
   },
   {
-    name: 'Trần Tuấn Nghĩa',
+    name: 'Tran Tuan Nghia',
     slug: 'nghia-cto',
     role: 'Chief Technology Officer',
     shortRole: 'CTO',
@@ -324,7 +324,25 @@ export const TEAM: TeamMember[] = [
       'Trains and evaluates models for flood, air and accessibility use cases',
       'Reviews code, security and technical hiring',
     ],
-    
+    about:
+      'I am a second-year Artificial Intelligence undergraduate at the University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT), with a strong interest in Computer Vision, Machine Learning, and Robotics. Currently, I work as a Research Assistant at the Institute for Intelligent Systems (IVS), focusing on geometric computer vision, visual localization, and autonomous navigation in GNSS-denied environments. My research interests lie at the intersection of geometric reasoning and deep learning, particularly in developing robust visual perception systems for real-world applications. Beyond research, I enjoy building impactful AI-powered products and translating technical ideas into practical solutions.',
+    background: [
+      {
+        title: 'Bachelor of Artificial Intelligence (Offshore)',
+        org: 'University of Technology Sydney (UTS) / Ho Chi Minh City University of Technology (HCMUT)',
+        note: 'Second-year undergraduate · Expected graduation: 2028 · GPA: 6.9/7.0 (UTS scale)',
+      },
+      {
+        title: 'Advanced Physics',
+        org: 'VNU-HCM High School for the Gifted',
+        note: 'GPA: 9.6/10',
+      },
+    ],
+    highlights: [
+      'Research Assistant — IVS (2026–Present): Conducting research in Computer Vision, Robotics, and GNSS-denied UAV localization.',
+      'Research Interests: Computer Vision, Visual Localization, Geometric Deep Learning, Autonomous Systems, and Multimodal AI.',
+      'IELTS 8.0 | SAT 1510 | JLPT N5.',
+    ],
   },
   {
     name: 'Nguyễn Trường Sơn',
