@@ -1,6 +1,7 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode, RefObject } from 'react'
 import './LogoLoop.css'
+import { useReducedMotion } from '../lib/motion'
 
 /** React Bits LogoLoop, ported from Tailwind to plain CSS (`LogoLoop.css`). */
 
@@ -36,12 +37,13 @@ function useAnimationLoop(
 ) {
   const offsetRef = useRef(0)
   const velocityRef = useRef(0)
+  const reduced = useReducedMotion()
 
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (reduced) {
       track.style.transform = 'translate3d(0, 0, 0)'
       return
     }
@@ -66,7 +68,7 @@ function useAnimationLoop(
 
     raf = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(raf)
-  }, [trackRef, targetVelocity, seqWidth, isHovered, hoverSpeed])
+  }, [trackRef, targetVelocity, seqWidth, isHovered, hoverSpeed, reduced])
 }
 
 function LogoContent({ item }: { item: LogoItem }) {

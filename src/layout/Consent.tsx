@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { inject } from '@vercel/analytics'
 import { Modal } from '../components/Modal'
 import { saveConsent, useConsent } from '../lib/consent'
+import { useT } from '../lib/lang'
 
 let injected = false
 
 /** First-visit banner plus a settings dialog; analytics load only after an explicit yes. */
 export function Consent() {
   const consent = useConsent()
+  const t = useT()
   const [settings, setSettings] = useState(false)
   const [analytics, setAnalytics] = useState(false)
   const opener = useRef<HTMLElement | null>(null)
@@ -38,16 +40,16 @@ export function Consent() {
     <>
       {!consent && !settings && (
         <aside className="consent" role="region" aria-label="Cookie preferences">
-          <p className="consent__title">Your privacy</p>
+          <p className="consent__title">{t('Your privacy')}</p>
           <p className="consent__text">
-            We store your theme choice so the site looks the way you left it. With your permission we also measure visits with Vercel Analytics. Read the <a href="#/legal/cookies">Cookie Policy</a>.
+            {t('We store your theme choice so the site looks the way you left it. With your permission we also measure visits with Vercel Analytics. Read the')} <a href="#/legal/cookies">{t('Cookie Policy')}</a>.
           </p>
           <div className="consent__actions">
             <button type="button" className="btn btn--primary btn--sm" onClick={() => decide(true)}>
-              Accept all
+              {t('Accept all')}
             </button>
             <button type="button" className="btn btn--outline btn--sm" onClick={() => decide(false)}>
-              Reject non-essential
+              {t('Reject non-essential')}
             </button>
             <button
               type="button"
@@ -57,7 +59,7 @@ export function Consent() {
                 setSettings(true)
               }}
             >
-              Customise
+              {t('Customise')}
             </button>
           </div>
         </aside>

@@ -4,8 +4,10 @@ import { Testimonials } from '../components/Testimonials'
 import { SOLUTIONS } from '../data/content'
 import { INCOMING_STAGES, PRODUCT_GROUPS } from '../data/site'
 import type { ProductGroupId } from '../data/site'
+import { useT } from '../lib/lang'
 
 export function Product({ id }: { id: ProductGroupId }) {
+  const t = useT()
   const group = PRODUCT_GROUPS[id]
   const items = group.solutions.map((solutionId) => SOLUTIONS.find((solution) => solution.id === solutionId)).filter((solution) => solution !== undefined)
 
@@ -72,7 +74,7 @@ export function Product({ id }: { id: ProductGroupId }) {
           <h2 className="closing__title">{id === 'incoming' ? 'Have a problem we should look at?' : 'Run a pilot with us.'}</h2>
           <p>{id === 'incoming' ? 'Tell us who is affected and what a better outcome looks like.' : 'We work with universities, public bodies and companies who want to test AI on a real problem.'}</p>
           <a className="btn btn--accent" href="#/contact">
-            Get in touch
+            {t('Get in touch')}
           </a>
         </div>
       </section>

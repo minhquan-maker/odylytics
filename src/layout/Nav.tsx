@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon, CloseIcon, MenuIcon } from '../components/Icons'
+import { SettingsMenu, SettingsPanel } from '../components/SettingsMenu'
 import { NAV } from '../data/site'
 import { useBrandAssets } from '../hooks/useBrandAssets'
 import { lockScroll, unlockScroll } from '../hooks/useSmoothScroll'
 import { useAuth } from '../lib/auth'
+import { useT } from '../lib/lang'
 
 export function Nav({ route }: { route: string }) {
   const [scrolled, setScrolled] = useState(false)
@@ -21,8 +23,9 @@ export function Nav({ route }: { route: string }) {
   const linksRef = useRef<HTMLElement>(null)
   const { member } = useAuth()
   const brand = useBrandAssets()
+  const t = useT()
   const memberHref = member ? '#/admin' : '#/login'
-  const memberLabel = member ? 'Dashboard' : 'Login'
+  const memberLabel = t(member ? 'Dashboard' : 'Login')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -79,7 +82,7 @@ export function Nav({ route }: { route: string }) {
                 {group.items ? (
                   <>
                     <button type="button" className={`nav__trigger${groupActive(group.items) ? ' is-current' : ''}`} aria-expanded={dropdown === index} aria-haspopup="true" onClick={() => setDropdown(dropdown === index ? null : index)}>
-                      {group.label}
+                      {t(group.label)}
                       <ChevronDownIcon />
                     </button>
                     {dropdown === index && (
@@ -87,8 +90,8 @@ export function Nav({ route }: { route: string }) {
                         {group.items.map((item) => (
                           <li key={item.label}>
                             <a href={item.href} aria-current={current(item.href)} onClick={() => setDropdown(null)}>
-                              <span className="nav__dd-title">{item.label}</span>
-                              {item.description && <span className="nav__dd-desc">{item.description}</span>}
+                              <span className="nav__dd-title">{t(item.label)}</span>
+                              {item.description && <span className="nav__dd-desc">{t(item.description)}</span>}
                             </a>
                           </li>
                         ))}
@@ -97,7 +100,7 @@ export function Nav({ route }: { route: string }) {
                   </>
                 ) : (
                   <a className={`nav__trigger${route === group.href?.slice(1) ? ' is-current' : ''}`} href={group.href} aria-current={current(group.href)}>
-                    {group.label}
+                    {t(group.label)}
                   </a>
                 )}
               </li>
@@ -109,8 +112,9 @@ export function Nav({ route }: { route: string }) {
           <a className="nav__login" href={memberHref}>
             {memberLabel}
           </a>
+          <SettingsMenu />
           <a className="btn btn--accent btn--sm nav__cta" href="#/contact">
-            Get in touch
+            {t('Get in touch')}
           </a>
           <button ref={toggleRef} type="button" className="nav__toggle" aria-expanded={open} aria-controls="mobile-menu" aria-label="Menu" onClick={() => setOpen((value) => !value)}>
             {open ? <CloseIcon /> : <MenuIcon />}
@@ -125,12 +129,12 @@ export function Nav({ route }: { route: string }) {
               <li key={group.label}>
                 {group.items ? (
                   <>
-                    <span className="nav__menu-heading">{group.label}</span>
+                    <span className="nav__menu-heading">{t(group.label)}</span>
                     <ul>
                       {group.items.map((item) => (
                         <li key={item.label}>
                           <a href={item.href} onClick={() => setOpen(false)}>
-                            {item.label}
+                            {t(item.label)}
                           </a>
                         </li>
                       ))}
@@ -138,19 +142,20 @@ export function Nav({ route }: { route: string }) {
                   </>
                 ) : (
                   <a className="nav__menu-top" href={group.href} onClick={() => setOpen(false)}>
-                    {group.label}
+                    {t(group.label)}
                   </a>
                 )}
               </li>
             ))}
           </ul>
         </nav>
+        <SettingsPanel />
         <div className="nav__menu-foot">
           <a className="btn btn--outline" href={memberHref} onClick={() => setOpen(false)}>
             {memberLabel}
           </a>
           <a className="btn btn--accent" href="#/contact" onClick={() => setOpen(false)}>
-            Get in touch
+            {t('Get in touch')}
           </a>
         </div>
       </div>

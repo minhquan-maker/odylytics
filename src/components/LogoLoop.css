@@ -49,11 +49,11 @@
 .logoloop--scale .logoloop__item:hover .logoloop__img,
 .logoloop--scale .logoloop__item:hover .logoloop__node { transform: scale(1.2); }
 
-@media (prefers-reduced-motion: reduce) {
-  .logoloop--fade { mask-image: none; }
-  .logoloop__track { width: 100%; transform: none !important; }
-  .logoloop__list:first-child { flex-wrap: wrap; justify-content: center; row-gap: var(--logoloop-gap); width: 100%; }
-  .logoloop__list + .logoloop__list { display: none; }
-  .logoloop--scale .logoloop__img,
-  .logoloop--scale .logoloop__node { transition: none; }
+@media all {
+  :root[data-motion='reduce'] .logoloop--fade { mask-image: none; }
+  :root[data-motion='reduce'] .logoloop__track { width: 100%; transform: none !important; }
+  :root[data-motion='reduce'] .logoloop__list:first-child { flex-wrap: wrap; justify-content: center; row-gap: var(--logoloop-gap); width: 100%; }
+  :root[data-motion='reduce'] .logoloop__list + .logoloop__list { display: none; }
+  :root[data-motion='reduce'] .logoloop--scale .logoloop__img,
+  :root[data-motion='reduce'] .logoloop--scale .logoloop__node { transition: none; }
 }

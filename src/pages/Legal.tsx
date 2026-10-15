@@ -3,8 +3,10 @@ import { Label, PageHead } from '../components/Section'
 import { LEGAL_ENTRIES, LEGAL_GROUPS } from '../data/site'
 import { openConsentSettings } from '../lib/consent'
 import { NotFound } from './NotFound'
+import { useT } from '../lib/lang'
 
 export function LegalHub() {
+  const t = useT()
   return (
     <>
       <PageHead label="Trust and legal" title="Policies, privacy and trust." lead="Everything about how we handle your data, build AI responsibly, secure our systems and run this website, in one place." />
@@ -28,7 +30,7 @@ export function LegalHub() {
                 {group === 'Your data' && (
                   <li>
                     <button type="button" className="legalcard legalcard--button" onClick={openConsentSettings}>
-                      <h3>Cookie settings</h3>
+                      <h3>{t('Cookie settings')}</h3>
                       <p>Review and change what this site may store or measure.</p>
                       <span className="link-arrow">
                         Open <span aria-hidden="true">→</span>

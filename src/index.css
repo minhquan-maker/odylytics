@@ -176,9 +176,9 @@ main { padding-top: var(--nav-h); }
   :root { --pad: 20px; --section-y: 64px; }
   body { font-size: 17px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-  .reveal-ready [data-reveal] { opacity: 1; transform: none; }
+@media all {
+  :root[data-motion='reduce'] *, :root[data-motion='reduce'] *::before, :root[data-motion='reduce'] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  :root[data-motion='reduce'].reveal-ready [data-reveal] { opacity: 1; transform: none; }
 }
 
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 350ms; }

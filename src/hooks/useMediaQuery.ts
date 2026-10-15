@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { useReducedMotion } from '../lib/motion'
 
 export function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
@@ -12,6 +13,7 @@ export function useMediaQuery(query: string): boolean {
   )
 }
 
+/** OS setting or the visitor's own choice in the settings menu. */
 export function usePrefersReducedMotion(): boolean {
-  return useMediaQuery('(prefers-reduced-motion: reduce)')
+  return useReducedMotion()
 }

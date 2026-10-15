@@ -1,7 +1,9 @@
 import { Label, PageHead, SectionHead } from '../components/Section'
 import { ACCOMPLISHED, ONGOING, RESEARCH_AREAS, RESEARCH_INTRO, RESEARCH_PRINCIPLES } from '../data/site'
+import { useT } from '../lib/lang'
 
 export function ResearchOverview() {
+  const t = useT()
   return (
     <>
       <PageHead label={RESEARCH_INTRO.label} title={RESEARCH_INTRO.title} lead={RESEARCH_INTRO.lead} />
@@ -38,7 +40,7 @@ export function ResearchOverview() {
               See ongoing projects <span aria-hidden="true">→</span>
             </a>
             <a className="link-arrow" href="#/research/accomplished">
-              See what we achieved <span aria-hidden="true">→</span>
+              {t('See what we achieved')} <span aria-hidden="true">→</span>
             </a>
           </p>
         </div>
@@ -58,6 +60,7 @@ export function ResearchOverview() {
 }
 
 export function ResearchOngoing() {
+  const t = useT()
   return (
     <>
       <PageHead label="Research · Ongoing" title="Active projects and open questions." lead="Each project is tied to a product and a question we do not yet know the answer to. Stages show how far along we are." />
@@ -74,11 +77,11 @@ export function ResearchOngoing() {
                 <p className="project__q">{project.question}</p>
                 <dl className="project__meta">
                   <div>
-                    <dt>Product</dt>
+                    <dt>{t('Product')}</dt>
                     <dd>{project.product}</dd>
                   </div>
                   <div>
-                    <dt>Partners</dt>
+                    <dt>{t('Partners')}</dt>
                     <dd>{project.partners.length ? project.partners.join(', ') : 'Open to partners'}</dd>
                   </div>
                 </dl>
@@ -93,7 +96,7 @@ export function ResearchOngoing() {
           <h2 className="closing__title">Bring a lab, a dataset or a field site.</h2>
           <p>We are looking for research partners who care about floods, accessibility and inclusive hiring.</p>
           <a className="btn btn--accent" href="#/contact">
-            Get in touch
+            {t('Get in touch')}
           </a>
         </div>
       </section>
