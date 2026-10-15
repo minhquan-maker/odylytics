@@ -18,8 +18,8 @@ Light is the default; dark via `<html data-theme="dark">`. `.scope-dark` forces 
 
 | Token | Light | Dark |
 |---|---|---|
-| `--bg` | `#F3F2EE` | `#0E0D10` |
-| `--surface` (cards) | `#FFFFFF` | `#18171B` |
+| `--bg` | `#F3F2EE` | `#141413` |
+| `--surface` (cards) | `#FFFFFF` | `#1F1E1D` |
 | `--text` / `--text-2` / `--text-3` | `#141413` / `#55534D` / `#7E7B74` | `#F3F2EE` / `#B7B4AD` / `#8A8780` |
 | `--accent` (purple, action) | `#AE0BFF` | same |
 | `--signal` (orange, markers, highlights) | `#FF8C00` | same |

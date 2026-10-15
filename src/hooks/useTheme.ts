@@ -6,7 +6,7 @@ export type Theme = 'dark' | 'light'
 export type ThemePref = Theme | 'system'
 
 const STORAGE_KEY = 'odylytics-theme'
-const THEME_COLOR: Record<Theme, string> = { dark: '#0E0D10', light: '#F3F2EE' }
+const THEME_COLOR: Record<Theme, string> = { dark: '#141413', light: '#F3F2EE' }
 const listeners = new Set<() => void>()
 const dark = () => window.matchMedia('(prefers-color-scheme: dark)')
 

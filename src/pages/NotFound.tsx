@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Label } from '../components/Section'
+import { StateScreen } from '../components/StateScreen'
 import { isUnknownPath } from '../hooks/useRoute'
 
 /** Shown for unknown `#/…` routes, missing profiles and any path other than `/`. */
@@ -8,7 +8,7 @@ export function NotFound() {
 
   useEffect(() => {
     const title = document.title
-    document.title = 'Page not found — Odylytics'
+    document.title = 'Page not found - Odylytics'
     return () => {
       document.title = title
     }
@@ -28,37 +28,42 @@ export function NotFound() {
   }, [])
 
   return (
-    <section className="section notfound">
-      <div className="container notfound__inner">
-        <Label>Error 404</Label>
-        <h1 className="notfound__title">This page took a wrong turn.</h1>
-        <p className="notfound__text">The link may be broken, or the page may have moved. Head back home, or tell us what you were looking for.</p>
-        <div className="notfound__actions">
+    <StateScreen
+      kind="lost"
+      label="Error 404"
+      title="This page took a wrong turn."
+      text="The link may be broken, or the page may have moved. Head back home, or tell us what you were looking for."
+      actions={
+        <>
           <a className="btn btn--primary" href="#/">
             Back to home
           </a>
           <a className="btn btn--outline" href="#/contact">
             Contact us
           </a>
-        </div>
-        <ul className="notfound__links">
-          {[
-            ['Product', '#/product/climate-tech'],
-            ['Research', '#/research'],
-            ['Team', '#/team/co-founders'],
-            ['Blog', '#/blog'],
-          ].map(([label, href]) => (
-            <li key={href}>
-              <a href={href}>{label}</a>
-            </li>
-          ))}
-        </ul>
-        {requested && (
-          <p className="notfound__path">
-            Requested <code>{requested}</code>
-          </p>
-        )}
-      </div>
-    </section>
+        </>
+      }
+      note={
+        <>
+          <ul className="state__links">
+            {[
+              ['Product', '#/product/climate-tech'],
+              ['Research', '#/research'],
+              ['Team', '#/team/co-founders'],
+              ['Blog', '#/blog'],
+            ].map(([label, href]) => (
+              <li key={href}>
+                <a href={href}>{label}</a>
+              </li>
+            ))}
+          </ul>
+          {requested && (
+            <p className="state__path">
+              Requested <code>{requested}</code>
+            </p>
+          )}
+        </>
+      }
+    />
   )
 }

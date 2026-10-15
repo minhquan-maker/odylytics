@@ -25,29 +25,6 @@ export function Home() {
     <>
       <Hero />
 
-      <section className="section section--tight herocards">
-        <div className="container">
-          <div className="news-cards">
-            <a className="hero-card" href="#/research/accomplished">
-              <span className="tag tag--accent">{t('New')}</span>
-              <h2>{t('EnableCode wins Fessior DevCamp 2026')}</h2>
-              <p>{t('Our hands-free coding platform for people with upper-limb disabilities took first place.')}</p>
-              <span className="link-arrow">
-                {t('Read more')} <span aria-hidden="true">→</span>
-              </span>
-            </a>
-            <a className="hero-card" href="#/contact">
-              <span className="tag">{t('Partner with us')}</span>
-              <h2>{t('Run a pilot with Odylytics')}</h2>
-              <p>{t('Universities, public bodies and companies: tell us about the problem you want to solve.')}</p>
-              <span className="link-arrow">
-                {t('Get in touch')} <span aria-hidden="true">→</span>
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="strip" aria-label="Partners">
         <div className="container">
           <Label>{t('Built with universities and companies')}</Label>
