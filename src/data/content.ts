@@ -308,9 +308,12 @@ export const TEAM: TeamMember[] = [
     photo: '/assets/team/quan-a.png',
     linkedin: 'https://www.linkedin.com/in/ngminhquan/',
     responsibilities: [
-      'Sets company vision, strategy and roadmap',
-      'Leads partnerships with universities, governments and sponsors',
-      'Represents Odylytics at competitions, events and in the press',
+      'Sets Odylytics’ vision, strategy and roadmap, and aligns the team on its priorities',
+      'Acts as product owner for AquaGuard, AirGuard, Includio and EnableCode, from scope and roadmap to release',
+      'Manages stakeholders across universities, governments, partners and sponsors',
+      'Meets venture capital investors and leads fundraising and investor relations',
+      'Builds and runs the brand and communications plan',
+      'Represents Odylytics in the press and in external relations',
     ],
     about: [
       'Second-year Artificial Intelligence student at UTS and HCMUT in Ho Chi Minh City, and Chief Executive Officer of Odylytics. He leads the development of AquaGuard, AirGuard, EnableCode and Includio, using technology to support emergency management and rescue coordination.',
@@ -326,6 +329,12 @@ export const TEAM: TeamMember[] = [
       { title: 'Vice President, BODs', org: 'HCMUT Green Innovation', note: '2025' },
       { title: 'President', org: 'LSTS Student Council', note: '2024 – 2025' },
       { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events', note: '2024 – 2025' },
+    ],
+    highlights: [
+      'B-rank conference paper accepted for oral presentation in Japan, as a first-year student',
+      'Q1 paper in progress',
+      'Four research publications in progress',
+      'Research areas: Poisoned RAG, Agentic AI, Motion Detection, Early Action Recognition, XAI for Finance, FinNLP',
     ],
     links: [
       { label: 'Portfolio', href: 'https://quannguyen.odylytics.com/' },
