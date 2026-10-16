@@ -297,7 +297,7 @@ export const ADVISORS: Advisor[] = [
 // TODO(content): add members here (same shape as TEAM) when they are ready; an empty group shows an 'Updating soon' frame.
 export const MEMBERS: TeamMember[] = []
 
-// TODO(content): add LinkedIn URLs for all 5 members and confirm roles, bios and responsibilities.
+// TODO(content): confirm roles, bios and responsibilities.
 export const TEAM: TeamMember[] = [
   {
     name: 'Nguyễn Minh Quân',
@@ -416,11 +416,15 @@ export const TEAM: TeamMember[] = [
     shortRole: 'CPO',
     bio: 'Designs accessible, human-centred experiences so every solution stays simple to use, even in a crisis.',
     photo: '/assets/team/son.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/shynnguyen/',
     responsibilities: [
       'Owns the product roadmap across every Odylytics solution',
       'Runs user research with rescue teams and people with disabilities',
       'Leads interface design and the Odylytics design system',
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shynnguyen1004' },
+      { label: 'Facebook', href: 'https://www.facebook.com/shyn.nguyen.07' },
     ],
   },
   {
@@ -430,11 +434,15 @@ export const TEAM: TeamMember[] = [
     shortRole: 'Marketing',
     bio: 'Shapes how Odylytics reaches governments, partners and communities, and tells the stories behind our impact.',
     photo: '/assets/team/quan-b.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/nguy%E1%BB%85n-qu%C3%A2n-25a33540a/',
     responsibilities: [
       'Owns brand, website and social channels',
       'Pitches stories to press and manages the news page',
       'Prepares award entries and partner decks',
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/Qu4n66' },
+      { label: 'Facebook', href: 'https://www.facebook.com/Quan.nguyen.06' },
     ],
   },
   {
@@ -461,6 +469,7 @@ export const TEAM: TeamMember[] = [
     links: [
       { label: 'Portfolio', href: 'https://portfolio-khang.vercel.app' },
       { label: 'GitHub', href: 'https://github.com/kevintruong0511' },
+      { label: 'Facebook', href: 'https://www.facebook.com/khangbido0511' },
       { label: 'Email (HCMUT)', href: 'mailto:khang.truong05112007@hcmut.edu.vn' },
       { label: 'Email (UTS)', href: 'mailto:NguyenBaoKhang.Truong@student.uts.edu.au' },
     ],
