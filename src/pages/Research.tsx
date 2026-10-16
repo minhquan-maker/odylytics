@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { CiteBlock, EntryCard, EntryRow, ExampleList, StageBar } from '../components/ResearchBits'
 import { Label, PageHead, SectionHead } from '../components/Section'
-import { AREAS, ENTRIES, EXAMPLE_ENTRY, EXAMPLE_ONGOING, areaOf, entryBySlug, formatDate, ongoingEntries, publishedEntries } from '../data/research'
+import { AREAS, FIELDS, RESEARCH_SORTS, findResearch, ENTRIES, EXAMPLE_ENTRY, EXAMPLE_ONGOING, areaOf, entryBySlug, formatDate, ongoingEntries, publishedEntries } from '../data/research'
 import type { EntryKind } from '../data/research'
 import { RESEARCH_INTRO, RESEARCH_PRINCIPLES } from '../data/site'
 import { NotFound } from './NotFound'
@@ -100,17 +100,78 @@ export function ResearchOverview() {
 }
 
 export function ResearchOngoing() {
-  const list = ongoingEntries()
+  const [params, setParams] = useState(() => new URLSearchParams(window.location.hash.split('?')[1]))
+  const search = params.get('search') ?? ''
+  const area = params.get('area') ?? 'all'
+  const fields = params.getAll('field')
+  const sort = params.get('sort') ?? 'newest'
+  const entries = ongoingEntries()
+  const list = findResearch(entries, { search, area, fields, sort })
+  const update = (key: string, values: string[]) => {
+    const next = new URLSearchParams(params)
+    next.delete(key)
+    values.filter(Boolean).forEach((value) => next.append(key, value))
+    setParams(next)
+    window.history.replaceState(null, '', `#/research/ongoing${next.size ? `?${next}` : ''}`)
+  }
+  const reset = () => {
+    setParams(new URLSearchParams())
+    window.history.replaceState(null, '', '#/research/ongoing')
+  }
+  const filtered = Boolean(search || area !== 'all' || fields.length)
   return (
     <>
       <PageHead label="Research · Ongoing" title="Questions we are working on." lead="Work in progress, with the stage it has reached. Entries move to Publications once they are published." />
       <section className="section section--tight">
         <div className="container">
+          {entries.length > 0 && (
+            <div className="research-browser">
+              <div className="research-browser__controls">
+                <label className="research-control research-control--search">
+                  <span>Search research</span>
+                  <input type="search" placeholder="Title, code or AI field..." value={search} onChange={(event) => update('search', [event.target.value])} />
+                </label>
+                <label className="research-control">
+                  <span>Application area</span>
+                  <select value={area} onChange={(event) => update('area', event.target.value === 'all' ? [] : [event.target.value])}>
+                    <option value="all">All application areas</option>
+                    {AREAS.map((item) => <option key={item.id} value={item.id}>{item.short}</option>)}
+                  </select>
+                </label>
+                <label className="research-control">
+                  <span>Sort by</span>
+                  <select value={sort} onChange={(event) => update('sort', [event.target.value])}>
+                    {RESEARCH_SORTS.map((item) => <option key={item.id} value={item.id}>{item.label}</option>)}
+                  </select>
+                </label>
+              </div>
+              <fieldset className="research-browser__fields">
+                <legend>AI fields - Select one or more</legend>
+                <div className="filters">
+                  {FIELDS.map((field) => (
+                    <button key={field.id} type="button" className={`chip${fields.includes(field.id) ? ' is-active' : ''}`} aria-pressed={fields.includes(field.id)} onClick={() => update('field', fields.includes(field.id) ? fields.filter((id) => id !== field.id) : [...fields, field.id])}>
+                      {field.label}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+              <div className="research-browser__results">
+                <p role="status">{list.length} of {entries.length} research projects</p>
+                {filtered && <button type="button" className="chip" onClick={reset}>Clear filters</button>}
+              </div>
+            </div>
+          )}
           {list.length ? (
-            <div className="ecards ecards--two">
+            <div className="ecards ecards--two ecards--ongoing">
               {list.map((entry) => (
                 <EntryCard key={entry.slug} entry={entry} project />
               ))}
+            </div>
+          ) : entries.length ? (
+            <div className="callout">
+              <h2>No research matches your filters.</h2>
+              <p>Try another title, code, application area or AI field.</p>
+              <button type="button" className="btn btn--outline btn--sm" onClick={reset}>Clear filters</button>
             </div>
           ) : (
             <>
@@ -239,6 +300,8 @@ export function ResearchArticle({ slug }: { slug: string }) {
                   </dd>
                 </div>
               )}
+              {entry.code && <div><dt>Research code</dt><dd>{entry.code}</dd></div>}
+              {entry.fields?.length ? <div><dt>AI fields</dt><dd>{entry.fields.map((id) => FIELDS.find((field) => field.id === id)?.label).join(', ')}</dd></div> : null}
               <div>
                 <dt>Status</dt>
                 <dd>{entry.status}</dd>

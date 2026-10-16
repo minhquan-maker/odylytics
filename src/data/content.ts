@@ -297,7 +297,7 @@ export const ADVISORS: Advisor[] = [
 // TODO(content): add members here (same shape as TEAM) when they are ready; an empty group shows an 'Updating soon' frame.
 export const MEMBERS: TeamMember[] = []
 
-// TODO(content): add LinkedIn URLs for all 5 members and confirm roles, bios and responsibilities.
+// TODO(content): confirm roles, bios and responsibilities.
 export const TEAM: TeamMember[] = [
   {
     name: 'Nguyễn Minh Quân',
@@ -336,19 +336,78 @@ export const TEAM: TeamMember[] = [
     ],
   },
   {
-    name: 'Trần Tuấn Nghĩa',
+    name: 'Tran Tuan Nghia',
     slug: 'nghia-cto',
     role: 'Chief Technology Officer',
     shortRole: 'CTO',
     bio: 'Leads our technology and shared AI core, designing the models that turn sensor and community data into timely predictions.',
     photo: '/assets/team/nghia.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/tuannghia2457/',
     responsibilities: [
-      'Owns the shared AI core and system architecture',
-      'Trains and evaluates models for flood, air and accessibility use cases',
-      'Reviews code, security and technical hiring',
+      'Leads the technology strategy, system architecture, and engineering development at Odylytics.',
+      'Oversees the design and implementation of AI-powered products, integrating machine learning with scalable software systems.',
+      'Conducts research in Computer Vision, Robotics, and AI-based localization systems.',
+      'Develops and evaluates algorithms for autonomous navigation, visual perception, and GNSS-denied UAV localization.',
+      'Collaborates with researchers and multidisciplinary teams to translate experimental ideas into real-world solutions.',
     ],
-    
+    about: [
+      'Second-year Artificial Intelligence student at the University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT), Chief Technology Officer (CTO) and Co-Founder of Odylytics, and Computer Vision Intern at Individual Systems.',
+      'He specializes in Computer Vision, Robotics, and Artificial Intelligence, with a focus on developing intelligent systems that solve real-world problems.',
+      'Beyond research, he is a software developer, technology entrepreneur, and hackathon enthusiast who believes that meaningful innovation emerges when rigorous research meets practical implementation.',
+    ],
+    quote: 'Turning research into technology that makes a difference.',
+    background: [
+      {
+        title: 'Bachelor of Artificial Intelligence',
+        org: 'University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT)',
+        note: 'Second year · GPA: 6.9/7.0',
+      },
+      {
+        title: 'Chief Technology Officer',
+        org: 'Odylytics',
+        note: '2026 – Present',
+      },
+      {
+        title: 'Computer Vision Intern',
+        org: 'Individual Systems',
+        note: '2026 – Present',
+      },
+      {
+        title: 'Class President',
+        org: '',
+        note: '2025 – Present',
+      },
+      {
+        title: 'Web Developer',
+        org: 'Best Start English Center',
+        note: '2025 – 2026',
+      },
+      {
+        title: 'Teaching Assistant',
+        org: 'Best Start English Center',
+        note: '2025 – 2026',
+      },
+      {
+        title: 'Software Development Intern',
+        org: 'SDE Technology',
+        note: '2024',
+      },
+      {
+        title: 'Advanced Physics Student',
+        org: 'VNU-HCM High School for the Gifted',
+        note: '2022 – 2025',
+      },
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/tuannghia2457' },
+      { label: 'Facebook', href: 'https://www.facebook.com/tuannghia2457/' },
+      { label: 'Email (HCMUT)', href: 'mailto:nghia.tran2457@hcmut.edu.vn' },
+      { label: 'Email (UTS)', href: 'mailto:tuannghia.tran@student.uts.edu.au' },
+    ],
+    highlights: [
+      "Dean's List — UTS (2026): Recognized for outstanding academic performance.",
+      'Research Presenter — CTMIA 2026: Presented research on geometry-informed pothole surface reconstruction using depth functions and monotonic neural networks.',
+    ],
   },
   {
     name: 'Nguyễn Trường Sơn',
@@ -357,11 +416,15 @@ export const TEAM: TeamMember[] = [
     shortRole: 'CPO',
     bio: 'Designs accessible, human-centred experiences so every solution stays simple to use, even in a crisis.',
     photo: '/assets/team/son.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/shynnguyen/',
     responsibilities: [
       'Owns the product roadmap across every Odylytics solution',
       'Runs user research with rescue teams and people with disabilities',
       'Leads interface design and the Odylytics design system',
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/shynnguyen1004' },
+      { label: 'Facebook', href: 'https://www.facebook.com/shyn.nguyen.07' },
     ],
   },
   {
@@ -371,11 +434,15 @@ export const TEAM: TeamMember[] = [
     shortRole: 'Marketing',
     bio: 'Shapes how Odylytics reaches governments, partners and communities, and tells the stories behind our impact.',
     photo: '/assets/team/quan-b.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/nguy%E1%BB%85n-qu%C3%A2n-25a33540a/',
     responsibilities: [
       'Owns brand, website and social channels',
       'Pitches stories to press and manages the news page',
       'Prepares award entries and partner decks',
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/Qu4n66' },
+      { label: 'Facebook', href: 'https://www.facebook.com/Quan.nguyen.06' },
     ],
   },
   {
@@ -402,6 +469,7 @@ export const TEAM: TeamMember[] = [
     links: [
       { label: 'Portfolio', href: 'https://portfolio-khang.vercel.app' },
       { label: 'GitHub', href: 'https://github.com/kevintruong0511' },
+      { label: 'Facebook', href: 'https://www.facebook.com/khangbido0511' },
       { label: 'Email (HCMUT)', href: 'mailto:khang.truong05112007@hcmut.edu.vn' },
       { label: 'Email (UTS)', href: 'mailto:NguyenBaoKhang.Truong@student.uts.edu.au' },
     ],
