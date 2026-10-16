@@ -308,12 +308,12 @@ export const TEAM: TeamMember[] = [
     photo: '/assets/team/quan-a.png',
     linkedin: 'https://www.linkedin.com/in/ngminhquan/',
     responsibilities: [
-      'Sets Odylytics’ vision, strategy and roadmap, and aligns the team on its priorities',
-      'Acts as product owner for AquaGuard, AirGuard, Includio and EnableCode, from scope and roadmap to release',
-      'Manages stakeholders across universities, governments, partners and sponsors',
-      'Meets venture capital investors and leads fundraising and investor relations',
-      'Builds and runs the brand and communications plan',
-      'Represents Odylytics in the press and in external relations',
+      'Sets Odylytics’ vision, strategy and roadmap, translating long-term ambition into clear priorities and quarterly goals for the whole team.',
+      'Acts as product owner for AquaGuard, AirGuard, Includio and EnableCode, defining scope, prioritising the roadmap and guiding each product from concept to release.',
+      'Manages stakeholders across universities, governments, partners and sponsors, building the relationships that bring our solutions to the communities that need them.',
+      'Meets venture capital investors and leads fundraising, investor relations and the financial narrative behind Odylytics’ growth.',
+      'Builds and runs the brand and communications strategy, keeping the identity, messaging and public presence consistent across every channel.',
+      'Represents Odylytics in the press and in external relations, speaking for the company with partners, media and the wider ecosystem.',
     ],
     about: [
       'Second-year Artificial Intelligence student at UTS and HCMUT in Ho Chi Minh City, and Chief Executive Officer of Odylytics. He leads the development of AquaGuard, AirGuard, EnableCode and Includio, using technology to support emergency management and rescue coordination.',
@@ -331,10 +331,9 @@ export const TEAM: TeamMember[] = [
       { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events', note: '2024 – 2025' },
     ],
     highlights: [
-      'B-rank conference paper accepted for oral presentation in Japan, as a first-year student',
-      'Q1 paper in progress',
-      'Four research publications in progress',
-      'Research areas: Poisoned RAG, Agentic AI, Motion Detection, Early Action Recognition, XAI for Finance, FinNLP',
+      'Research Presenter — B-rank international conference, Japan: Paper accepted for oral presentation, written as a first-year student.',
+      'Ongoing Research — Q1 publication: A paper currently in progress alongside four further research publications.',
+      'Research Focus — Poisoned RAG, Agentic AI, Motion Detection, Early Action Recognition, Explainable AI for Finance and FinNLP.',
     ],
     links: [
       { label: 'Portfolio', href: 'https://quannguyen.odylytics.com/' },
