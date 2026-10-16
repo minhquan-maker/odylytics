@@ -54,7 +54,16 @@ export function TeamProfile({ slug }: { slug: string }) {
         <div className="profile__main">
             <section className="profile__sec">
               <h2 className="profile__h">About</h2>
-              {member.about ? <p className="profile__about">{member.about}</p> : <Soon />}
+              {member.about?.length ? (
+                <div className="profile__about">
+                  {member.about.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
+                  {member.quote && <blockquote className="profile__quote">{member.quote}</blockquote>}
+                </div>
+              ) : (
+                <Soon />
+              )}
             </section>
 
             <section className="profile__sec">

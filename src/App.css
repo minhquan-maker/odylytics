@@ -452,7 +452,8 @@ a.post-card:hover { transform: translateY(-3px); }
 .profile__links svg { width: 14px; height: 14px; }
 .profile__sec { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 32px; padding-block: 32px; border-top: 1px solid var(--border-strong); }
 .profile__h { padding-top: 4px; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
-.profile__about { max-width: 78ch; font-size: 19px; line-height: 1.65; }
+.profile__about { display: grid; gap: 18px; max-width: 78ch; font-size: 19px; line-height: 1.65; }
+.profile__quote { margin-top: 8px; padding-left: 20px; border-left: 3px solid var(--signal); font-family: var(--font-sans); font-size: 22px; font-weight: 500; line-height: 1.4; letter-spacing: -0.01em; }
 .profile__list { display: grid; gap: 12px; }
 .profile__rows { display: grid; gap: 0; }
 .profile__list li { position: relative; padding-left: 20px; font-size: 17px; }
