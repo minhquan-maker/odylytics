@@ -320,10 +320,10 @@ export const TEAM: TeamMember[] = [
     background: [
       { title: 'Bachelor of Artificial Intelligence', org: 'University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT)', note: 'Second year' },
       { title: 'Chief Executive Officer', org: 'Odylytics', note: 'Present' },
-      { title: 'Venture Analyst', org: 'B71 (NUSX)', note: '2026' },
+      { title: 'Venture Analyst', org: 'B71 (NUS Enterprise)', note: '2026' },
       { title: 'Research Assistant', org: 'URA Research Group', note: '2026' },
-      { title: 'Vice President', org: 'HCMUT International Student Connection', note: '2026' },
-      { title: 'Board of Directors', org: 'HCMUT Green Innovation', note: '2025' },
+      { title: 'Vice President, BODs', org: 'HCMUT International Student Connection', note: '2026' },
+      { title: 'Vice President, BODs', org: 'HCMUT Green Innovation', note: '2025' },
       { title: 'President', org: 'LSTS Student Council', note: '2024 – 2025' },
       { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events', note: '2024 – 2025' },
     ],
