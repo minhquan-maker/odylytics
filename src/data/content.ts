@@ -304,11 +304,36 @@ export const TEAM: TeamMember[] = [
     shortRole: 'CEO',
     bio: 'Leads Odylytics’ vision and strategy, building partnerships that bring our solutions to the communities that need them.',
     photo: '/assets/team/quan-a.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/ngminhquan/',
     responsibilities: [
       'Sets company vision, strategy and roadmap',
       'Leads partnerships with universities, governments and sponsors',
       'Represents Odylytics at competitions, events and in the press',
+    ],
+    about:
+      'Second-year Artificial Intelligence student at UTS and HCMUT, Venture Analyst at B71 (NUSX) and Research Assistant in the URA Research Group in Ho Chi Minh City. He leads the development of AquaGuard, AirGuard, EnableCode and Includio, using technology to support emergency management and rescue coordination. Beyond technology, he is an event coordinator, MC and student leader who believes meaningful impact starts with taking the first step: “The secret of getting ahead is getting started.”',
+    background: [
+      { title: 'Bachelor of Artificial Intelligence', org: 'University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT)', note: 'Second year' },
+      { title: 'Chief Executive Officer', org: 'Odylytics' },
+      { title: 'Venture Analyst', org: 'B71 (NUSX)' },
+      { title: 'Research Assistant', org: 'URA Research Group' },
+      { title: 'Vice President', org: 'HCMUT International Student Connection', note: '2026 – Present' },
+      { title: 'Board of Directors', org: 'HCMUT Green Innovation', note: '2025 – Present' },
+      { title: 'President', org: 'LSTS Student Council', note: '2024 – 2025' },
+      { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events' },
+    ],
+    highlights: [
+      'Leads AquaGuard, AirGuard, EnableCode and Includio',
+      'Vice President, HCMUT International Student Connection (2026 – Present)',
+      'Board of Directors, HCMUT Green Innovation (2025 – Present)',
+      'President, LSTS Student Council (2024 – 2025)',
+    ],
+    links: [
+      { label: 'Portfolio', href: 'https://quannguyen.odylytics.com/' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ngminhquan/' },
+      { label: 'Facebook', href: 'https://www.facebook.com/mquan2512/' },
+      { label: 'Email (HCMUT)', href: 'mailto:quan.nguyenalex2512@hcmut.edu.vn' },
+      { label: 'Email (UTS)', href: 'mailto:MinhQuan.Nguyen-2@student.uts.edu.au' },
     ],
   },
   {
