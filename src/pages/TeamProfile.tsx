@@ -14,6 +14,7 @@ export function TeamProfile({ slug }: { slug: string }) {
   const member = TEAM.find((item) => item.slug === slug)
   if (!member) return <NotFound />
   const previous = TEAM[(TEAM.indexOf(member) - 1 + TEAM.length) % TEAM.length]
+  const next = TEAM[(TEAM.indexOf(member) + 1) % TEAM.length]
   const href = (label: string) => (label === 'LinkedIn' ? member.linkedin : member.links?.find((link) => link.label === label)?.href) ?? null
   const links = LINK_SLOTS.map((label) => ({ label, href: href(label) }))
 
@@ -106,12 +107,25 @@ export function TeamProfile({ slug }: { slug: string }) {
             </section>
         </div>
 
-        <a className="profile__next" href={`#/team/${previous.slug}`}>
-          <span>Previous</span>
-          <strong>
-            ← {previous.name}, {previous.shortRole}
-          </strong>
-        </a>
+        {member.slug === 'nghia-cto' ? (
+          <nav className="profile__navigation" aria-label="Co-founder profiles">
+            <a className="profile__neighbor" href={`#/team/${previous.slug}`} rel="prev">
+              <span>Previous</span>
+              <strong><span aria-hidden="true">←</span> {previous.name}, {previous.shortRole}</strong>
+            </a>
+            <a className="profile__neighbor profile__neighbor--next" href={`#/team/${next.slug}`} rel="next">
+              <span>Next</span>
+              <strong>{next.name}, {next.shortRole} <span aria-hidden="true">→</span></strong>
+            </a>
+          </nav>
+        ) : (
+          <a className="profile__next" href={`#/team/${previous.slug}`}>
+            <span>Previous</span>
+            <strong>
+              ← {previous.name}, {previous.shortRole}
+            </strong>
+          </a>
+        )}
       </div>
     </section>
   )

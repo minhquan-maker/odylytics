@@ -342,7 +342,7 @@ export const TEAM: TeamMember[] = [
     shortRole: 'CTO',
     bio: 'Leads our technology and shared AI core, designing the models that turn sensor and community data into timely predictions.',
     photo: '/assets/team/nghia.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/tuannghia2457/',
     responsibilities: [
       'Leads the technology strategy, system architecture, and engineering development at Odylytics.',
       'Oversees the design and implementation of AI-powered products, integrating machine learning with scalable software systems.',
@@ -392,6 +392,12 @@ export const TEAM: TeamMember[] = [
         org: 'VNU-HCM High School for the Gifted',
         note: '2022 – 2025',
       },
+    ],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/tuannghia2457' },
+      { label: 'Facebook', href: 'https://www.facebook.com/tuannghia2457/' },
+      { label: 'Email (HCMUT)', href: 'mailto:nghia.tran2457@hcmut.edu.vn' },
+      { label: 'Email (UTS)', href: 'mailto:tuannghia.tran@student.uts.edu.au' },
     ],
     highlights: [
       "Dean's List — UTS (2026): Recognized for outstanding academic performance.",
