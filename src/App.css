@@ -465,10 +465,6 @@ a.post-card:hover { transform: translateY(-3px); }
 .profile__rows span:not(.profile__note) { grid-column: 1; color: var(--text-2); }
 .profile__note { grid-column: 2; grid-row: 1; align-self: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-3); white-space: nowrap; }
 .profile__soon { color: var(--text-3); }
-.profile__next { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-top: 8px; padding-block: 24px; border-top: 1px solid var(--border-strong); font-family: var(--font-sans); }
-.profile__next span { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
-.profile__next strong { font-weight: 500; font-size: 22px; }
-.profile__next:hover strong { color: var(--accent-ink); }
 .profile__navigation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 8px; padding-block: 24px; border-top: 1px solid var(--border-strong); font-family: var(--font-sans); }
 .profile__neighbor { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; padding-block: 8px; }
 .profile__neighbor > span { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }

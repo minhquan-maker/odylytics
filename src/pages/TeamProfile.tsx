@@ -107,25 +107,16 @@ export function TeamProfile({ slug }: { slug: string }) {
             </section>
         </div>
 
-        {member.slug === 'nghia-cto' ? (
-          <nav className="profile__navigation" aria-label="Co-founder profiles">
-            <a className="profile__neighbor" href={`#/team/${previous.slug}`} rel="prev">
-              <span>Previous</span>
-              <strong><span aria-hidden="true">←</span> {previous.name}, {previous.shortRole}</strong>
-            </a>
-            <a className="profile__neighbor profile__neighbor--next" href={`#/team/${next.slug}`} rel="next">
-              <span>Next</span>
-              <strong>{next.name}, {next.shortRole} <span aria-hidden="true">→</span></strong>
-            </a>
-          </nav>
-        ) : (
-          <a className="profile__next" href={`#/team/${previous.slug}`}>
+        <nav className="profile__navigation" aria-label="Co-founder profiles">
+          <a className="profile__neighbor" href={`#/team/${previous.slug}`} rel="prev">
             <span>Previous</span>
-            <strong>
-              ← {previous.name}, {previous.shortRole}
-            </strong>
+            <strong><span aria-hidden="true">←</span> {previous.name}, {previous.shortRole}</strong>
           </a>
-        )}
+          <a className="profile__neighbor profile__neighbor--next" href={`#/team/${next.slug}`} rel="next">
+            <span>Next</span>
+            <strong>{next.name}, {next.shortRole} <span aria-hidden="true">→</span></strong>
+          </a>
+        </nav>
       </div>
     </section>
   )
