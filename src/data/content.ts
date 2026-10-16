@@ -323,14 +323,12 @@ export const TEAM: TeamMember[] = [
       { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events' },
     ],
     highlights: [
-      'Leads AquaGuard, AirGuard, EnableCode and Includio',
-      'Vice President, HCMUT International Student Connection (2026 – Present)',
-      'Board of Directors, HCMUT Green Innovation (2025 – Present)',
-      'President, LSTS Student Council (2024 – 2025)',
+      'Leads the development of AquaGuard, AirGuard, EnableCode and Includio',
+      'Supports emergency management and rescue coordination with technology',
+      'Event coordinator and MC',
     ],
     links: [
       { label: 'Portfolio', href: 'https://quannguyen.odylytics.com/' },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ngminhquan/' },
       { label: 'Facebook', href: 'https://www.facebook.com/mquan2512/' },
       { label: 'Email (HCMUT)', href: 'mailto:quan.nguyenalex2512@hcmut.edu.vn' },
       { label: 'Email (UTS)', href: 'mailto:MinhQuan.Nguyen-2@student.uts.edu.au' },
