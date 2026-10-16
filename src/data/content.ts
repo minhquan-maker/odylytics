@@ -373,6 +373,11 @@ export const TEAM: TeamMember[] = [
         note: '2026 – Present',
       },
       {
+        title: 'Class President',
+        org: '',
+        note: '2025 – Present',
+      },
+      {
         title: 'Web Developer',
         org: 'Best Start English Center',
         note: '2025 – 2026',
