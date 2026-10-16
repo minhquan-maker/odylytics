@@ -322,11 +322,6 @@ export const TEAM: TeamMember[] = [
       { title: 'President', org: 'LSTS Student Council', note: '2024 – 2025' },
       { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events' },
     ],
-    highlights: [
-      'Leads the development of AquaGuard, AirGuard, EnableCode and Includio',
-      'Supports emergency management and rescue coordination with technology',
-      'Event coordinator and MC',
-    ],
     links: [
       { label: 'Portfolio', href: 'https://quannguyen.odylytics.com/' },
       { label: 'Facebook', href: 'https://www.facebook.com/mquan2512/' },
