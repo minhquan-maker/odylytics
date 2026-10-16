@@ -74,7 +74,9 @@ export type TeamMember = {
   /** Concrete day-to-day responsibilities. */
   responsibilities: string[]
   /** First-person or third-person paragraph for the profile page; the page shows 'Updating soon' while missing. */
-  about?: string
+  about?: string[]
+  /** A line set apart under the about text. */
+  quote?: string
   /** Education and past roles, newest first. */
   background?: { title: string; org: string; note?: string }[]
   /** Achievements worth listing on the profile. */
@@ -304,11 +306,33 @@ export const TEAM: TeamMember[] = [
     shortRole: 'CEO',
     bio: 'Leads Odylytics’ vision and strategy, building partnerships that bring our solutions to the communities that need them.',
     photo: '/assets/team/quan-a.png',
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/ngminhquan/',
     responsibilities: [
       'Sets company vision, strategy and roadmap',
       'Leads partnerships with universities, governments and sponsors',
       'Represents Odylytics at competitions, events and in the press',
+    ],
+    about: [
+      'Second-year Artificial Intelligence student at UTS and HCMUT in Ho Chi Minh City, and Chief Executive Officer of Odylytics. He leads the development of AquaGuard, AirGuard, EnableCode and Includio, using technology to support emergency management and rescue coordination.',
+      'Beyond technology he is an event coordinator, MC and student leader who believes meaningful impact starts with taking the first step.',
+    ],
+    quote: 'The secret of getting ahead is getting started.',
+    background: [
+      { title: 'Bachelor of Artificial Intelligence', org: 'University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT)', note: 'Second year' },
+      { title: 'Chief Executive Officer', org: 'Odylytics', note: 'Present' },
+      { title: 'Venture Analyst', org: 'B71 (NUSX)', note: '2026' },
+      { title: 'Research Assistant', org: 'URA Research Group', note: '2026' },
+      { title: 'Vice President', org: 'HCMUT International Student Connection', note: '2026' },
+      { title: 'Board of Directors', org: 'HCMUT Green Innovation', note: '2025' },
+      { title: 'President', org: 'LSTS Student Council', note: '2024 – 2025' },
+      { title: 'ASEAN Youth Ambassador and MC', org: 'Student leadership and events', note: '2024 – 2025' },
+    ],
+    links: [
+      { label: 'Portfolio', href: 'https://quannguyen.odylytics.com/' },
+      { label: 'GitHub', href: 'https://github.com/minhquan-maker' },
+      { label: 'Facebook', href: 'https://www.facebook.com/mquan2512/' },
+      { label: 'Email (HCMUT)', href: 'mailto:quan.nguyenalex2512@hcmut.edu.vn' },
+      { label: 'Email (UTS)', href: 'mailto:MinhQuan.Nguyen-2@student.uts.edu.au' },
     ],
   },
   {
@@ -385,8 +409,9 @@ export const TEAM: TeamMember[] = [
       'Researches the algorithms behind flood alerts and rescue dispatch',
       'Manages deployment and infrastructure',
     ],
-    about:
+    about: [
       'Second-year Bachelor of Artificial Intelligence student at UTS and HCMUT, and Software and DevOps Engineer at Odylytics. He works on AquaGuard, a web and iOS platform that issues flood alerts, lets residents send SOS requests with their live location and coordinates the nearest rescue teams in real time. He loves exploring new technologies and applying AI to make real work more efficient and impactful.',
+    ],
     background: [
       { title: 'Bachelor of Artificial Intelligence', org: 'University of Technology Sydney (UTS) and Ho Chi Minh City University of Technology (HCMUT)', note: 'Second year' },
       { title: 'Software and DevOps Engineer', org: 'Odylytics' },

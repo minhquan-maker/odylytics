@@ -3,6 +3,8 @@ import { Label } from '../components/Section'
 import { TEAM } from '../data/content'
 import { NotFound } from './NotFound'
 
+const LINK_SLOTS = ['LinkedIn', 'Portfolio', 'GitHub', 'Facebook', 'Email (HCMUT)', 'Email (UTS)']
+
 function Soon() {
   return <p className="profile__soon">Updating soon.</p>
 }
@@ -12,7 +14,8 @@ export function TeamProfile({ slug }: { slug: string }) {
   const member = TEAM.find((item) => item.slug === slug)
   if (!member) return <NotFound />
   const next = TEAM[(TEAM.indexOf(member) + 1) % TEAM.length]
-  const links = [...(member.linkedin ? [{ label: 'LinkedIn', href: member.linkedin }] : []), ...(member.links ?? [])]
+  const href = (label: string) => (label === 'LinkedIn' ? member.linkedin : member.links?.find((link) => link.label === label)?.href) ?? null
+  const links = LINK_SLOTS.map((label) => ({ label, href: href(label) }))
 
   return (
     <section className="section profile-page">
@@ -22,35 +25,45 @@ export function TeamProfile({ slug }: { slug: string }) {
         </a>
 
         <div className="profile__layout">
-          <aside className="profile__side">
-            <div className="profile__photo">{member.photo && <img src={member.photo} alt={`Portrait of ${member.name}`} />}</div>
-            {links.length > 0 && (
-              <ul className="profile__links" aria-label="Links">
-                {links.map((link) => (
-                  <li key={link.href}>
+          <div className="profile__photo">{member.photo && <img src={member.photo} alt={`Portrait of ${member.name}`} />}</div>
+          <header className="profile__head">
+            <Label>{member.role}</Label>
+            <h1 className="profile__name">{member.name}</h1>
+            <p className="profile__bio">{member.bio}</p>
+            <ul className="profile__links" aria-label="Links">
+              {links.map((link) => (
+                <li key={link.label}>
+                  {link.href ? (
                     <a href={link.href} target={link.href.startsWith('mailto:') ? undefined : '_blank'} rel="noreferrer">
-                      <span className="profile__linklabel">
-                        {link.label === 'LinkedIn' && <LinkedInIcon />}
-                        {link.label}
-                      </span>
+                      {link.label === 'LinkedIn' && <LinkedInIcon />}
+                      {link.label}
                       <ArrowUpRightIcon />
                     </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </aside>
+                  ) : (
+                    <span className="is-off" aria-disabled="true">
+                      {link.label === 'LinkedIn' && <LinkedInIcon />}
+                      {link.label}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </header>
+        </div>
 
-          <div className="profile__main">
-            <header className="profile__head">
-              <Label>{member.role}</Label>
-              <h1 className="profile__name">{member.name}</h1>
-              <p className="profile__bio">{member.bio}</p>
-            </header>
-
+        <div className="profile__main">
             <section className="profile__sec">
               <h2 className="profile__h">About</h2>
-              {member.about ? <p className="profile__about">{member.about}</p> : <Soon />}
+              {member.about?.length ? (
+                <div className="profile__about">
+                  {member.about.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
+                  {member.quote && <blockquote className="profile__quote">{member.quote}</blockquote>}
+                </div>
+              ) : (
+                <Soon />
+              )}
             </section>
 
             <section className="profile__sec">
@@ -91,7 +104,6 @@ export function TeamProfile({ slug }: { slug: string }) {
                 <Soon />
               )}
             </section>
-          </div>
         </div>
 
         <a className="profile__next" href={`#/team/${next.slug}`}>
