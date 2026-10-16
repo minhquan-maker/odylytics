@@ -5,6 +5,8 @@
  * - `featured: true` puts it in the large cards at the top of Research.
  * - `date` is ISO ('2026-10-15' or '2026-10'); leave it out for undated projects.
  * - `sections` is the long-form article body; any section left out reads "Updating soon" on the page.
+ * - `code` is a unique, permanent ID (e.g. ODR-003); never renumber it when sorting.
+ * - `fields` contains one or more AI field IDs from FIELDS below.
  * - `slug` becomes the page address: #/research/<slug>.
  */
 
@@ -24,10 +26,27 @@ export const AREAS: ResearchArea[] = [
   { id: 'retrieval', label: 'Information retrieval and language models', short: 'Retrieval and language models', text: 'Retrieving reliable evidence and grounding language-model answers in source documents.' },
 ]
 
+/** AI disciplines are separate from application areas; a project can span several fields. */
+export const FIELDS = [
+  { id: 'computer-vision', label: 'Computer Vision' },
+  { id: 'nlp', label: 'Natural Language Processing' },
+  { id: 'llm', label: 'Large Language Models' },
+  { id: 'retrieval', label: 'Information Retrieval' },
+  { id: 'robotics', label: 'Robotics' },
+  { id: 'multimodal', label: 'Multimodal AI' },
+  { id: 'reinforcement-learning', label: 'Reinforcement Learning' },
+  { id: 'ai-for-science', label: 'AI for Science' },
+  { id: 'responsible-ai', label: 'Responsible AI' },
+] as const
+export type ResearchField = (typeof FIELDS)[number]['id']
+export const fieldLabel = (id: ResearchField) => FIELDS.find((field) => field.id === id)!.label
+
 export type ResearchLink = { label: 'Paper' | 'PDF' | 'Code' | 'Data' | 'Demo' | 'Slides' | 'Video'; href: string }
 
 export type ResearchEntry = {
   slug: string
+  code?: string
+  fields?: ResearchField[]
   title: string
   kind: EntryKind
   area: string
@@ -54,6 +73,8 @@ export type ResearchEntry = {
 export const ENTRIES: ResearchEntry[] = [
   {
     slug: 'gnss-denied-uav-localization',
+    code: 'ODR-001',
+    fields: ['computer-vision', 'robotics'],
     title: 'GNSS-Denied UAV Localization',
     kind: 'Project',
     area: 'localization',
@@ -79,6 +100,8 @@ export const ENTRIES: ResearchEntry[] = [
   },
   {
     slug: 'vietnamese-legal-rag',
+    code: 'ODR-002',
+    fields: ['nlp', 'llm', 'retrieval'],
     title: 'Vietnamese Legal RAG',
     kind: 'Project',
     area: 'retrieval',
@@ -132,6 +155,35 @@ export const entryBySlug = (slug: string) => ENTRIES.find((entry) => entry.slug 
 export const sortByDate = (list: ResearchEntry[]) => [...list].sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''))
 export const ongoingEntries = () => ENTRIES.filter((entry) => entry.status === 'Ongoing')
 export const publishedEntries = () => sortByDate(ENTRIES.filter((entry) => entry.status === 'Published'))
+
+export const RESEARCH_SORTS = [
+  { id: 'newest', label: 'Newest first' },
+  { id: 'oldest', label: 'Oldest first' },
+  { id: 'name-asc', label: 'Name: A-Z' },
+  { id: 'name-desc', label: 'Name: Z-A' },
+  { id: 'code', label: 'Research code' },
+] as const
+export type ResearchSort = (typeof RESEARCH_SORTS)[number]['id']
+
+const normalizeSearch = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\u0111/gi, 'd').toLowerCase()
+
+/** Selected fields use OR; search, area and fields combine with AND. Undated work stays last. */
+export function findResearch(list: ResearchEntry[], options: { search: string; area: string; fields: string[]; sort: string }) {
+  const terms = normalizeSearch(options.search).trim().split(/\s+/).filter(Boolean)
+  return list.filter((entry) => {
+    const text = normalizeSearch([entry.title, entry.code, entry.summary, areaOf(entry.area)?.label, ...(entry.fields ?? []).map(fieldLabel)].join(' '))
+    return terms.every((term) => text.includes(term))
+      && (options.area === 'all' || entry.area === options.area)
+      && (!options.fields.length || options.fields.some((field) => entry.fields?.some((id) => id === field)))
+  }).sort((a, b) => {
+    const titleOrder = a.title.localeCompare(b.title, 'en', { sensitivity: 'base', numeric: true })
+    if (options.sort === 'name-asc') return titleOrder
+    if (options.sort === 'name-desc') return -titleOrder
+    if (options.sort === 'code') return (a.code ?? a.slug).localeCompare(b.code ?? b.slug, 'en', { numeric: true })
+    if (!a.date || !b.date) return Number(!a.date) - Number(!b.date) || titleOrder
+    return (options.sort === 'oldest' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date)) || titleOrder
+  })
+}
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 

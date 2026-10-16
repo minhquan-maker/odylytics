@@ -37,3 +37,12 @@ Page head (label + large title + serif lead), section head (label + title + link
 ## Lines
 
 The site uses thin rules to separate sections, lists and facts. The one exception is Research (overview, publications, ongoing and article pages): there, no lines between sections, list rows or facts; space and a tint on hover do the separating.
+
+
+## Ongoing research index
+
+Keep the existing square card grid with compact 4:1 covers (maximum 160px high). Search, application-area and sort controls sit above multi-select AI field chips; controls stack on narrow screens. Reuse semantic surface, border and text tokens in both themes. Research codes use mono labels; field tags use the secondary surface without competing with orange area markers.
+
+Entries in `src/data/research.ts` use permanent codes (`ODR-001`, `ODR-002`, then `ODR-003`) and multiple `fields` from `FIELDS`. Do not renumber codes after filtering or sorting. Add an actual ISO `date` when known; undated entries say "Date not set" and sort after dated entries in either time direction. Search matches title, code, summary, area and field labels without case or accent sensitivity. Selected AI fields match any selected field; area and search further narrow those results. Filters and sorting persist in the hash URL for sharing and reloads.
+
+Reference lock: preserve the user's screenshot and existing Odylytics design system (Hanken headings/UI, serif summaries, JetBrains Mono labels, square surfaces, orange research markers). Refero live research was unavailable; bundled craft guidance supplies explicit input labels, visible keyboard focus, semantic controls, live result counts and responsive sizing.

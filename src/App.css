@@ -864,3 +864,23 @@ a.erow:hover .erow__arrow { transform: translate(3px, -3px); color: var(--text);
 /* Research keeps the no-lines look: article rows and facts are separated by space only */
 .article__body .profile__sec { border-top: 0; }
 .article__facts .facts, .article__facts .facts > div { border: 0; }
+
+/* Ongoing research: compact covers and a searchable, multi-field index. */
+.ecards--ongoing .ecard__cover { aspect-ratio: 4 / 1; max-height: 160px; }
+.ecard__identity { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 20px; width: 100%; color: var(--text-2); font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; }
+.research-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
+.research-tags li { padding: 5px 9px; background: var(--surface-2); color: var(--text-2); font-family: var(--font-mono); font-size: 10px; line-height: 1.5; }
+.research-browser { margin-bottom: 28px; }
+.research-browser__controls { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, .8fr); gap: 16px; }
+.research-control { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.research-control > span, .research-browser__fields legend { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); }
+.research-control input, .research-control select { width: 100%; min-height: 46px; border: 1px solid var(--border-strong); border-radius: 0; background: var(--surface); color: var(--text); padding: 10px 12px; font-family: var(--font-sans); font-size: 15px; }
+.research-control input::placeholder { color: var(--text-3); }
+.research-control input:focus-visible, .research-control select:focus-visible { outline: 2px solid var(--signal-ink); outline-offset: 3px; }
+.research-browser__fields { border: 0; padding: 0; margin: 24px 0 16px; min-width: 0; }
+.research-browser__fields legend { margin-bottom: 12px; }
+.research-browser__fields .filters { margin-bottom: 0; }
+.research-browser__fields .chip { min-height: 40px; height: auto; padding-block: 8px; font-size: 10px; }
+.research-browser__results { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 40px; color: var(--text-2); font-family: var(--font-mono); font-size: 11px; }
+@media (max-width: 760px) { .research-browser__controls { grid-template-columns: 1fr 1fr; } .research-control--search { grid-column: 1 / -1; } }
+@media (max-width: 420px) { .research-browser__controls { grid-template-columns: 1fr; } }

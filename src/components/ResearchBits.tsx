@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AREAS, STAGES, areaOf, bibtex, formatDate } from '../data/research'
+import { AREAS, STAGES, areaOf, fieldLabel, bibtex, formatDate } from '../data/research'
 import type { ResearchEntry, Stage } from '../data/research'
 import { ArrowUpRightIcon } from './Icons'
 
@@ -68,10 +68,12 @@ export function EntryCard({ entry, project = false }: { entry: ResearchEntry; pr
         <p className="ecard__meta">
           <span>{area?.short}</span>
           <span>{entry.kind}</span>
-          {entry.date && <span>{formatDate(entry.date)}</span>}
+          {!project && entry.date && <span>{formatDate(entry.date)}</span>}
         </p>
+        {project && <p className="ecard__identity"><span>{entry.code ?? 'Unassigned'}</span><span>{formatDate(entry.date) || 'Date not set'}</span></p>}
         <h3 className="ecard__title">{entry.title}</h3>
         <p className="ecard__text">{project ? entry.question : entry.summary}</p>
+        {entry.fields?.length ? <ul className="research-tags" aria-label="AI fields">{entry.fields.map((field) => <li key={field}>{fieldLabel(field)}</li>)}</ul> : null}
         {project && entry.stage && <StageBar stage={entry.stage} />}
         <span className="link-arrow">
           Read more <span aria-hidden="true">→</span>
